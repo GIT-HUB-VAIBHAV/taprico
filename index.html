@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>taprico.com — Premium Domain For Sale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Outfit:wght@200;300;400;500;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --ink:#0D1F12;--ink2:#132819;--ink3:#1C3522;
+  --leaf:#2D5A3D;--moss:#4E9965;
+  --copper:#B5622A;--copper-l:#D4834E;--copper-xl:#ECA878;
+  --ivory:#F2ECD8;--cream:#FAF6EC;
+  --text:#EDE7D0;--muted:#8FA889;--dim:#4A6B52;
+  --clay:#C4714A;--clay-d:#9B5234;--clay-l:#D9906A;
+  /*
+    --row-h: height of each feature row.
+    All three columns share this exact value so everything lines up.
+    Left col:   6 rows × --row-h
+    Right col:  6 rows × --row-h
+    Stream col: stream-line (6 × --row-h) + kullad-outer (--row-h)
+    So feature 06 (left row 6) is at the same vertical band as
+    the BOTTOM of the stream, and the kullad appears one full
+    row-height BELOW feature 06. They are NOT parallel.
+  */
+  --row-h: 210px;
+}
+body{background:var(--ink);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.35}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:clamp(3rem,7vw,6rem) 1rem 2rem;position:relative;overflow:hidden}
+.hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse,rgba(45,90,61,.22) 0%,transparent 65%);pointer-events:none}
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.ptcl{position:absolute;background:var(--moss);border-radius:50% 50% 50% 0;opacity:0;animation:pfloat var(--d,5s) ease-in var(--dl,0s) infinite}
+@keyframes pfloat{0%{opacity:0;transform:translateY(-10px) rotate(0)}15%{opacity:.3}85%{opacity:.07}100%{opacity:0;transform:translateY(70px) rotate(120deg)}}
+.hero-head{text-align:center;position:relative;z-index:2;margin-bottom:2.5rem}
+.sale-badge{display:inline-block;background:var(--copper);color:var(--cream);font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:.3rem 1rem;border-radius:2px;margin-bottom:1.5rem;animation:bpulse 2.5s ease-in-out infinite}
+@keyframes bpulse{0%,100%{box-shadow:0 0 0 0 rgba(181,98,42,.45)}50%{box-shadow:0 0 0 10px rgba(181,98,42,0)}}
+.domain-name{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,14vw,10rem);font-weight:700;letter-spacing:.07em;line-height:.88;font-variant-ligatures:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;text-shadow:0 0 80px rgba(181,98,42,.35);margin-bottom:.1rem}
+.domain-name .t1{color:var(--copper-xl)}
+.domain-name .t2{color:var(--ivory)}
+.domain-ext{font-family:'Outfit',sans-serif;font-size:clamp(1rem,2.5vw,1.5rem);font-weight:300;color:var(--muted);letter-spacing:.22em;margin-bottom:1rem;margin-top:.15rem}
+.meaning-wrap{display:inline-flex;align-items:center;gap:.6rem;background:rgba(181,98,42,.08);border:1px solid rgba(181,98,42,.2);border-radius:30px;padding:.4rem 1.2rem;margin-bottom:1rem}
+.meaning-part{display:flex;flex-direction:column;align-items:center;gap:.1rem}
+.meaning-word{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;line-height:1}
+.meaning-word.tap-col{color:var(--copper-xl)}
+.meaning-word.co-col{color:var(--ivory)}
+.meaning-def{font-size:.58rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.meaning-plus,.meaning-eq{color:var(--dim);font-family:'Outfit',sans-serif;font-size:1rem;font-weight:500}
+.meaning-eq{font-size:.68rem;padding:0 .2rem}
+.meaning-result{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;font-weight:600;color:var(--copper-l)}
+.tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.2vw,1.3rem);font-weight:400;font-style:italic;color:var(--ivory);opacity:.7;margin-bottom:.4rem}
+.tagline-hi{font-family:'Noto Serif Devanagari',serif;font-size:.9rem;color:var(--dim);margin-bottom:2rem}
+.cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-main{background:var(--copper);color:var(--cream);border:none;padding:.88rem 2.4rem;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:.04em;border-radius:3px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:transform .2s,box-shadow .2s,background .2s;position:relative;overflow:hidden}
+.btn-main::before{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transition:left .4s}
+.btn-main:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(181,98,42,.45);background:var(--copper-l)}
+.btn-main:hover::before{left:150%}
+.btn-out{background:transparent;color:var(--text);border:1px solid rgba(181,98,42,.4);padding:.88rem 2.4rem;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:400;letter-spacing:.04em;border-radius:3px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.5rem;transition:transform .2s,border-color .2s,background .2s}
+.btn-out:hover{transform:translateY(-2px);border-color:var(--copper-l);background:rgba(181,98,42,.08)}
+.scroll-hint{display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--dim);font-family:'Outfit',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;animation:shint 2.2s ease-in-out infinite;margin-top:1.5rem}
+.scroll-hint span{width:1px;height:36px;background:linear-gradient(to bottom,transparent,var(--copper))}
+@keyframes shint{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:.7;transform:translateY(5px)}}
+
+/* MARQUEE */
+.mq{overflow:hidden;white-space:nowrap;background:var(--ink2);border-top:1px solid rgba(181,98,42,.15);border-bottom:1px solid rgba(181,98,42,.15);padding:.88rem 0}
+.mq-inner{display:inline-block;animation:mqscroll 22s linear infinite;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--copper-l)}
+@keyframes mqscroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* POUR SECTION */
+.pour-section{background:var(--ink2);border-top:1px solid rgba(45,90,61,.18);border-bottom:1px solid rgba(45,90,61,.18);position:relative;overflow:hidden}
+.pour-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:300px;height:100%;background:radial-gradient(ellipse at 50% 20%,rgba(181,98,42,.05) 0%,transparent 70%);pointer-events:none}
+.pour-intro{max-width:600px;margin:0 auto;text-align:center;padding:clamp(4rem,8vw,8rem) 1.5rem clamp(3rem,5vw,5rem)}
+.eyebrow{display:block;font-family:'Outfit',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--moss);margin-bottom:.85rem}
+.sh{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,4.5vw,3.2rem);font-weight:600;line-height:1.12;color:var(--ivory);margin-bottom:1rem}
+.sh em{font-style:italic;color:var(--copper-xl)}
+.sb-t{font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:300;line-height:1.9;color:var(--muted)}
+
+/* 3-column grid */
+.stream-section{
+  max-width:1300px;margin:0 auto;
+  padding:0 clamp(1rem,3vw,4rem);
+  display:grid;
+  grid-template-columns:1fr 100px 1fr;
+  gap:0;
+  align-items:start;
+}
+
+/* ══ STREAM COLUMN ══
+   stream-line = 6 × --row-h  (same as all feature rows combined)
+   kullad-outer = --row-h      (sits AFTER stream, below feature 06)
+*/
+.stream-col{display:flex;flex-direction:column;align-items:center}
+.kettle-sticky{position:sticky;top:12vh;width:120px;z-index:10;flex-shrink:0}
+.k-rock{animation:krock 3.5s ease-in-out infinite;transform-origin:50% 60%}
+@keyframes krock{0%,100%{transform:rotate(0deg)}30%{transform:rotate(-2.5deg) translateY(-2px)}70%{transform:rotate(2deg) translateY(-1px)}}
+
+.stream-line{
+  width:8px;
+  height:calc(var(--row-h) * 6); /* exactly 6 feature rows */
+  flex-shrink:0;
+  background:linear-gradient(to bottom,var(--copper-xl) 0%,var(--copper) 35%,rgba(181,98,42,.5) 70%,rgba(181,98,42,.15) 92%,transparent 100%);
+  border-radius:4px;position:relative;overflow:hidden;
+  animation:sbreathe 2s ease-in-out infinite;
+}
+@keyframes sbreathe{0%,100%{transform:scaleX(1);opacity:.85}50%{transform:scaleX(.72);opacity:1}}
+.stream-line::before{content:'';position:absolute;top:-30%;left:0;right:0;height:40%;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.3),transparent);animation:sflow .8s linear infinite}
+@keyframes sflow{0%{top:-30%}100%{top:100%}}
+.sdrop{position:absolute;left:50%;transform:translateX(-50%);background:var(--copper-xl);border-radius:50% 50% 45% 45%;opacity:0;animation:sdfall var(--dd,.65s) ease-in var(--dl,0s) infinite}
+@keyframes sdfall{0%{opacity:1;top:0;width:8px;height:11px}80%{opacity:.7}100%{opacity:0;top:100%;width:5px;height:5px}}
+
+/* kullad sits in its own --row-h slot, BELOW stream-line */
+.kullad-outer{
+  flex-shrink:0;
+  height:var(--row-h);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;width:120px;
+}
+.kullad-inner{position:relative;width:120px}
+.kullad-liq{position:absolute;bottom:16px;left:20px;width:80px;border-radius:0 0 50% 50%;background:linear-gradient(to bottom,var(--copper-xl),var(--copper) 60%,#7A3A10);animation:kliq 3.5s ease-in-out infinite;overflow:hidden}
+.kullad-liq::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);animation:shim 1.4s ease-in-out infinite}
+@keyframes kliq{0%,15%{height:0}28%{height:5px}72%{height:48px}82%,100%{height:48px}}
+@keyframes shim{0%{transform:translateX(-120%)}100%{transform:translateX(220%)}}
+.kullad-splashes{position:absolute;bottom:64px;left:50%;transform:translateX(-50%);width:70px;height:18px;pointer-events:none}
+.sp{position:absolute;background:var(--copper-l);border-radius:50%;opacity:0;animation:spop var(--sd,.42s) ease-out var(--sdl,0s) infinite}
+@keyframes spop{0%{width:5px;height:5px;opacity:.8;transform:translate(0,0)}100%{width:2px;height:2px;opacity:0;transform:translate(var(--sx,0px),var(--sy,-12px))}}
+.kullad-steam{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);display:flex;gap:7px;animation:stshow 3.5s ease-in-out infinite}
+@keyframes stshow{0%,62%{opacity:0}76%,100%{opacity:1}}
+.stm{width:2px;height:20px;border-radius:2px;background:linear-gradient(to top,rgba(242,236,216,.55),transparent);animation:strise var(--st,1.5s) ease-in-out var(--sl,0s) infinite}
+@keyframes strise{0%,100%{transform:scaleY(.5) translateY(4px);opacity:0}50%{transform:scaleY(1.3) translateY(-6px);opacity:.6}}
+.stream-label{font-family:'Outfit',sans-serif;font-size:.6rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:center;padding:1rem 0 clamp(3rem,5vw,5rem);white-space:nowrap}
+
+/* ══ FEATURE COLUMNS ══
+   Exactly 6 feat-slots each, height = --row-h.
+   Left col:  empty,02,empty,04,empty,06
+   Right col: 01,empty,03,empty,05,empty
+   
+   After 6 slots, feature columns end.
+   Stream col continues with kullad-outer (1 more --row-h).
+   Result: 06 is in row 6, kullad is in row 7 (stream col only).
+   Feature 06 is ABOVE the kullad. ✓
+*/
+.feat-col-left,.feat-col-right{display:flex;flex-direction:column}
+.feat-slot{
+  height:var(--row-h);
+  flex-shrink:0;
+  display:flex;align-items:center;
+}
+.feat-col-left  .feat-slot{justify-content:flex-end;padding-right:2.5rem}
+.feat-col-right .feat-slot{justify-content:flex-start;padding-left:2.5rem}
+
+/* FEATURE CARD */
+.fc{max-width:320px;width:100%;opacity:0;position:relative;transition:opacity .55s ease,transform .6s cubic-bezier(.16,1,.3,1)}
+.feat-col-left  .fc{transform:translateX(44px);text-align:right}
+.feat-col-right .fc{transform:translateX(-44px);text-align:left}
+.fc.show{opacity:1;transform:translateX(0)}
+.fc::before{content:'';position:absolute;top:50%;width:7px;height:7px;background:var(--copper);border-radius:50%;opacity:0;transition:opacity .3s ease .4s;box-shadow:0 0 8px rgba(181,98,42,.6)}
+.feat-col-left  .fc::before{right:-2.5rem;transform:translateY(-50%)}
+.feat-col-right .fc::before{left:-2.5rem;transform:translateY(-50%)}
+.fc.show::before{opacity:1}
+.fc::after{content:'';position:absolute;top:50%;height:1px;opacity:0;width:0;transition:opacity .3s ease .35s,width .5s ease .35s}
+.feat-col-left  .fc::after{right:0;background:linear-gradient(to left,rgba(181,98,42,.4),transparent)}
+.feat-col-right .fc::after{left:0;background:linear-gradient(to right,rgba(181,98,42,.4),transparent)}
+.fc.show::after{opacity:1;width:calc(100% + 2.5rem)}
+
+.fc-number{display:block;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;font-style:italic;color:rgba(181,98,42,.4);line-height:1;margin-bottom:.25rem}
+.feat-col-left  .fc-number{text-align:right}
+.feat-col-right .fc-number{text-align:left}
+.fc-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--ivory);margin-bottom:.4rem;line-height:1.2}
+.feat-col-left  .fc-title{text-align:right}
+.feat-col-right .fc-title{text-align:left}
+.fc-accent{display:block;height:1.5px;margin-bottom:.65rem;width:0;transition:width .5s ease .5s;background:linear-gradient(to right,var(--copper),var(--copper-xl),transparent)}
+.feat-col-left .fc-accent{background:linear-gradient(to left,var(--copper),var(--copper-xl),transparent);margin-left:auto}
+.fc.show .fc-accent{width:50%}
+.fc-body{font-family:'Outfit',sans-serif;font-size:.83rem;font-weight:300;line-height:1.8;color:var(--muted)}
+.feat-col-left  .fc-body{text-align:right}
+.feat-col-right .fc-body{text-align:left}
+
+/* REST */
+.sw{max-width:1100px;margin:0 auto;padding:clamp(5rem,8vw,8rem) clamp(1.5rem,5vw,6rem)}
+.brand-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+@media(max-width:720px){.brand-grid{grid-template-columns:1fr;gap:3rem}}
+.uc{display:flex;align-items:flex-start;gap:1rem;padding:.95rem 0;border-bottom:1px solid rgba(45,90,61,.15);transition:padding-left .2s}
+.uc:hover{padding-left:.5rem}
+.uc-n{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;font-style:italic;color:var(--copper);min-width:2rem;line-height:1;margin-top:.1rem}
+.uc-t{font-family:'Outfit',sans-serif;font-size:.88rem;line-height:1.7;color:var(--muted)}
+.uc-t strong{color:var(--ivory);font-weight:600}
+.bm{background:var(--ink3);border:1px solid rgba(181,98,42,.18);border-radius:10px;padding:2.5rem;position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+.bm::before{content:'taprico';position:absolute;bottom:-1rem;right:-.5rem;font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:700;font-style:italic;color:rgba(45,90,61,.07);pointer-events:none;line-height:1;letter-spacing:.06em}
+.bm-bar{display:flex;align-items:center;gap:6px;margin-bottom:1.4rem}
+.bd{width:9px;height:9px;border-radius:50%}
+.bm-url{flex:1;background:rgba(0,0,0,.3);border-radius:4px;padding:.24rem .7rem;font-family:'Outfit',sans-serif;font-size:.7rem;color:var(--dim);letter-spacing:.08em}
+.bm-logo{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;letter-spacing:.07em;color:var(--ivory);margin-bottom:.3rem;font-variant-ligatures:none}
+.bm-logo .p1{color:var(--copper-xl)}
+.bm-sub{font-family:'Outfit',sans-serif;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:1.4rem}
+.m-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.mt{background:rgba(45,90,61,.18);border:1px solid rgba(45,90,61,.35);color:var(--moss);font-family:'Outfit',sans-serif;font-size:.67rem;font-weight:500;padding:.18rem .6rem;border-radius:2px;letter-spacing:.08em}
+.offer-wrap{background:var(--ink2);border-top:1px solid rgba(45,90,61,.18)}
+.offer-inner{max-width:680px;margin:0 auto;padding:clamp(5rem,8vw,8rem) clamp(1.5rem,5vw,6rem);text-align:center}
+.offer-card{background:var(--ink3);border:1px solid rgba(181,98,42,.2);border-radius:10px;padding:clamp(2.5rem,5vw,3.5rem);position:relative;overflow:hidden;margin-top:2.5rem;box-shadow:0 40px 100px rgba(0,0,0,.5)}
+.offer-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--leaf),var(--copper-l),var(--leaf))}
+.offer-q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;font-style:italic;color:var(--ivory);margin-bottom:.5rem}
+.offer-sub{font-family:'Outfit',sans-serif;font-size:.85rem;color:var(--muted);margin-bottom:2rem;line-height:1.7}
+.budget-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.7rem;margin-bottom:1.5rem}
+.budget-btn{background:rgba(181,98,42,.08);border:1px solid rgba(181,98,42,.2);color:var(--muted);font-family:'Outfit',sans-serif;font-size:.78rem;font-weight:500;letter-spacing:.04em;padding:.7rem .5rem;border-radius:6px;cursor:pointer;transition:background .2s,border-color .2s,color .2s,transform .15s;text-align:center}
+.budget-btn:hover,.budget-btn.active{background:rgba(181,98,42,.18);border-color:var(--copper-l);color:var(--copper-xl);transform:translateY(-1px)}
+.msg-area{width:100%;background:rgba(0,0,0,.25);border:1px solid rgba(181,98,42,.2);border-radius:6px;padding:.9rem 1rem;color:var(--text);font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:300;line-height:1.7;resize:vertical;min-height:90px;transition:border-color .2s;margin-bottom:1.2rem;outline:none}
+.msg-area::placeholder{color:var(--dim)}
+.msg-area:focus{border-color:var(--copper-l)}
+.offer-note{font-family:'Outfit',sans-serif;font-size:.75rem;color:var(--dim);margin-bottom:1.6rem;line-height:1.6}
+.p-or{margin:.85rem 0;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.5px;background:rgba(45,90,61,.12);border:1px solid rgba(45,90,61,.12);margin-top:2.5rem}
+.cc{background:var(--ink);padding:1.8rem 1.6rem;display:flex;flex-direction:column;gap:.4rem;transition:background .2s;text-decoration:none;cursor:pointer}
+.cc:hover{background:var(--ink2)}
+.cc-pl{font-family:'Outfit',sans-serif;font-size:.62rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.cc-vl{font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:500;color:var(--copper-l)}
+.cc-ac{font-family:'Outfit',sans-serif;font-size:.75rem;color:var(--muted)}
+footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6rem);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;color:var(--dim);font-size:.75rem;font-family:'Outfit',sans-serif}
+.fl{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:700;font-style:italic;color:var(--copper-l);letter-spacing:.04em}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.rv.vis{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.12s}.rd2{transition-delay:.24s}.rd3{transition-delay:.36s}
+
+@media(max-width:700px){
+  .stream-section{grid-template-columns:1fr 70px 1fr}
+  :root{--row-h:170px}
+  .feat-col-left  .feat-slot{padding-right:1.2rem}
+  .feat-col-right .feat-slot{padding-left:1.2rem}
+  .fc{max-width:220px}
+}
+@media(max-width:500px){
+  .stream-section{grid-template-columns:1fr 50px 1fr}
+  .cta-row{flex-direction:column;align-items:center}
+  .btn-main,.btn-out{width:100%;max-width:290px;justify-content:center}
+  .budget-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-head">
+    <div class="sale-badge">✦ Available for Acquisition</div>
+    <div class="domain-name" aria-label="taprico"><span class="t1">tap</span><span class="t2">rico</span></div>
+    <div class="domain-ext">.com</div>
+    <div class="meaning-wrap">
+      <div class="meaning-part">
+        <span class="meaning-word tap-col">tapri</span>
+        <span class="meaning-def">चाय की टपरी</span>
+      </div>
+      <span class="meaning-plus">+</span>
+      <div class="meaning-part">
+        <span class="meaning-word co-col">co</span>
+        <span class="meaning-def">company</span>
+      </div>
+      <span class="meaning-eq">=</span>
+      <span class="meaning-result">taprico</span>
+    </div>
+    <div class="tagline">"Where every chai stall becomes a brand."</div>
+    <div class="tagline-hi">टपरी से तरक्की — एक डोमेन में</div>
+    <div class="cta-row">
+      <a href="mailto:vaibhav.gupta0107@gmail.com?subject=Offer for taprico.com" class="btn-main">☕ Make an Offer</a>
+      <a href="https://wa.me/917042831137?text=Hi%20Vaibhav%2C%20I%20am%20interested%20in%20taprico.com" class="btn-out" target="_blank">💬 WhatsApp</a>
+    </div>
+  </div>
+  <div class="scroll-hint">scroll down<span></span></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq">
+  <div class="mq-inner">
+    ✦ TAPRICO.COM FOR SALE &nbsp;&nbsp;&nbsp; ✦ TAPRI + CO = TAPRICO &nbsp;&nbsp;&nbsp; ✦ PREMIUM INDIAN TEA DOMAIN &nbsp;&nbsp;&nbsp; ✦ SHORT · PUNCHY · BRANDABLE &nbsp;&nbsp;&nbsp; ✦ D2C TEA STARTUPS &nbsp;&nbsp;&nbsp; ✦ TAPRICO.COM FOR SALE &nbsp;&nbsp;&nbsp; ✦ TAPRI + CO = TAPRICO &nbsp;&nbsp;&nbsp; ✦ PREMIUM INDIAN TEA DOMAIN &nbsp;&nbsp;&nbsp; ✦ SHORT · PUNCHY · BRANDABLE &nbsp;&nbsp;&nbsp; ✦ D2C TEA STARTUPS &nbsp;&nbsp;&nbsp;
+  </div>
+</div>
+
+<!-- POUR + FEATURES -->
+<div class="pour-section">
+  <div class="pour-intro rv">
+    <span class="eyebrow">Why taprico.com</span>
+    <h2 class="sh">Every sip tells<br><em>a brand story.</em></h2>
+    <p class="sb-t">India's D2C chai market crossing ₹10,000 Cr. taprico.com — short, punchy, built for the big leagues.</p>
+  </div>
+
+  <div class="stream-section">
+
+    <!-- LEFT: empty, 02, empty, 04, empty, 06 -->
+    <div class="feat-col-left">
+      <div class="feat-slot"></div>
+      <div class="feat-slot">
+        <div class="fc" id="fc2">
+          <span class="fc-number">02</span>
+          <div class="fc-title">Global Resonance</div>
+          <div class="fc-accent"></div>
+          <div class="fc-body">"tapri" roots it in Indian chai culture. "co" signals a company. A name that means business from Mumbai to Milan.</div>
+        </div>
+      </div>
+      <div class="feat-slot"></div>
+      <div class="feat-slot">
+        <div class="fc" id="fc4">
+          <span class="fc-number">04</span>
+          <div class="fc-title">Secure Transfer</div>
+          <div class="fc-accent"></div>
+          <div class="fc-body">Protected via Escrow.com. Full domain transfer within 24 hours of cleared payment. EMI plans available.</div>
+        </div>
+      </div>
+      <div class="feat-slot"></div>
+      <!-- Row 6: feature 06 is here — ABOVE the kullad which comes after -->
+      <div class="feat-slot">
+        <div class="fc" id="fc6">
+          <span class="fc-number">06</span>
+          <div class="fc-title">Booming Market</div>
+          <div class="fc-accent"></div>
+          <div class="fc-body">Vahdam, Teabox, Blue Tokai — India's chai D2C is exploding. The right domain is the first sip of a legendary brand.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STREAM CENTRE:
+         stream-line spans rows 1–6  (height = 6 × --row-h)
+         kullad-outer is row 7       (height = --row-h)
+         So feature 06 (left row 6) is one full row ABOVE the kullad. -->
+    <div class="stream-col">
+      <div class="kettle-sticky">
+        <div class="k-rock">
+          <svg width="120" height="155" viewBox="0 0 120 155" fill="none">
+            <defs>
+              <radialGradient id="kb" cx="35%" cy="30%" r="60%"><stop offset="0%" stop-color="#4E9965"/><stop offset="100%" stop-color="#1C3522"/></radialGradient>
+              <radialGradient id="ks" cx="30%" cy="25%" r="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.16)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient>
+              <linearGradient id="kh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3D7A52"/><stop offset="100%" stop-color="#2D5A3D"/></linearGradient>
+            </defs>
+            <path d="M88 30 Q114 30 114 62 Q114 92 88 90" stroke="url(#kh)" stroke-width="7" stroke-linecap="round" fill="none"/>
+            <path d="M88 36 Q108 36 108 62 Q108 86 88 84" stroke="rgba(78,153,101,.3)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <rect x="6" y="8" width="80" height="90" rx="18" fill="url(#kb)"/>
+            <rect x="6" y="8" width="80" height="90" rx="18" fill="url(#ks)"/>
+            <rect x="6" y="46" width="80" height="4" fill="rgba(181,98,42,.3)" rx="2"/>
+            <rect x="16" y="6" width="60" height="8" rx="4" fill="#2D5A3D"/>
+            <rect x="16" y="5" width="60" height="6" rx="3" fill="#3D7A52"/>
+            <rect x="42" y="0" width="16" height="8" rx="4" fill="#4E9965"/>
+            <rect x="44" y="1" width="12" height="5" rx="2.5" fill="#5AAD72"/>
+            <line x1="28" y1="12" x2="28" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+            <line x1="46" y1="12" x2="46" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+            <line x1="64" y1="12" x2="64" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+            <path d="M14 97 Q46 104 78 97" stroke="rgba(181,98,42,.4)" stroke-width="1.5" fill="none"/>
+            <path d="M40 96 Q38 116 46 128 Q50 138 60 142" stroke="#1A3020" stroke-width="9" stroke-linecap="round" fill="none"/>
+            <path d="M40 96 Q38 116 46 128 Q50 138 60 142" stroke="#2D5A3D" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <path d="M52 96 Q54 116 56 128 Q58 138 60 142" stroke="#1A3020" stroke-width="9" stroke-linecap="round" fill="none"/>
+            <path d="M52 96 Q54 116 56 128 Q58 138 60 142" stroke="#2D5A3D" stroke-width="6" stroke-linecap="round" fill="none"/>
+            <ellipse cx="60" cy="142" rx="7" ry="4.5" fill="#1A3020"/>
+            <ellipse cx="60" cy="141" rx="5.5" ry="3.5" fill="#253E2C"/>
+            <ellipse cx="60" cy="142" rx="3.5" ry="3" fill="#0D1F12"/>
+            <rect x="22" y="20" width="32" height="38" rx="8" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+            <line x1="25" y1="24" x2="25" y2="52" stroke="rgba(255,255,255,.12)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Stream: 6 rows tall -->
+      <div class="stream-line">
+        <div class="sdrop" style="--dd:.6s;--dl:.1s"></div>
+        <div class="sdrop" style="--dd:.7s;--dl:.7s"></div>
+        <div class="sdrop" style="--dd:.55s;--dl:1.3s"></div>
+      </div>
+
+      <!-- Kullad: 1 row tall, AFTER stream, BELOW feature 06 -->
+      <div class="kullad-outer">
+        <div class="kullad-inner">
+          <div class="kullad-liq"></div>
+          <div class="kullad-splashes">
+            <div class="sp" style="--sd:.44s;--sdl:.18s;--sx:-12px;--sy:-15px;left:28%;top:0"></div>
+            <div class="sp" style="--sd:.38s;--sdl:.48s;--sx:13px;--sy:-17px;left:52%;top:0"></div>
+            <div class="sp" style="--sd:.50s;--sdl:.32s;--sx:-4px;--sy:-20px;left:42%;top:0"></div>
+            <div class="sp" style="--sd:.36s;--sdl:.62s;--sx:9px;--sy:-12px;left:58%;top:0"></div>
+          </div>
+          <div class="kullad-steam">
+            <div class="stm" style="--st:1.4s;--sl:0s"></div>
+            <div class="stm" style="--st:1.9s;--sl:.32s"></div>
+            <div class="stm" style="--st:1.3s;--sl:.62s"></div>
+          </div>
+          <svg width="120" height="125" viewBox="0 0 120 125" fill="none">
+            <ellipse cx="60" cy="121" rx="38" ry="4.5" fill="#0D1F12" opacity=".65"/>
+            <path d="M20 18 C16 30,12 52,14 74 C16 96,20 110,60 118 C100 110,104 96,106 74 C108 52,104 30,100 18 Z" fill="var(--clay)"/>
+            <path d="M16 62 C14 84,18 106,60 118 C102 106,106 84,104 62 Z" fill="var(--clay-d)" opacity=".38"/>
+            <path d="M23 34 Q60 41 97 34" stroke="rgba(155,82,52,.55)" stroke-width="1.2" fill="none"/>
+            <path d="M18 55 Q60 64 102 55" stroke="rgba(155,82,52,.5)" stroke-width="1" fill="none"/>
+            <path d="M16 78 Q60 88 104 78" stroke="rgba(155,82,52,.4)" stroke-width="1" fill="none"/>
+            <path d="M24 24 Q18 52 20 84 Q22 102 32 112" stroke="rgba(255,255,255,.1)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <ellipse cx="60" cy="18" rx="40" ry="10" fill="var(--clay-d)"/>
+            <ellipse cx="60" cy="17" rx="39" ry="8.5" fill="var(--clay-l)"/>
+            <ellipse cx="60" cy="16" rx="33" ry="7" fill="#1C1008"/>
+            <ellipse cx="60" cy="15" rx="31" ry="5.5" fill="#2A1A0A" opacity=".8"/>
+            <ellipse cx="86" cy="72" rx="12" ry="20" fill="rgba(255,255,255,.055)" transform="rotate(8 86 72)"/>
+            <path d="M40 114 Q60 120 80 114 L82 119 Q60 125 38 119 Z" fill="var(--clay-d)"/>
+            <ellipse cx="60" cy="119" rx="20" ry="4.5" fill="#7A3A18"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stream-label">tapri ki chai ↓</div>
+    </div>
+
+    <!-- RIGHT: 01, empty, 03, empty, 05, empty -->
+    <div class="feat-col-right">
+      <div class="feat-slot">
+        <div class="fc" id="fc1">
+          <span class="fc-number">01</span>
+          <div class="fc-title">Premium .com</div>
+          <div class="fc-accent"></div>
+          <div class="fc-body">Not .in, not .co. A full .com — global trust, investment-grade credibility, and authority every serious brand needs.</div>
+        </div>
+      </div>
+      <div class="feat-slot"></div>
+      <div class="feat-slot">
+        <div class="fc" id="fc3">
+          <span class="fc-number">03</span>
+          <div class="fc-title">6 Letters. One Sip.</div>
+          <div class="fc-accent"></div>
+          <div class="fc-body">Short enough for a kullad label. Punchy enough to anchor a ₹100 Cr brand. taprico rolls off the tongue everywhere.</div>
+        </div>
+      </div>
+      <div class="feat-slot"></div>
+      <div class="feat-slot">
+        <div class="fc" id="fc5">
+          <span class="fc-number">05</span>
+          <div class="fc-title">Zero Baggage</div>
+          <div class="fc-accent"></div>
+          <div class="fc-body">Clean history — no spam flags, no old websites, no litigation. A blank canvas for a founder who means business.</div>
+        </div>
+      </div>
+      <div class="feat-slot"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- BRAND POTENTIAL -->
+<div class="sw">
+  <div class="brand-grid">
+    <div>
+      <span class="eyebrow rv">Brand potential</span>
+      <h2 class="sh rv rd1">Your name.<br><em>Your story.</em></h2>
+      <p style="font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:300;line-height:1.9;color:var(--muted);margin-bottom:0" class="rv rd2">taprico.com is made for Indian chai — and any tea-adjacent venture ready to own that identity:</p>
+      <ul style="list-style:none;margin-top:1.4rem">
+        <li class="uc rv rd1"><span class="uc-n">01</span><span class="uc-t"><strong>D2C Tea Brand</strong> — Premium chai subscription, Darjeeling exports, or a modern tapri going online-first.</span></li>
+        <li class="uc rv rd2"><span class="uc-n">02</span><span class="uc-t"><strong>Tea Tech Startup</strong> — Farm-to-kullad traceability or a B2B marketplace for tea estates.</span></li>
+        <li class="uc rv rd3"><span class="uc-n">03</span><span class="uc-t"><strong>Wellness Brand</strong> — Herbal chai blends, adaptogen teas, or a D2C brand with deep Indian roots.</span></li>
+        <li class="uc rv"><span class="uc-n">04</span><span class="uc-t"><strong>Tea Exporter</strong> — A memorable international web presence for India's finest chai exports.</span></li>
+      </ul>
+    </div>
+    <div class="bm rv rd2">
+      <div class="bm-bar">
+        <span class="bd" style="background:#C0392B"></span>
+        <span class="bd" style="background:#C8A04A"></span>
+        <span class="bd" style="background:var(--moss)"></span>
+        <span class="bm-url">taprico.com</span>
+      </div>
+      <div class="bm-logo"><span class="p1">tap</span>rico</div>
+      <div class="bm-sub">tapri + co · chai ki company.</div>
+      <div class="m-tags">
+        <span class="mt">Tapri</span><span class="mt">Chai D2C</span>
+        <span class="mt">India</span><span class="mt">Export</span>
+        <span class="mt">Startup-ready</span><span class="mt">.com</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OFFER -->
+<div class="offer-wrap">
+  <div class="offer-inner">
+    <span class="eyebrow rv" style="text-align:center;display:block">Make an Offer</span>
+    <h2 class="sh rv rd1" style="text-align:center">What's your<br><em>budget?</em></h2>
+    <p style="font-family:'Outfit',sans-serif;font-size:.95rem;color:var(--muted);text-align:center;line-height:1.8;max-width:480px;margin:0 auto" class="rv rd2">No fixed price — tell me your range and let's find a fair deal over chai.</p>
+    <div class="offer-card rv">
+      <div class="offer-q">Select budget range</div>
+      <div class="offer-sub">Pick what works for you — I'll reach out with a tailored offer.</div>
+      <div class="budget-grid" id="budgetGrid">
+        <button class="budget-btn" data-val="Under ₹25,000">Under ₹25K</button>
+        <button class="budget-btn" data-val="₹25,000 – ₹50,000">₹25K – ₹50K</button>
+        <button class="budget-btn" data-val="₹50,000 – ₹1,00,000">₹50K – ₹1L</button>
+        <button class="budget-btn" data-val="₹1,00,000 – ₹2,00,000">₹1L – ₹2L</button>
+        <button class="budget-btn" data-val="₹2,00,000 – ₹5,00,000">₹2L – ₹5L</button>
+        <button class="budget-btn" data-val="Above ₹5,00,000">Above ₹5L</button>
+      </div>
+      <textarea class="msg-area" id="msgArea" placeholder="Tell me about your brand and how you'd use taprico.com (optional)"></textarea>
+      <div class="offer-note">Clicking below opens WhatsApp with your budget pre-filled.<br>Or email: vaibhav.gupta0107@gmail.com</div>
+      <div class="cta-row">
+        <button class="btn-main" onclick="sendOffer()">💬 Send Budget on WhatsApp</button>
+      </div>
+      <div class="p-or">— or —</div>
+      <div class="cta-row">
+        <a href="mailto:vaibhav.gupta0107@gmail.com?subject=Offer for taprico.com" class="btn-out">✉️ Email Your Offer</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="sw" style="padding-top:0;padding-bottom:clamp(4rem,7vw,6rem)">
+  <span class="eyebrow rv">Get in touch</span>
+  <h2 class="sh rv rd1">Let's talk<br><em>over chai.</em></h2>
+  <div class="cg">
+    <a href="mailto:vaibhav.gupta0107@gmail.com?subject=taprico.com inquiry" class="cc rv">
+      <span class="cc-pl">Email</span>
+      <span class="cc-vl">vaibhav.gupta0107@gmail.com</span>
+      <span class="cc-ac">Reply in 2 hours →</span>
+    </a>
+    <a href="https://wa.me/917042831137?text=Hi%20Vaibhav%2C%20I%20am%20interested%20in%20taprico.com" class="cc rv rd1" target="_blank">
+      <span class="cc-pl">WhatsApp</span>
+      <span class="cc-vl">+91 70428 31137</span>
+      <span class="cc-ac">Fastest response →</span>
+    </a>
+    <a href="https://linkedin.com/in/vaibhav0107" class="cc rv rd2" target="_blank">
+      <span class="cc-pl">LinkedIn</span>
+      <span class="cc-vl">Vaibhav Gupta</span>
+      <span class="cc-ac">Connect & message →</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span class="fl">taprico.com</span>
+  <span>tapri + co · chai ki company · India 🇮🇳</span>
+  <span>made with ☕ by Vaibhav Gupta</span>
+</footer>
+
+<script>
+const pw=document.getElementById('particles');
+for(let i=0;i<20;i++){
+  const p=document.createElement('div');p.className='ptcl';
+  const s=3+Math.random()*5;
+  p.style.cssText=`left:${Math.random()*100}%;top:${5+Math.random()*70}%;width:${s}px;height:${s*1.7}px;--d:${4+Math.random()*6}s;--dl:${Math.random()*8}s;transform:rotate(${Math.random()*360}deg)`;
+  pw.appendChild(p);
+}
+const fcIO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('show'),80);fcIO.unobserve(e.target)}});
+},{threshold:0.25,rootMargin:'0px 0px -80px 0px'});
+document.querySelectorAll('.fc').forEach(el=>fcIO.observe(el));
+let sel='';
+document.getElementById('budgetGrid').addEventListener('click',function(e){
+  const b=e.target.closest('.budget-btn');if(!b)return;
+  document.querySelectorAll('.budget-btn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');sel=b.dataset.val;
+});
+function sendOffer(){
+  const msg=document.getElementById('msgArea').value.trim();
+  const budget=sel||'Not specified';
+  const text=encodeURIComponent(`Hi Vaibhav, I am interested in taprico.com.\n\nMy budget: ${budget}${msg?'\n\nAbout my brand: '+msg:''}`);
+  window.open(`https://wa.me/917042831137?text=${text}`,'_blank');
+}
+const rvIO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');rvIO.unobserve(e.target)}});
+},{threshold:0.1});
+document.querySelectorAll('.rv').forEach(el=>rvIO.observe(el));
+</script>
+</body>
+</html>
