@@ -4,15 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>taprico.com — Premium Domain For Sale</title>
-
-<!-- OG / Social Preview Tags -->
 <meta property="og:site_name" content="taprico.com">
 <meta property="og:title" content="taprico.com — Premium Chai Domain For Sale">
 <meta property="og:description" content="tapri + co. Built for India's chai D2C wave.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://taprico.com">
 <meta property="og:image" content="https://taprico.com/og-taprico.png">
-<meta property="og:image:secure_url" content="https://taprico.com/og-taprico.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -20,9 +17,6 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="taprico.com — Premium Chai Domain For Sale">
 <meta name="twitter:description" content="tapri + co. Built for India's chai D2C wave.">
-<meta name="twitter:image" content="https://taprico.com/og-taprico.png">
-<meta name="twitter:image:alt" content="taprico.com — Premium Chai Domain For Sale">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Outfit:wght@200;300;400;500;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
@@ -50,7 +44,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .hero-head{text-align:center;position:relative;z-index:2;margin-bottom:2.5rem}
 .sale-badge{display:inline-block;background:var(--copper);color:var(--cream);font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:.3rem 1rem;border-radius:2px;margin-bottom:1.5rem;animation:bpulse 2.5s ease-in-out infinite}
 @keyframes bpulse{0%,100%{box-shadow:0 0 0 0 rgba(181,98,42,.45)}50%{box-shadow:0 0 0 10px rgba(181,98,42,0)}}
-.domain-name{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,14vw,10rem);font-weight:700;letter-spacing:.07em;line-height:.88;font-variant-ligatures:none;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;text-shadow:0 0 80px rgba(181,98,42,.35);margin-bottom:.1rem}
+.domain-name{font-family:'Cormorant Garamond',serif;font-size:clamp(5rem,14vw,10rem);font-weight:700;letter-spacing:.07em;line-height:.88;-webkit-font-smoothing:antialiased;text-shadow:0 0 80px rgba(181,98,42,.35);margin-bottom:.1rem}
 .domain-name .t1{color:var(--copper-xl)}
 .domain-name .t2{color:var(--ivory)}
 .domain-ext{font-family:'Outfit',sans-serif;font-size:clamp(1rem,2.5vw,1.5rem);font-weight:300;color:var(--muted);letter-spacing:.22em;margin-bottom:1rem;margin-top:.15rem}
@@ -90,18 +84,27 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .sh em{font-style:italic;color:var(--copper-xl)}
 .sb-t{font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:300;line-height:1.9;color:var(--muted)}
 
+/* ── STREAM LAYOUT ── */
 .stream-section{max-width:1200px;margin:0 auto;padding:0 clamp(1rem,3vw,3rem);position:relative}
-.kettle-wrap{display:flex;justify-content:center;position:sticky;top:12vh;z-index:10;pointer-events:none;height:0}
-.k-rock{animation:krock 3.5s ease-in-out infinite;transform-origin:50% 60%}
-@keyframes krock{0%,100%{transform:rotate(0deg)}30%{transform:rotate(-2.5deg) translateY(-2px)}70%{transform:rotate(2deg) translateY(-1px)}}
-.stream-pipe-wrap{position:absolute;left:50%;transform:translateX(-50%);top:0;width:8px;z-index:1}
-.stream-line{width:8px;height:calc(var(--row-h)*7);background:linear-gradient(to bottom,var(--copper-xl) 0%,var(--copper) 35%,rgba(181,98,42,.5) 70%,rgba(181,98,42,.15) 92%,transparent 100%);border-radius:4px;position:relative;overflow:hidden;animation:sbreathe 2s ease-in-out infinite}
-@keyframes sbreathe{0%,100%{transform:scaleX(1);opacity:.85}50%{transform:scaleX(.72);opacity:1}}
-.stream-line::before{content:'';position:absolute;top:-30%;left:0;right:0;height:40%;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.3),transparent);animation:sflow .8s linear infinite}
+
+/* Kettle: in normal flow, centered, no rotation tricks */
+.kettle-wrap{display:flex;justify-content:center;pointer-events:none;position:relative;z-index:5;overflow:visible;padding-bottom:8px;padding-left:210px}
+.k-rock{animation:krock 3.5s ease-in-out infinite;transform-origin:52% 72%}
+@keyframes krock{0%,100%{transform:rotate(-27deg)}40%{transform:rotate(-32deg)}70%{transform:rotate(-23deg)}}
+
+/* Stream pipe: absolute, starts right at top of stream-section.
+   The kettle SVG bottom (spout tip) is designed to sit at the centre-x,
+   and the stream-section padding-top offsets so the pipe starts there. */
+/* ── CHAI STREAM: simple straight vertical line from spout to kullad ── */
+.stream-pipe-wrap{position:absolute;left:50%;transform:translateX(-50%);top:220px;width:10px;z-index:0;pointer-events:none}
+.stream-line{width:10px;height:calc(var(--row-h)*6 + 30px);background:linear-gradient(to bottom,var(--copper-xl) 0%,var(--copper) 40%,rgba(181,98,42,.55) 75%,rgba(181,98,42,.15) 95%,transparent 100%);border-radius:5px;position:relative;overflow:hidden;animation:sbreathe 2s ease-in-out infinite}
+@keyframes sbreathe{0%,100%{transform:scaleX(1);opacity:.9}50%{transform:scaleX(.75);opacity:1}}
+.stream-line::before{content:'';position:absolute;top:-30%;left:0;right:0;height:40%;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.35),transparent);animation:sflow .75s linear infinite}
 @keyframes sflow{0%{top:-30%}100%{top:100%}}
-.sdrop{position:absolute;left:50%;transform:translateX(-50%);background:var(--copper-xl);border-radius:50% 50% 45% 45%;opacity:0;animation:sdfall var(--dd,.65s) ease-in var(--dl,0s) infinite}
-@keyframes sdfall{0%{opacity:1;top:0;width:8px;height:11px}80%{opacity:.7}100%{opacity:0;top:100%;width:5px;height:5px}}
-.feat-row{display:grid;grid-template-columns:1fr 80px 1fr;height:var(--row-h);align-items:center;position:relative;z-index:2}
+.sdrop{position:absolute;left:50%;transform:translateX(-50%);background:var(--copper-xl);border-radius:50% 50% 45% 45%;opacity:0;animation:sdfall var(--dd,.7s) ease-in var(--dl,0s) infinite}
+@keyframes sdfall{0%{opacity:1;top:0;width:9px;height:13px}80%{opacity:.7}100%{opacity:0;top:100%;width:5px;height:6px}}
+
+.feat-row{display:grid;grid-template-columns:1fr 80px 1fr;height:var(--row-h);align-items:center;position:relative;z-index:3}
 .slot-left{display:flex;justify-content:flex-end;padding-right:2.5rem}
 .slot-right{display:flex;justify-content:flex-start;padding-left:2.5rem}
 .fc{max-width:320px;width:100%;opacity:0;position:relative;transition:opacity .55s ease,transform .6s cubic-bezier(.16,1,.3,1)}
@@ -129,7 +132,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .fc-body{font-family:'Outfit',sans-serif;font-size:.83rem;font-weight:300;line-height:1.8;color:var(--muted)}
 .slot-left .fc-body{text-align:right}
 .slot-right .fc-body{text-align:left}
-.kullad-row{display:flex;justify-content:center;height:var(--row-h);align-items:center;position:relative;z-index:2}
+
+.kullad-row{display:flex;justify-content:center;height:var(--row-h);align-items:center;position:relative;z-index:3}
 .kullad-inner{position:relative;width:120px}
 .kullad-liq{position:absolute;bottom:16px;left:20px;width:80px;border-radius:0 0 50% 50%;background:linear-gradient(to bottom,var(--copper-xl),var(--copper) 60%,#7A3A10);animation:kliq 3.5s ease-in-out infinite;overflow:hidden}
 .kullad-liq::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);animation:shim 1.4s ease-in-out infinite}
@@ -158,7 +162,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .bm-bar{display:flex;align-items:center;gap:6px;margin-bottom:1.4rem}
 .bd{width:9px;height:9px;border-radius:50%}
 .bm-url{flex:1;background:rgba(0,0,0,.3);border-radius:4px;padding:.24rem .7rem;font-family:'Outfit',sans-serif;font-size:.7rem;color:var(--dim);letter-spacing:.08em}
-.bm-logo{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;letter-spacing:.07em;color:var(--ivory);margin-bottom:.3rem;font-variant-ligatures:none}
+.bm-logo{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:700;letter-spacing:.07em;color:var(--ivory);margin-bottom:.3rem}
 .bm-logo .p1{color:var(--copper-xl)}
 .bm-sub{font-family:'Outfit',sans-serif;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:1.4rem}
 .m-tags{display:flex;flex-wrap:wrap;gap:.4rem}
@@ -215,7 +219,6 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
 </head>
 <body>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="particles" id="particles"></div>
@@ -224,15 +227,9 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
     <div class="domain-name" aria-label="taprico"><span class="t1">tap</span><span class="t2">rico</span></div>
     <div class="domain-ext">.com</div>
     <div class="meaning-wrap">
-      <div class="meaning-part">
-        <span class="meaning-word tap-col">tapri</span>
-        <span class="meaning-def">चाय की टपरी</span>
-      </div>
+      <div class="meaning-part"><span class="meaning-word tap-col">tapri</span><span class="meaning-def">चाय की टपरी</span></div>
       <span class="meaning-plus">+</span>
-      <div class="meaning-part">
-        <span class="meaning-word co-col">co</span>
-        <span class="meaning-def">company</span>
-      </div>
+      <div class="meaning-part"><span class="meaning-word co-col">co</span><span class="meaning-def">company</span></div>
       <span class="meaning-eq">=</span>
       <span class="meaning-result">taprico</span>
     </div>
@@ -246,14 +243,10 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
   <div class="scroll-hint">scroll down<span></span></div>
 </section>
 
-<!-- MARQUEE -->
 <div class="mq">
-  <div class="mq-inner">
-    ✦ TAPRICO.COM FOR SALE &nbsp;&nbsp;&nbsp; ✦ TAPRI + CO = TAPRICO &nbsp;&nbsp;&nbsp; ✦ PREMIUM INDIAN TEA DOMAIN &nbsp;&nbsp;&nbsp; ✦ SHORT · PUNCHY · BRANDABLE &nbsp;&nbsp;&nbsp; ✦ D2C TEA STARTUPS &nbsp;&nbsp;&nbsp; ✦ TAPRICO.COM FOR SALE &nbsp;&nbsp;&nbsp; ✦ TAPRI + CO = TAPRICO &nbsp;&nbsp;&nbsp; ✦ PREMIUM INDIAN TEA DOMAIN &nbsp;&nbsp;&nbsp; ✦ SHORT · PUNCHY · BRANDABLE &nbsp;&nbsp;&nbsp; ✦ D2C TEA STARTUPS &nbsp;&nbsp;&nbsp;
-  </div>
+  <div class="mq-inner">✦ TAPRICO.COM FOR SALE &nbsp;&nbsp;&nbsp; ✦ TAPRI + CO = TAPRICO &nbsp;&nbsp;&nbsp; ✦ PREMIUM INDIAN TEA DOMAIN &nbsp;&nbsp;&nbsp; ✦ SHORT · PUNCHY · BRANDABLE &nbsp;&nbsp;&nbsp; ✦ D2C TEA STARTUPS &nbsp;&nbsp;&nbsp; ✦ TAPRICO.COM FOR SALE &nbsp;&nbsp;&nbsp; ✦ TAPRI + CO = TAPRICO &nbsp;&nbsp;&nbsp; ✦ PREMIUM INDIAN TEA DOMAIN &nbsp;&nbsp;&nbsp; ✦ SHORT · PUNCHY · BRANDABLE &nbsp;&nbsp;&nbsp; ✦ D2C TEA STARTUPS &nbsp;&nbsp;&nbsp;</div>
 </div>
 
-<!-- POUR + FEATURES -->
 <div class="pour-section">
   <div class="pour-intro rv">
     <span class="eyebrow">Why taprico.com</span>
@@ -263,55 +256,118 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
 
   <div class="stream-section">
 
+    <!-- ═══════════════════════════════════════════════════════
+         KETTLE SVG — classic round kettle shape, like the reference.
+         Drawn upright. The stream pipe (absolute, top:0) starts at
+         the top of .stream-section. The kettle sits in normal flow
+         ABOVE the feat-rows, and the stream runs behind everything
+         via z-index:1.
+         The kettle viewBox is 240×220. The spout tip exits at the
+         bottom-center so it aligns with the centered stream pipe.
+    ═══════════════════════════════════════════════════════ -->
     <div class="kettle-wrap">
       <div class="k-rock">
-        <svg width="120" height="155" viewBox="0 0 120 155" fill="none">
+        <svg width="240" height="220" viewBox="0 0 240 220" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <radialGradient id="kb" cx="35%" cy="30%" r="60%"><stop offset="0%" stop-color="#4E9965"/><stop offset="100%" stop-color="#1C3522"/></radialGradient>
-            <radialGradient id="ks" cx="30%" cy="25%" r="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.16)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient>
-            <linearGradient id="kh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3D7A52"/><stop offset="100%" stop-color="#2D5A3D"/></linearGradient>
+            <!-- Body: deep forest green dome -->
+            <radialGradient id="kb" cx="38%" cy="30%" r="58%">
+              <stop offset="0%" stop-color="#5AAD72"/>
+              <stop offset="42%" stop-color="#2D5A3D"/>
+              <stop offset="100%" stop-color="#0D1F12"/>
+            </radialGradient>
+            <!-- Sheen overlay -->
+            <radialGradient id="ks" cx="32%" cy="24%" r="42%">
+              <stop offset="0%" stop-color="rgba(255,255,255,0.26)"/>
+              <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+            </radialGradient>
+            <!-- Copper base ring -->
+            <linearGradient id="kring" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#D4834E"/>
+              <stop offset="100%" stop-color="#7A3A10"/>
+            </linearGradient>
+            <!-- Spout: copper -->
+            <linearGradient id="ksp" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#D4834E"/>
+              <stop offset="100%" stop-color="#6A2E08"/>
+            </linearGradient>
+            <!-- Handle -->
+            <linearGradient id="kh" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4A7A60"/>
+              <stop offset="100%" stop-color="#1C3522"/>
+            </linearGradient>
           </defs>
-          <path d="M88 30 Q114 30 114 62 Q114 92 88 90" stroke="url(#kh)" stroke-width="7" stroke-linecap="round" fill="none"/>
-          <path d="M88 36 Q108 36 108 62 Q108 86 88 84" stroke="rgba(78,153,101,.3)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-          <rect x="6" y="8" width="80" height="90" rx="18" fill="url(#kb)"/>
-          <rect x="6" y="8" width="80" height="90" rx="18" fill="url(#ks)"/>
-          <rect x="6" y="46" width="80" height="4" fill="rgba(181,98,42,.3)" rx="2"/>
-          <rect x="16" y="6" width="60" height="8" rx="4" fill="#2D5A3D"/>
-          <rect x="16" y="5" width="60" height="6" rx="3" fill="#3D7A52"/>
-          <rect x="42" y="0" width="16" height="8" rx="4" fill="#4E9965"/>
-          <rect x="44" y="1" width="12" height="5" rx="2.5" fill="#5AAD72"/>
-          <line x1="28" y1="12" x2="28" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-          <line x1="46" y1="12" x2="46" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-          <line x1="64" y1="12" x2="64" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-          <path d="M14 97 Q46 104 78 97" stroke="rgba(181,98,42,.4)" stroke-width="1.5" fill="none"/>
-          <path d="M40 96 Q38 116 46 128 Q50 138 60 142" stroke="#1A3020" stroke-width="9" stroke-linecap="round" fill="none"/>
-          <path d="M40 96 Q38 116 46 128 Q50 138 60 142" stroke="#2D5A3D" stroke-width="6" stroke-linecap="round" fill="none"/>
-          <path d="M52 96 Q54 116 56 128 Q58 138 60 142" stroke="#1A3020" stroke-width="9" stroke-linecap="round" fill="none"/>
-          <path d="M52 96 Q54 116 56 128 Q58 138 60 142" stroke="#2D5A3D" stroke-width="6" stroke-linecap="round" fill="none"/>
-          <ellipse cx="60" cy="142" rx="7" ry="4.5" fill="#1A3020"/>
-          <ellipse cx="60" cy="141" rx="5.5" ry="3.5" fill="#253E2C"/>
-          <ellipse cx="60" cy="142" rx="3.5" ry="3" fill="#0D1F12"/>
-          <rect x="22" y="20" width="32" height="38" rx="8" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-          <line x1="25" y1="24" x2="25" y2="52" stroke="rgba(255,255,255,.12)" stroke-width="1.5" stroke-linecap="round"/>
+
+          <!-- ── BODY: large dome ellipse, center at (125, 115) ── -->
+          <ellipse cx="125" cy="115" rx="82" ry="78" fill="url(#kb)"/>
+          <ellipse cx="125" cy="115" rx="82" ry="78" fill="url(#ks)"/>
+          <!-- specular highlight -->
+          <ellipse cx="96" cy="82" rx="26" ry="18" fill="rgba(255,255,255,0.14)" transform="rotate(-18,96,82)"/>
+
+          <!-- ── COPPER BASE RING at bottom of dome ── -->
+          <ellipse cx="125" cy="178" rx="78" ry="12" fill="url(#kring)"/>
+          <ellipse cx="125" cy="174" rx="76" ry="9"  fill="#C4714A"/>
+          <ellipse cx="125" cy="171" rx="73" ry="6"  fill="#D4834E" opacity="0.45"/>
+
+          <!-- ── LID: flatter ellipse on top ── -->
+          <ellipse cx="125" cy="45"  rx="46" ry="12" fill="#1A3624"/>
+          <ellipse cx="125" cy="42"  rx="44" ry="10" fill="#2D5A3D"/>
+          <!-- lid copper collar -->
+          <ellipse cx="125" cy="52"  rx="48" ry="8"  fill="none" stroke="#B5622A" stroke-width="3.5"/>
+          <!-- knob base -->
+          <ellipse cx="125" cy="34"  rx="18" ry="8"  fill="#1A3624"/>
+          <ellipse cx="125" cy="32"  rx="16" ry="7"  fill="#3A7A50"/>
+          <!-- knob top cap — rounded button -->
+          <ellipse cx="125" cy="24"  rx="10" ry="10" fill="#2A4A38"/>
+          <ellipse cx="125" cy="22"  rx="8"  ry="8"  fill="#4A8A65"/>
+          <ellipse cx="122" cy="19"  rx="3.5" ry="3" fill="rgba(255,255,255,0.40)"/>
+
+          <!-- ── HANDLE: tall arch on right side ── -->
+          <path d="M172 58 Q215 58 215 105 Q215 152 172 155"
+                stroke="#2A4A38" stroke-width="16" stroke-linecap="round" fill="none"/>
+          <path d="M172 58 Q215 58 215 105 Q215 152 172 155"
+                stroke="#4A7A60" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <!-- handle shine -->
+          <path d="M177 66 Q210 68 210 105 Q210 142 177 148"
+                stroke="rgba(255,255,255,0.14)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+
+          <!-- ── SPOUT: clean cylindrical nozzle attached to body ── -->
+          <!-- main spout tube — tapers from body to tip -->
+          <path d="M50 98 C40 95, 26 100, 14 109 C9 112, 8 118, 11 123 C14 128, 21 129, 32 127 C42 125, 49 121, 50 118 Z"
+                fill="url(#ksp)"/>
+          <!-- top edge highlight -->
+          <path d="M49 100 C38 97, 23 102, 12 111"
+                stroke="rgba(255,255,255,0.30)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- bottom shadow edge -->
+          <path d="M49 117 C38 120, 24 123, 14 122"
+                stroke="rgba(0,0,0,0.25)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- nozzle end cap ring — metallic copper rim -->
+          <ellipse cx="10" cy="116" rx="4" ry="8" fill="#7A3A10" transform="rotate(-10,10,116)"/>
+          <ellipse cx="10" cy="116" rx="3" ry="6.5" fill="#3A1A08" transform="rotate(-10,10,116)"/>
+          <!-- inner bore — dark hollow opening -->
+          <ellipse cx="10" cy="116" rx="2" ry="4.5" fill="#0a0a0a" transform="rotate(-10,10,116)"/>
+          <!-- rim highlight — tiny bright arc at top of opening -->
+          <path d="M 8 110 A 3 5 -10 0 1 13 112"
+                stroke="rgba(236,168,120,0.55)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+
+          <!-- ── STEAM wisps from lid knob ── -->
+          <path d="M113 14 Q109  4 115 -4" stroke="rgba(242,236,216,0.22)" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <path d="M125 11 Q123  1 129 -6" stroke="rgba(242,236,216,0.14)" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+          <path d="M137 14 Q135  5 141 -3" stroke="rgba(242,236,216,0.10)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
         </svg>
       </div>
     </div>
 
-    <div class="stream-pipe-wrap">
+        <div class="stream-pipe-wrap">
       <div class="stream-line">
-        <div class="sdrop" style="--dd:.6s;--dl:.1s"></div>
-        <div class="sdrop" style="--dd:.7s;--dl:.7s"></div>
-        <div class="sdrop" style="--dd:.55s;--dl:1.3s"></div>
+        <div class="sdrop" style="--dd:.65s;--dl:0s"></div>
+        <div class="sdrop" style="--dd:.65s;--dl:.22s"></div>
+        <div class="sdrop" style="--dd:.65s;--dl:.44s"></div>
+        <div class="sdrop" style="--dd:.65s;--dl:.66s"></div>
       </div>
     </div>
 
-    <!-- Spacer: pushes features below the kettle -->
-    <div class="feat-row"></div>
-
-    <!-- Row 1: feature 01 on RIGHT -->
     <div class="feat-row">
-      <div class="slot-left"></div>
-      <div></div>
+      <div class="slot-left"></div><div></div>
       <div class="slot-right">
         <div class="fc" id="fc1">
           <span class="fc-number">01</span>
@@ -322,7 +378,6 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
       </div>
     </div>
 
-    <!-- Row 2: feature 02 on LEFT -->
     <div class="feat-row">
       <div class="slot-left">
         <div class="fc" id="fc2">
@@ -332,14 +387,11 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
           <div class="fc-body">"tapri" roots it in Indian chai culture. "co" signals a company. A name that means business from Mumbai to Milan.</div>
         </div>
       </div>
-      <div></div>
-      <div class="slot-right"></div>
+      <div></div><div class="slot-right"></div>
     </div>
 
-    <!-- Row 3: feature 03 on RIGHT -->
     <div class="feat-row">
-      <div class="slot-left"></div>
-      <div></div>
+      <div class="slot-left"></div><div></div>
       <div class="slot-right">
         <div class="fc" id="fc3">
           <span class="fc-number">03</span>
@@ -350,7 +402,6 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
       </div>
     </div>
 
-    <!-- Row 4: feature 04 on LEFT -->
     <div class="feat-row">
       <div class="slot-left">
         <div class="fc" id="fc4">
@@ -360,14 +411,11 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
           <div class="fc-body">Protected via BigRock. Full domain transfer within 24 hours of cleared payment.</div>
         </div>
       </div>
-      <div></div>
-      <div class="slot-right"></div>
+      <div></div><div class="slot-right"></div>
     </div>
 
-    <!-- Row 5: feature 05 on RIGHT -->
     <div class="feat-row">
-      <div class="slot-left"></div>
-      <div></div>
+      <div class="slot-left"></div><div></div>
       <div class="slot-right">
         <div class="fc" id="fc5">
           <span class="fc-number">05</span>
@@ -378,7 +426,6 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
       </div>
     </div>
 
-    <!-- Row 6: feature 06 on LEFT -->
     <div class="feat-row">
       <div class="slot-left">
         <div class="fc" id="fc6">
@@ -388,11 +435,9 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
           <div class="fc-body">Vahdam, Teabox, Blue Tokai — India's chai D2C is exploding. The right domain is the first sip of a legendary brand.</div>
         </div>
       </div>
-      <div></div>
-      <div class="slot-right"></div>
+      <div></div><div class="slot-right"></div>
     </div>
 
-    <!-- Kullad -->
     <div class="kullad-row">
       <div class="kullad-inner">
         <div class="kullad-liq"></div>
@@ -425,12 +470,10 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
         </svg>
       </div>
     </div>
-
     <div class="stream-label">tapri ki chai ↓</div>
   </div>
 </div>
 
-<!-- BRAND POTENTIAL -->
 <div class="sw">
   <div class="brand-grid">
     <div>
@@ -462,7 +505,6 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
   </div>
 </div>
 
-<!-- OFFER -->
 <div class="offer-wrap">
   <div class="offer-inner">
     <span class="eyebrow rv" style="text-align:center;display:block">Make an Offer</span>
@@ -486,36 +528,25 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
       </div>
       <textarea class="msg-area" id="msgArea" placeholder="Tell me about your brand and how you'd use taprico.com (optional)"></textarea>
       <div class="offer-note">Clicking below opens WhatsApp with your budget pre-filled.<br>Or email: vaibhav.gupta0107@gmail.com</div>
-      <div class="cta-row">
-        <button class="btn-main" onclick="sendOffer()">💬 Send Budget on WhatsApp</button>
-      </div>
+      <div class="cta-row"><button class="btn-main" onclick="sendOffer()">💬 Send Budget on WhatsApp</button></div>
       <div class="p-or">— or —</div>
-      <div class="cta-row">
-        <a href="mailto:vaibhav.gupta0107@gmail.com?subject=Offer for taprico.com" class="btn-out">✉️ Email Your Offer</a>
-      </div>
+      <div class="cta-row"><a href="mailto:vaibhav.gupta0107@gmail.com?subject=Offer for taprico.com" class="btn-out">✉️ Email Your Offer</a></div>
     </div>
   </div>
 </div>
 
-<!-- CONTACT -->
 <div class="sw" style="padding-top:0;padding-bottom:clamp(4rem,7vw,6rem)">
   <span class="eyebrow rv">Get in touch</span>
   <h2 class="sh rv rd1">Let's talk<br><em>over chai.</em></h2>
   <div class="cg">
     <a href="mailto:vaibhav.gupta0107@gmail.com?subject=taprico.com inquiry" class="cc rv">
-      <span class="cc-pl">Email</span>
-      <span class="cc-vl">vaibhav.gupta0107@gmail.com</span>
-      <span class="cc-ac">Reply in 2 hours →</span>
+      <span class="cc-pl">Email</span><span class="cc-vl">vaibhav.gupta0107@gmail.com</span><span class="cc-ac">Reply in 2 hours →</span>
     </a>
     <a href="https://wa.me/917042831137?text=Hi%20Vaibhav%2C%20I%20am%20interested%20in%20taprico.com" class="cc rv rd1" target="_blank">
-      <span class="cc-pl">WhatsApp</span>
-      <span class="cc-vl">+91 70428 31137</span>
-      <span class="cc-ac">Fastest response →</span>
+      <span class="cc-pl">WhatsApp</span><span class="cc-vl">+91 70428 31137</span><span class="cc-ac">Fastest response →</span>
     </a>
     <a href="https://linkedin.com/in/vaibhav0107" class="cc rv rd2" target="_blank">
-      <span class="cc-pl">LinkedIn</span>
-      <span class="cc-vl">Vaibhav Gupta</span>
-      <span class="cc-ac">Connect & message →</span>
+      <span class="cc-pl">LinkedIn</span><span class="cc-vl">Vaibhav Gupta</span><span class="cc-ac">Connect & message →</span>
     </a>
   </div>
 </div>
