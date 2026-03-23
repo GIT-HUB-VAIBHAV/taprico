@@ -4,6 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>taprico.com — Premium Domain For Sale</title>
+
+<!-- OG / Social Preview Tags -->
+<meta property="og:image" content="https://taprico.com/taprico-preview.png">
+<meta property="og:title" content="taprico.com — Premium Chai Domain For Sale">
+<meta property="og:description" content="tapri + co. Built for India's chai D2C wave.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://taprico.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="taprico.com — Premium Chai Domain For Sale">
+<meta name="twitter:description" content="tapri + co. Built for India's chai D2C wave.">
+<meta name="twitter:image" content="https://taprico.com/taprico-preview.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Outfit:wght@200;300;400;500;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet">
@@ -17,17 +29,7 @@ html{scroll-behavior:smooth}
   --ivory:#F2ECD8;--cream:#FAF6EC;
   --text:#EDE7D0;--muted:#8FA889;--dim:#4A6B52;
   --clay:#C4714A;--clay-d:#9B5234;--clay-l:#D9906A;
-  /*
-    --row-h: height of each feature row.
-    All three columns share this exact value so everything lines up.
-    Left col:   6 rows × --row-h
-    Right col:  6 rows × --row-h
-    Stream col: stream-line (6 × --row-h) + kullad-outer (--row-h)
-    So feature 06 (left row 6) is at the same vertical band as
-    the BOTTOM of the stream, and the kullad appears one full
-    row-height BELOW feature 06. They are NOT parallel.
-  */
-  --row-h: 210px;
+  --row-h:200px; /* height of each feature row */
 }
 body{background:var(--ink);color:var(--text);font-family:'Outfit',sans-serif;font-weight:300;overflow-x:hidden}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9000;opacity:.35}
@@ -81,31 +83,49 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .sh em{font-style:italic;color:var(--copper-xl)}
 .sb-t{font-family:'Outfit',sans-serif;font-size:.95rem;font-weight:300;line-height:1.9;color:var(--muted)}
 
-/* 3-column grid */
+/* ══════════════════════════════════════════
+   STREAM SECTION — single column layout
+   Centre column holds: kettle + stream-line + kullad
+   Each .feat-row is a full-width row with left/right slots + centre pipe
+   All 6 feat-rows sit WITHIN the stream-line height (6 × --row-h)
+   ══════════════════════════════════════════ */
 .stream-section{
-  max-width:1300px;margin:0 auto;
-  padding:0 clamp(1rem,3vw,4rem);
-  display:grid;
-  grid-template-columns:1fr 100px 1fr;
-  gap:0;
-  align-items:start;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 clamp(1rem,3vw,3rem);
+  position:relative;
 }
 
-/* ══ STREAM COLUMN ══
-   stream-line = 6 × --row-h  (same as all feature rows combined)
-   kullad-outer = --row-h      (sits AFTER stream, below feature 06)
-*/
-.stream-col{display:flex;flex-direction:column;align-items:center}
-.kettle-sticky{position:sticky;top:12vh;width:120px;z-index:10;flex-shrink:0}
+/* Kettle sits sticky at top, absolutely centred */
+.kettle-wrap{
+  display:flex;
+  justify-content:center;
+  position:sticky;
+  top:12vh;
+  z-index:10;
+  pointer-events:none;
+  height:0; /* doesn't take up layout space */
+}
 .k-rock{animation:krock 3.5s ease-in-out infinite;transform-origin:50% 60%}
 @keyframes krock{0%,100%{transform:rotate(0deg)}30%{transform:rotate(-2.5deg) translateY(-2px)}70%{transform:rotate(2deg) translateY(-1px)}}
 
+/* The vertical pipe container — behind everything */
+.stream-pipe-wrap{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  top:0;
+  width:8px;
+  /* height set by JS to match 6 × --row-h */
+  z-index:1;
+}
 .stream-line{
   width:8px;
-  height:calc(var(--row-h) * 6); /* exactly 6 feature rows */
-  flex-shrink:0;
+  height:calc(var(--row-h) * 7);
   background:linear-gradient(to bottom,var(--copper-xl) 0%,var(--copper) 35%,rgba(181,98,42,.5) 70%,rgba(181,98,42,.15) 92%,transparent 100%);
-  border-radius:4px;position:relative;overflow:hidden;
+  border-radius:4px;
+  position:relative;
+  overflow:hidden;
   animation:sbreathe 2s ease-in-out infinite;
 }
 @keyframes sbreathe{0%,100%{transform:scaleX(1);opacity:.85}50%{transform:scaleX(.72);opacity:1}}
@@ -114,12 +134,82 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .sdrop{position:absolute;left:50%;transform:translateX(-50%);background:var(--copper-xl);border-radius:50% 50% 45% 45%;opacity:0;animation:sdfall var(--dd,.65s) ease-in var(--dl,0s) infinite}
 @keyframes sdfall{0%{opacity:1;top:0;width:8px;height:11px}80%{opacity:.7}100%{opacity:0;top:100%;width:5px;height:5px}}
 
-/* kullad sits in its own --row-h slot, BELOW stream-line */
-.kullad-outer{
-  flex-shrink:0;
+/* Each feature row: 3 columns — left slot | centre pipe gap | right slot */
+.feat-row{
+  display:grid;
+  grid-template-columns:1fr 80px 1fr;
   height:var(--row-h);
-  display:flex;align-items:center;justify-content:center;
-  position:relative;width:120px;
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+
+/* left and right slots */
+.slot-left{
+  display:flex;
+  justify-content:flex-end;
+  padding-right:2.5rem;
+}
+.slot-right{
+  display:flex;
+  justify-content:flex-start;
+  padding-left:2.5rem;
+}
+.slot-empty{/* nothing shown */}
+
+/* FEATURE CARD */
+.fc{
+  max-width:320px;width:100%;
+  opacity:0;
+  position:relative;
+  transition:opacity .55s ease,transform .6s cubic-bezier(.16,1,.3,1);
+}
+.slot-left .fc{transform:translateX(44px);text-align:right}
+.slot-right .fc{transform:translateX(-44px);text-align:left}
+.fc.show{opacity:1;transform:translateX(0)}
+
+/* connector dot on the pipe side */
+.fc::before{
+  content:'';position:absolute;top:50%;
+  width:7px;height:7px;background:var(--copper);
+  border-radius:50%;opacity:0;
+  transition:opacity .3s ease .4s;
+  box-shadow:0 0 8px rgba(181,98,42,.6);
+}
+.slot-left  .fc::before{right:-2.5rem;transform:translateY(-50%)}
+.slot-right .fc::before{left:-2.5rem;transform:translateY(-50%)}
+.fc.show::before{opacity:1}
+
+/* connector line */
+.fc::after{
+  content:'';position:absolute;top:50%;height:1px;
+  opacity:0;width:0;
+  transition:opacity .3s ease .35s,width .5s ease .35s;
+}
+.slot-left  .fc::after{right:0;background:linear-gradient(to left,rgba(181,98,42,.4),transparent)}
+.slot-right .fc::after{left:0;background:linear-gradient(to right,rgba(181,98,42,.4),transparent)}
+.fc.show::after{opacity:1;width:calc(100% + 2.5rem)}
+
+.fc-number{display:block;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;font-style:italic;color:rgba(181,98,42,.4);line-height:1;margin-bottom:.25rem}
+.slot-left  .fc-number{text-align:right}
+.slot-right .fc-number{text-align:left}
+.fc-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--ivory);margin-bottom:.4rem;line-height:1.2}
+.slot-left  .fc-title{text-align:right}
+.slot-right .fc-title{text-align:left}
+.fc-accent{display:block;height:1.5px;margin-bottom:.65rem;width:0;transition:width .5s ease .5s}
+.slot-left  .fc-accent{background:linear-gradient(to left,var(--copper),var(--copper-xl),transparent);margin-left:auto}
+.slot-right .fc-accent{background:linear-gradient(to right,var(--copper),var(--copper-xl),transparent)}
+.fc.show .fc-accent{width:50%}
+.fc-body{font-family:'Outfit',sans-serif;font-size:.83rem;font-weight:300;line-height:1.8;color:var(--muted)}
+.slot-left  .fc-body{text-align:right}
+.slot-right .fc-body{text-align:left}
+
+/* Kullad row — sits after all 6 feat-rows, centred */
+.kullad-row{
+  display:flex;justify-content:center;
+  height:var(--row-h);
+  align-items:center;
+  position:relative;z-index:2;
 }
 .kullad-inner{position:relative;width:120px}
 .kullad-liq{position:absolute;bottom:16px;left:20px;width:80px;border-radius:0 0 50% 50%;background:linear-gradient(to bottom,var(--copper-xl),var(--copper) 60%,#7A3A10);animation:kliq 3.5s ease-in-out infinite;overflow:hidden}
@@ -134,52 +224,6 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .stm{width:2px;height:20px;border-radius:2px;background:linear-gradient(to top,rgba(242,236,216,.55),transparent);animation:strise var(--st,1.5s) ease-in-out var(--sl,0s) infinite}
 @keyframes strise{0%,100%{transform:scaleY(.5) translateY(4px);opacity:0}50%{transform:scaleY(1.3) translateY(-6px);opacity:.6}}
 .stream-label{font-family:'Outfit',sans-serif;font-size:.6rem;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);text-align:center;padding:1rem 0 clamp(3rem,5vw,5rem);white-space:nowrap}
-
-/* ══ FEATURE COLUMNS ══
-   Exactly 6 feat-slots each, height = --row-h.
-   Left col:  empty,02,empty,04,empty,06
-   Right col: 01,empty,03,empty,05,empty
-   
-   After 6 slots, feature columns end.
-   Stream col continues with kullad-outer (1 more --row-h).
-   Result: 06 is in row 6, kullad is in row 7 (stream col only).
-   Feature 06 is ABOVE the kullad. ✓
-*/
-.feat-col-left,.feat-col-right{display:flex;flex-direction:column}
-.feat-slot{
-  height:var(--row-h);
-  flex-shrink:0;
-  display:flex;align-items:center;
-}
-.feat-col-left  .feat-slot{justify-content:flex-end;padding-right:2.5rem}
-.feat-col-right .feat-slot{justify-content:flex-start;padding-left:2.5rem}
-
-/* FEATURE CARD */
-.fc{max-width:320px;width:100%;opacity:0;position:relative;transition:opacity .55s ease,transform .6s cubic-bezier(.16,1,.3,1)}
-.feat-col-left  .fc{transform:translateX(44px);text-align:right}
-.feat-col-right .fc{transform:translateX(-44px);text-align:left}
-.fc.show{opacity:1;transform:translateX(0)}
-.fc::before{content:'';position:absolute;top:50%;width:7px;height:7px;background:var(--copper);border-radius:50%;opacity:0;transition:opacity .3s ease .4s;box-shadow:0 0 8px rgba(181,98,42,.6)}
-.feat-col-left  .fc::before{right:-2.5rem;transform:translateY(-50%)}
-.feat-col-right .fc::before{left:-2.5rem;transform:translateY(-50%)}
-.fc.show::before{opacity:1}
-.fc::after{content:'';position:absolute;top:50%;height:1px;opacity:0;width:0;transition:opacity .3s ease .35s,width .5s ease .35s}
-.feat-col-left  .fc::after{right:0;background:linear-gradient(to left,rgba(181,98,42,.4),transparent)}
-.feat-col-right .fc::after{left:0;background:linear-gradient(to right,rgba(181,98,42,.4),transparent)}
-.fc.show::after{opacity:1;width:calc(100% + 2.5rem)}
-
-.fc-number{display:block;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;font-style:italic;color:rgba(181,98,42,.4);line-height:1;margin-bottom:.25rem}
-.feat-col-left  .fc-number{text-align:right}
-.feat-col-right .fc-number{text-align:left}
-.fc-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;color:var(--ivory);margin-bottom:.4rem;line-height:1.2}
-.feat-col-left  .fc-title{text-align:right}
-.feat-col-right .fc-title{text-align:left}
-.fc-accent{display:block;height:1.5px;margin-bottom:.65rem;width:0;transition:width .5s ease .5s;background:linear-gradient(to right,var(--copper),var(--copper-xl),transparent)}
-.feat-col-left .fc-accent{background:linear-gradient(to left,var(--copper),var(--copper-xl),transparent);margin-left:auto}
-.fc.show .fc-accent{width:50%}
-.fc-body{font-family:'Outfit',sans-serif;font-size:.83rem;font-weight:300;line-height:1.8;color:var(--muted)}
-.feat-col-left  .fc-body{text-align:right}
-.feat-col-right .fc-body{text-align:left}
 
 /* REST */
 .sw{max-width:1100px;margin:0 auto;padding:clamp(5rem,8vw,8rem) clamp(1.5rem,5vw,6rem)}
@@ -200,10 +244,40 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .bm-sub{font-family:'Outfit',sans-serif;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:1.4rem}
 .m-tags{display:flex;flex-wrap:wrap;gap:.4rem}
 .mt{background:rgba(45,90,61,.18);border:1px solid rgba(45,90,61,.35);color:var(--moss);font-family:'Outfit',sans-serif;font-size:.67rem;font-weight:500;padding:.18rem .6rem;border-radius:2px;letter-spacing:.08em}
+
+/* OFFER */
 .offer-wrap{background:var(--ink2);border-top:1px solid rgba(45,90,61,.18)}
 .offer-inner{max-width:680px;margin:0 auto;padding:clamp(5rem,8vw,8rem) clamp(1.5rem,5vw,6rem);text-align:center}
 .offer-card{background:var(--ink3);border:1px solid rgba(181,98,42,.2);border-radius:10px;padding:clamp(2.5rem,5vw,3.5rem);position:relative;overflow:hidden;margin-top:2.5rem;box-shadow:0 40px 100px rgba(0,0,0,.5)}
 .offer-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--leaf),var(--copper-l),var(--leaf))}
+
+/* URGENCY STRIP — only inside offer card */
+.urgency-strip{
+  background:linear-gradient(90deg,#0A1A10,#0F2318,#0A1A10);
+  border:1px solid rgba(78,153,101,.2);
+  border-radius:6px;
+  padding:.75rem 1.2rem;
+  margin-bottom:1.8rem;
+  display:flex;align-items:center;justify-content:center;gap:.8rem;
+  position:relative;overflow:hidden;
+}
+.urgency-strip::before{
+  content:'';position:absolute;top:0;left:-80%;width:55%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(78,153,101,.07),transparent);
+  animation:usheen 4s ease-in-out infinite;
+}
+@keyframes usheen{0%{left:-80%}100%{left:140%}}
+.us-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#4E9965;
+  box-shadow:0 0 7px rgba(78,153,101,.9);
+  animation:uspulse 1.8s ease-in-out infinite;
+  flex-shrink:0;
+}
+@keyframes uspulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.25;transform:scale(.5)}}
+.us-text{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:400;letter-spacing:.06em;color:var(--muted)}
+.us-text strong{color:var(--moss);font-weight:600}
+
 .offer-q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3vw,2rem);font-weight:700;font-style:italic;color:var(--ivory);margin-bottom:.5rem}
 .offer-sub{font-family:'Outfit',sans-serif;font-size:.85rem;color:var(--muted);margin-bottom:2rem;line-height:1.7}
 .budget-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.7rem;margin-bottom:1.5rem}
@@ -227,17 +301,19 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
 .rd1{transition-delay:.12s}.rd2{transition-delay:.24s}.rd3{transition-delay:.36s}
 
 @media(max-width:700px){
-  .stream-section{grid-template-columns:1fr 70px 1fr}
   :root{--row-h:170px}
-  .feat-col-left  .feat-slot{padding-right:1.2rem}
-  .feat-col-right .feat-slot{padding-left:1.2rem}
-  .fc{max-width:220px}
+  .feat-row{grid-template-columns:1fr 50px 1fr}
+  .slot-left{padding-right:1.2rem}
+  .slot-right{padding-left:1.2rem}
+  .fc{max-width:210px}
 }
 @media(max-width:500px){
-  .stream-section{grid-template-columns:1fr 50px 1fr}
+  :root{--row-h:150px}
+  .feat-row{grid-template-columns:1fr 40px 1fr}
   .cta-row{flex-direction:column;align-items:center}
   .btn-main,.btn-out{width:100%;max-width:290px;justify-content:center}
   .budget-grid{grid-template-columns:1fr 1fr}
+  .fc-body{display:none}/* hide body on very small, keep title */
 }
 </style>
 </head>
@@ -291,124 +367,58 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
 
   <div class="stream-section">
 
-    <!-- LEFT: empty, 02, empty, 04, empty, 06 -->
-    <div class="feat-col-left">
-      <div class="feat-slot"></div>
-      <div class="feat-slot">
-        <div class="fc" id="fc2">
-          <span class="fc-number">02</span>
-          <div class="fc-title">Global Resonance</div>
-          <div class="fc-accent"></div>
-          <div class="fc-body">"tapri" roots it in Indian chai culture. "co" signals a company. A name that means business from Mumbai to Milan.</div>
-        </div>
-      </div>
-      <div class="feat-slot"></div>
-      <div class="feat-slot">
-        <div class="fc" id="fc4">
-          <span class="fc-number">04</span>
-          <div class="fc-title">Secure Transfer</div>
-          <div class="fc-accent"></div>
-          <div class="fc-body">Protected via Escrow.com. Full domain transfer within 24 hours of cleared payment. EMI plans available.</div>
-        </div>
-      </div>
-      <div class="feat-slot"></div>
-      <!-- Row 6: feature 06 is here — ABOVE the kullad which comes after -->
-      <div class="feat-slot">
-        <div class="fc" id="fc6">
-          <span class="fc-number">06</span>
-          <div class="fc-title">Booming Market</div>
-          <div class="fc-accent"></div>
-          <div class="fc-body">Vahdam, Teabox, Blue Tokai — India's chai D2C is exploding. The right domain is the first sip of a legendary brand.</div>
-        </div>
+    <!-- Kettle: sticky, zero-height, centred -->
+    <div class="kettle-wrap">
+      <div class="k-rock">
+        <svg width="120" height="155" viewBox="0 0 120 155" fill="none">
+          <defs>
+            <radialGradient id="kb" cx="35%" cy="30%" r="60%"><stop offset="0%" stop-color="#4E9965"/><stop offset="100%" stop-color="#1C3522"/></radialGradient>
+            <radialGradient id="ks" cx="30%" cy="25%" r="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.16)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient>
+            <linearGradient id="kh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3D7A52"/><stop offset="100%" stop-color="#2D5A3D"/></linearGradient>
+          </defs>
+          <path d="M88 30 Q114 30 114 62 Q114 92 88 90" stroke="url(#kh)" stroke-width="7" stroke-linecap="round" fill="none"/>
+          <path d="M88 36 Q108 36 108 62 Q108 86 88 84" stroke="rgba(78,153,101,.3)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <rect x="6" y="8" width="80" height="90" rx="18" fill="url(#kb)"/>
+          <rect x="6" y="8" width="80" height="90" rx="18" fill="url(#ks)"/>
+          <rect x="6" y="46" width="80" height="4" fill="rgba(181,98,42,.3)" rx="2"/>
+          <rect x="16" y="6" width="60" height="8" rx="4" fill="#2D5A3D"/>
+          <rect x="16" y="5" width="60" height="6" rx="3" fill="#3D7A52"/>
+          <rect x="42" y="0" width="16" height="8" rx="4" fill="#4E9965"/>
+          <rect x="44" y="1" width="12" height="5" rx="2.5" fill="#5AAD72"/>
+          <line x1="28" y1="12" x2="28" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+          <line x1="46" y1="12" x2="46" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+          <line x1="64" y1="12" x2="64" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+          <path d="M14 97 Q46 104 78 97" stroke="rgba(181,98,42,.4)" stroke-width="1.5" fill="none"/>
+          <path d="M40 96 Q38 116 46 128 Q50 138 60 142" stroke="#1A3020" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <path d="M40 96 Q38 116 46 128 Q50 138 60 142" stroke="#2D5A3D" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <path d="M52 96 Q54 116 56 128 Q58 138 60 142" stroke="#1A3020" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <path d="M52 96 Q54 116 56 128 Q58 138 60 142" stroke="#2D5A3D" stroke-width="6" stroke-linecap="round" fill="none"/>
+          <ellipse cx="60" cy="142" rx="7" ry="4.5" fill="#1A3020"/>
+          <ellipse cx="60" cy="141" rx="5.5" ry="3.5" fill="#253E2C"/>
+          <ellipse cx="60" cy="142" rx="3.5" ry="3" fill="#0D1F12"/>
+          <rect x="22" y="20" width="32" height="38" rx="8" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+          <line x1="25" y1="24" x2="25" y2="52" stroke="rgba(255,255,255,.12)" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
       </div>
     </div>
 
-    <!-- STREAM CENTRE:
-         stream-line spans rows 1–6  (height = 6 × --row-h)
-         kullad-outer is row 7       (height = --row-h)
-         So feature 06 (left row 6) is one full row ABOVE the kullad. -->
-    <div class="stream-col">
-      <div class="kettle-sticky">
-        <div class="k-rock">
-          <svg width="120" height="155" viewBox="0 0 120 155" fill="none">
-            <defs>
-              <radialGradient id="kb" cx="35%" cy="30%" r="60%"><stop offset="0%" stop-color="#4E9965"/><stop offset="100%" stop-color="#1C3522"/></radialGradient>
-              <radialGradient id="ks" cx="30%" cy="25%" r="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.16)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient>
-              <linearGradient id="kh" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3D7A52"/><stop offset="100%" stop-color="#2D5A3D"/></linearGradient>
-            </defs>
-            <path d="M88 30 Q114 30 114 62 Q114 92 88 90" stroke="url(#kh)" stroke-width="7" stroke-linecap="round" fill="none"/>
-            <path d="M88 36 Q108 36 108 62 Q108 86 88 84" stroke="rgba(78,153,101,.3)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            <rect x="6" y="8" width="80" height="90" rx="18" fill="url(#kb)"/>
-            <rect x="6" y="8" width="80" height="90" rx="18" fill="url(#ks)"/>
-            <rect x="6" y="46" width="80" height="4" fill="rgba(181,98,42,.3)" rx="2"/>
-            <rect x="16" y="6" width="60" height="8" rx="4" fill="#2D5A3D"/>
-            <rect x="16" y="5" width="60" height="6" rx="3" fill="#3D7A52"/>
-            <rect x="42" y="0" width="16" height="8" rx="4" fill="#4E9965"/>
-            <rect x="44" y="1" width="12" height="5" rx="2.5" fill="#5AAD72"/>
-            <line x1="28" y1="12" x2="28" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-            <line x1="46" y1="12" x2="46" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-            <line x1="64" y1="12" x2="64" y2="94" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
-            <path d="M14 97 Q46 104 78 97" stroke="rgba(181,98,42,.4)" stroke-width="1.5" fill="none"/>
-            <path d="M40 96 Q38 116 46 128 Q50 138 60 142" stroke="#1A3020" stroke-width="9" stroke-linecap="round" fill="none"/>
-            <path d="M40 96 Q38 116 46 128 Q50 138 60 142" stroke="#2D5A3D" stroke-width="6" stroke-linecap="round" fill="none"/>
-            <path d="M52 96 Q54 116 56 128 Q58 138 60 142" stroke="#1A3020" stroke-width="9" stroke-linecap="round" fill="none"/>
-            <path d="M52 96 Q54 116 56 128 Q58 138 60 142" stroke="#2D5A3D" stroke-width="6" stroke-linecap="round" fill="none"/>
-            <ellipse cx="60" cy="142" rx="7" ry="4.5" fill="#1A3020"/>
-            <ellipse cx="60" cy="141" rx="5.5" ry="3.5" fill="#253E2C"/>
-            <ellipse cx="60" cy="142" rx="3.5" ry="3" fill="#0D1F12"/>
-            <rect x="22" y="20" width="32" height="38" rx="8" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
-            <line x1="25" y1="24" x2="25" y2="52" stroke="rgba(255,255,255,.12)" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
-      </div>
-
-      <!-- Stream: 6 rows tall -->
+    <!-- Vertical chai stream pipe (positioned absolute, behind rows) -->
+    <div class="stream-pipe-wrap">
       <div class="stream-line">
         <div class="sdrop" style="--dd:.6s;--dl:.1s"></div>
         <div class="sdrop" style="--dd:.7s;--dl:.7s"></div>
         <div class="sdrop" style="--dd:.55s;--dl:1.3s"></div>
       </div>
-
-      <!-- Kullad: 1 row tall, AFTER stream, BELOW feature 06 -->
-      <div class="kullad-outer">
-        <div class="kullad-inner">
-          <div class="kullad-liq"></div>
-          <div class="kullad-splashes">
-            <div class="sp" style="--sd:.44s;--sdl:.18s;--sx:-12px;--sy:-15px;left:28%;top:0"></div>
-            <div class="sp" style="--sd:.38s;--sdl:.48s;--sx:13px;--sy:-17px;left:52%;top:0"></div>
-            <div class="sp" style="--sd:.50s;--sdl:.32s;--sx:-4px;--sy:-20px;left:42%;top:0"></div>
-            <div class="sp" style="--sd:.36s;--sdl:.62s;--sx:9px;--sy:-12px;left:58%;top:0"></div>
-          </div>
-          <div class="kullad-steam">
-            <div class="stm" style="--st:1.4s;--sl:0s"></div>
-            <div class="stm" style="--st:1.9s;--sl:.32s"></div>
-            <div class="stm" style="--st:1.3s;--sl:.62s"></div>
-          </div>
-          <svg width="120" height="125" viewBox="0 0 120 125" fill="none">
-            <ellipse cx="60" cy="121" rx="38" ry="4.5" fill="#0D1F12" opacity=".65"/>
-            <path d="M20 18 C16 30,12 52,14 74 C16 96,20 110,60 118 C100 110,104 96,106 74 C108 52,104 30,100 18 Z" fill="var(--clay)"/>
-            <path d="M16 62 C14 84,18 106,60 118 C102 106,106 84,104 62 Z" fill="var(--clay-d)" opacity=".38"/>
-            <path d="M23 34 Q60 41 97 34" stroke="rgba(155,82,52,.55)" stroke-width="1.2" fill="none"/>
-            <path d="M18 55 Q60 64 102 55" stroke="rgba(155,82,52,.5)" stroke-width="1" fill="none"/>
-            <path d="M16 78 Q60 88 104 78" stroke="rgba(155,82,52,.4)" stroke-width="1" fill="none"/>
-            <path d="M24 24 Q18 52 20 84 Q22 102 32 112" stroke="rgba(255,255,255,.1)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-            <ellipse cx="60" cy="18" rx="40" ry="10" fill="var(--clay-d)"/>
-            <ellipse cx="60" cy="17" rx="39" ry="8.5" fill="var(--clay-l)"/>
-            <ellipse cx="60" cy="16" rx="33" ry="7" fill="#1C1008"/>
-            <ellipse cx="60" cy="15" rx="31" ry="5.5" fill="#2A1A0A" opacity=".8"/>
-            <ellipse cx="86" cy="72" rx="12" ry="20" fill="rgba(255,255,255,.055)" transform="rotate(8 86 72)"/>
-            <path d="M40 114 Q60 120 80 114 L82 119 Q60 125 38 119 Z" fill="var(--clay-d)"/>
-            <ellipse cx="60" cy="119" rx="20" ry="4.5" fill="#7A3A18"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="stream-label">tapri ki chai ↓</div>
     </div>
 
-    <!-- RIGHT: 01, empty, 03, empty, 05, empty -->
-    <div class="feat-col-right">
-      <div class="feat-slot">
+    <!-- Spacer row: pushes all features below the kettle -->
+    <div class="feat-row"></div>
+
+    <!-- Row 1: feature 01 on RIGHT -->
+    <div class="feat-row">
+      <div class="slot-left slot-empty"></div>
+      <div><!-- pipe gap --></div>
+      <div class="slot-right">
         <div class="fc" id="fc1">
           <span class="fc-number">01</span>
           <div class="fc-title">Premium .com</div>
@@ -416,8 +426,27 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
           <div class="fc-body">Not .in, not .co. A full .com — global trust, investment-grade credibility, and authority every serious brand needs.</div>
         </div>
       </div>
-      <div class="feat-slot"></div>
-      <div class="feat-slot">
+    </div>
+
+    <!-- Row 2: feature 02 on LEFT -->
+    <div class="feat-row">
+      <div class="slot-left">
+        <div class="fc" id="fc2">
+          <span class="fc-number">02</span>
+          <div class="fc-title">Global Resonance</div>
+          <div class="fc-accent"></div>
+          <div class="fc-body">"tapri" roots it in Indian chai culture. "co" signals a company. A name that means business from Mumbai to Milan.</div>
+        </div>
+      </div>
+      <div><!-- pipe gap --></div>
+      <div class="slot-right slot-empty"></div>
+    </div>
+
+    <!-- Row 3: feature 03 on RIGHT -->
+    <div class="feat-row">
+      <div class="slot-left slot-empty"></div>
+      <div><!-- pipe gap --></div>
+      <div class="slot-right">
         <div class="fc" id="fc3">
           <span class="fc-number">03</span>
           <div class="fc-title">6 Letters. One Sip.</div>
@@ -425,8 +454,27 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
           <div class="fc-body">Short enough for a kullad label. Punchy enough to anchor a ₹100 Cr brand. taprico rolls off the tongue everywhere.</div>
         </div>
       </div>
-      <div class="feat-slot"></div>
-      <div class="feat-slot">
+    </div>
+
+    <!-- Row 4: feature 04 on LEFT -->
+    <div class="feat-row">
+      <div class="slot-left">
+        <div class="fc" id="fc4">
+          <span class="fc-number">04</span>
+          <div class="fc-title">Secure Transfer</div>
+          <div class="fc-accent"></div>
+          <div class="fc-body">Protected via BigRock. Full domain transfer within 24 hours of cleared payment.</div>
+        </div>
+      </div>
+      <div><!-- pipe gap --></div>
+      <div class="slot-right slot-empty"></div>
+    </div>
+
+    <!-- Row 5: feature 05 on RIGHT -->
+    <div class="feat-row">
+      <div class="slot-left slot-empty"></div>
+      <div><!-- pipe gap --></div>
+      <div class="slot-right">
         <div class="fc" id="fc5">
           <span class="fc-number">05</span>
           <div class="fc-title">Zero Baggage</div>
@@ -434,11 +482,59 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
           <div class="fc-body">Clean history — no spam flags, no old websites, no litigation. A blank canvas for a founder who means business.</div>
         </div>
       </div>
-      <div class="feat-slot"></div>
     </div>
 
-  </div>
-</div>
+    <!-- Row 6: feature 06 on LEFT -->
+    <div class="feat-row">
+      <div class="slot-left">
+        <div class="fc" id="fc6">
+          <span class="fc-number">06</span>
+          <div class="fc-title">Booming Market</div>
+          <div class="fc-accent"></div>
+          <div class="fc-body">Vahdam, Teabox, Blue Tokai — India's chai D2C is exploding. The right domain is the first sip of a legendary brand.</div>
+        </div>
+      </div>
+      <div><!-- pipe gap --></div>
+      <div class="slot-right slot-empty"></div>
+    </div>
+
+    <!-- Kullad: below all 6 rows, centred -->
+    <div class="kullad-row">
+      <div class="kullad-inner">
+        <div class="kullad-liq"></div>
+        <div class="kullad-splashes">
+          <div class="sp" style="--sd:.44s;--sdl:.18s;--sx:-12px;--sy:-15px;left:28%;top:0"></div>
+          <div class="sp" style="--sd:.38s;--sdl:.48s;--sx:13px;--sy:-17px;left:52%;top:0"></div>
+          <div class="sp" style="--sd:.50s;--sdl:.32s;--sx:-4px;--sy:-20px;left:42%;top:0"></div>
+          <div class="sp" style="--sd:.36s;--sdl:.62s;--sx:9px;--sy:-12px;left:58%;top:0"></div>
+        </div>
+        <div class="kullad-steam">
+          <div class="stm" style="--st:1.4s;--sl:0s"></div>
+          <div class="stm" style="--st:1.9s;--sl:.32s"></div>
+          <div class="stm" style="--st:1.3s;--sl:.62s"></div>
+        </div>
+        <svg width="120" height="125" viewBox="0 0 120 125" fill="none">
+          <ellipse cx="60" cy="121" rx="38" ry="4.5" fill="#0D1F12" opacity=".65"/>
+          <path d="M20 18 C16 30,12 52,14 74 C16 96,20 110,60 118 C100 110,104 96,106 74 C108 52,104 30,100 18 Z" fill="var(--clay)"/>
+          <path d="M16 62 C14 84,18 106,60 118 C102 106,106 84,104 62 Z" fill="var(--clay-d)" opacity=".38"/>
+          <path d="M23 34 Q60 41 97 34" stroke="rgba(155,82,52,.55)" stroke-width="1.2" fill="none"/>
+          <path d="M18 55 Q60 64 102 55" stroke="rgba(155,82,52,.5)" stroke-width="1" fill="none"/>
+          <path d="M16 78 Q60 88 104 78" stroke="rgba(155,82,52,.4)" stroke-width="1" fill="none"/>
+          <path d="M24 24 Q18 52 20 84 Q22 102 32 112" stroke="rgba(255,255,255,.1)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <ellipse cx="60" cy="18" rx="40" ry="10" fill="var(--clay-d)"/>
+          <ellipse cx="60" cy="17" rx="39" ry="8.5" fill="var(--clay-l)"/>
+          <ellipse cx="60" cy="16" rx="33" ry="7" fill="#1C1008"/>
+          <ellipse cx="60" cy="15" rx="31" ry="5.5" fill="#2A1A0A" opacity=".8"/>
+          <ellipse cx="86" cy="72" rx="12" ry="20" fill="rgba(255,255,255,.055)" transform="rotate(8 86 72)"/>
+          <path d="M40 114 Q60 120 80 114 L82 119 Q60 125 38 119 Z" fill="var(--clay-d)"/>
+          <ellipse cx="60" cy="119" rx="20" ry="4.5" fill="#7A3A18"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="stream-label">tapri ki chai ↓</div>
+  </div><!-- /stream-section -->
+</div><!-- /pour-section -->
 
 <!-- BRAND POTENTIAL -->
 <div class="sw">
@@ -479,6 +575,14 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
     <h2 class="sh rv rd1" style="text-align:center">What's your<br><em>budget?</em></h2>
     <p style="font-family:'Outfit',sans-serif;font-size:.95rem;color:var(--muted);text-align:center;line-height:1.8;max-width:480px;margin:0 auto" class="rv rd2">No fixed price — tell me your range and let's find a fair deal over chai.</p>
     <div class="offer-card rv">
+
+      <!-- URGENCY STRIP — only here inside the offer card -->
+      <div class="urgency-strip">
+        <span class="us-dot"></span>
+        <span class="us-text"><strong>High-demand domain</strong> — listed across multiple platforms. First serious offer takes it.</span>
+        <span class="us-dot"></span>
+      </div>
+
       <div class="offer-q">Select budget range</div>
       <div class="offer-sub">Pick what works for you — I'll reach out with a tailored offer.</div>
       <div class="budget-grid" id="budgetGrid">
@@ -532,6 +636,7 @@ footer{border-top:1px solid rgba(45,90,61,.15);padding:2rem clamp(1.5rem,5vw,6re
 </footer>
 
 <script>
+/* Particles */
 const pw=document.getElementById('particles');
 for(let i=0;i<20;i++){
   const p=document.createElement('div');p.className='ptcl';
@@ -539,22 +644,30 @@ for(let i=0;i<20;i++){
   p.style.cssText=`left:${Math.random()*100}%;top:${5+Math.random()*70}%;width:${s}px;height:${s*1.7}px;--d:${4+Math.random()*6}s;--dl:${Math.random()*8}s;transform:rotate(${Math.random()*360}deg)`;
   pw.appendChild(p);
 }
+
+/* Feature card scroll reveal */
 const fcIO=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('show'),80);fcIO.unobserve(e.target)}});
-},{threshold:0.25,rootMargin:'0px 0px -80px 0px'});
+},{threshold:0.25,rootMargin:'0px 0px -60px 0px'});
 document.querySelectorAll('.fc').forEach(el=>fcIO.observe(el));
+
+/* Budget selection */
 let sel='';
 document.getElementById('budgetGrid').addEventListener('click',function(e){
   const b=e.target.closest('.budget-btn');if(!b)return;
   document.querySelectorAll('.budget-btn').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');sel=b.dataset.val;
 });
+
+/* WhatsApp offer */
 function sendOffer(){
   const msg=document.getElementById('msgArea').value.trim();
   const budget=sel||'Not specified';
   const text=encodeURIComponent(`Hi Vaibhav, I am interested in taprico.com.\n\nMy budget: ${budget}${msg?'\n\nAbout my brand: '+msg:''}`);
   window.open(`https://wa.me/917042831137?text=${text}`,'_blank');
 }
+
+/* Scroll reveal */
 const rvIO=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');rvIO.unobserve(e.target)}});
 },{threshold:0.1});
