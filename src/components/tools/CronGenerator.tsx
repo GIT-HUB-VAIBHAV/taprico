@@ -30,8 +30,12 @@ const FIELD_META = [
   { idx: 4, name: 'Weekday', range: '0–6 (Sun=0)', examples: ['*', '1-5', '0', '6,0', '1,3,5'] },
 ];
 
-export default function CronGenerator() {
-  const [expression, setExpression] = useState('*/15 9-17 * * 1-5');
+interface Props {
+  initialExpr?: string;
+}
+
+export default function CronGenerator({ initialExpr = '*/15 9-17 * * 1-5' }: Props) {
+  const [expression, setExpression] = useState(initialExpr);
   const [timezone, setTimezone] = useState('America/New_York');
   const [activeFieldIdx, setActiveFieldIdx] = useState(0);
   const [copied, setCopied] = useState(false);
