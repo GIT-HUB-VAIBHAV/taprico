@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdSlot from '../../components/layout/AdSlot.astro';
+import CronGenerator from '../../components/tools/CronGenerator';
+import { CRON_PAGES, type CronPageItem } from '../../data/cronPages';
+import { SITE } from '../../config/site';
+
+export function getStaticPaths() {
+  return CRON_PAGES.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+interface Props {
+  item: CronPageItem;
+}
+
+const { item } = Astro.props;
+const canonicalPath = `/cron/${item.slug}/`;
+const fullUrl = new URL(canonicalPath, SITE.url).toString();
+
+const linuxSnippet = `${item.expr} /usr/local/bin/run-task.sh >> /var/log/task.log 2>&1`;
+const ghSnippet = `on:\n  schedule:\n    - cron: '${item.expr}' # Runs in UTC`;
+const k8sSnippet = `apiVersion: batch/v1\nkind: CronJob\nspec:\n  schedule: "${item.expr}"\n  timeZone: "America/New_York"`;
+
+const faqs = [
+  {
+    question: `How do you write a cron expression for ${item.humanLabel.toLowerCase()}?`,
+    answer: `Use the 5-field POSIX cron expression "${item.expr}" for Linux crontab, Kubernetes CronJobs, and GitHub Actions. In AWS EventBridge (6-field format), use "${item.awsExpr}".`,
+  },
+  {
+    question: `What timezone does ${item.expr} run in on GitHub Actions and AWS?`,
+    answer: `GitHub Actions and AWS EventBridge evaluate "${item.expr}" strictly in UTC (Coordinated Universal Time). Kubernetes v1.27+ allows setting spec.timeZone (such as "America/New_York").`,
+  },
+  {
+    question: `What is the biggest gotcha with "${item.expr}" in production?`,
+    answer: item.notes,
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Cron Expressions', item: `${SITE.url}/cron/` },
+    { '@type': 'ListItem', position: 3, name: item.expr, item: fullUrl },
+  ],
+};
+---
+
+<BaseLayout
+  title={item.seoTitle}
+  description={item.seoDescription}
+  canonicalPath={canonicalPath}
+  keywords={[
+    `cron ${item.slug.replace(/-/g, ' ')}`,
+    item.expr,
+    'crontab generator',
+    'github actions cron',
+    'aws eventbridge cron',
+  ]}
+  schemas={[faqSchema, breadcrumbSchema]}
+>
+  <section class="border-b border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-[#090e1b]">
+    <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-3">
+      <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+        <a href="/" class="hover:text-indigo-500">Home</a>
+        <span>/</span>
+        <a href="/cron/" class="hover:text-indigo-500">Cron Expressions</a>
+        <span>/</span>
+        <span class="font-mono font-medium text-slate-800 dark:text-slate-200">{item.expr}</span>
+      </nav>
+      <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+        {item.title}
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
+        Schedule summary: <strong class="text-slate-900 dark:text-white">{item.humanLabel}</strong>. Test live US Eastern, Pacific, and UTC execution timestamps below or copy platform-ready configs.
+      </p>
+    </div>
+  </section>
+
+  <AdSlot slotKey="toolTopLeaderboard" />
+
+  <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+    <CronGenerator initialExpr={item.expr} client:load />
+  </section>
+
+  <AdSlot slotKey="toolInContent" />
+
+  <section class="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 space-y-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div class="lg:col-span-8 space-y-6">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-5">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+            Copy-Ready Snippets for Linux, GitHub Actions, Kubernetes &amp; AWS
+          </h2>
+
+          <div class="space-y-4">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Linux / POSIX Crontab</div>
+              <pre class="overflow-x-auto rounded-xl bg-slate-950 p-3.5 text-xs font-mono text-emerald-300">{linuxSnippet}</pre>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">GitHub Actions Workflow (YAML)</div>
+              <pre class="overflow-x-auto rounded-xl bg-slate-950 p-3.5 text-xs font-mono text-indigo-300">{ghSnippet}</pre>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Kubernetes CronJob Spec (With US Eastern TZ)</div>
+              <pre class="overflow-x-auto rounded-xl bg-slate-950 p-3.5 text-xs font-mono text-sky-300">{k8sSnippet}</pre>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">AWS EventBridge / CloudWatch (6-Field Syntax)</div>
+              <pre class="overflow-x-auto rounded-xl bg-slate-950 p-3.5 text-xs font-mono text-amber-300">{item.awsExpr}</pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">Production Use Cases &amp; Gotchas</h2>
+          <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300 list-disc pl-5">
+            {item.useCases.map((u) => (
+              <li>{u}</li>
+            ))}
+          </ul>
+          <p class="mt-3 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5 text-xs sm:text-sm text-amber-800 dark:text-amber-200">
+            <strong>Production Note:</strong> {item.notes}
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-3">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
+          <div class="divide-y divide-slate-200 dark:divide-slate-800">
+            {faqs.map((faq, idx) => (
+              <details class="group py-3.5" open={idx === 0}>
+                <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-slate-900 dark:text-white">
+                  <span>{faq.question}</span>
+                  <span class="text-indigo-500 text-lg leading-none">+</span>
+                </summary>
+                <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <aside class="lg:col-span-4 space-y-6">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-3">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+            More Cron Schedules
+          </h3>
+          <div class="flex flex-col gap-2">
+            {CRON_PAGES.map((other) => (
+              <a
+                href={`/cron/${other.slug}/`}
+                class={`flex items-center justify-between rounded-lg border px-3 py-2 text-xs transition-colors ${
+                  other.slug === item.slug
+                    ? 'border-indigo-500 bg-indigo-500/15 text-indigo-600 dark:text-indigo-300 font-bold'
+                    : 'border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:border-indigo-400'
+                }`}
+              >
+                <span>{other.slug.replace(/-/g, ' ')}</span>
+                <code class="font-mono">{other.expr}</code>
+              </a>
+            ))}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
