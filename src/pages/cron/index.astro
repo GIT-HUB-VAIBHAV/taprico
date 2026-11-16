@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { CRON_PAGES } from '../../data/cronPages';
+---
+
+<BaseLayout
+  title="Common Cron Expressions Library (Linux, GitHub Actions, AWS, K8s) | Taprico"
+  description="Browse tested 5-field POSIX and 6-field AWS EventBridge cron expressions—every 5 minutes, hourly, midnight, Mondays, and monthly schedules with interactive testing."
+  canonicalPath="/cron/"
+>
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8 space-y-8">
+    <div class="space-y-3 max-w-3xl">
+      <span class="font-mono text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+        DevOps &amp; Cloud Schedule Index
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+        Common Cron Expressions Reference
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        Select any schedule below to test upcoming fire times across US Eastern, Pacific, and UTC timezones, or copy ready-to-paste Linux crontab, GitHub Actions, Kubernetes, and AWS EventBridge syntax.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {CRON_PAGES.map((item) => (
+        <a
+          href={`/cron/${item.slug}/`}
+          class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-5 hover:border-indigo-500/60 transition-all space-y-2.5"
+        >
+          <div class="inline-block rounded-lg bg-slate-900 dark:bg-slate-800 px-2.5 py-1 font-mono text-sm font-bold text-indigo-300">
+            {item.expr}
+          </div>
+          <h2 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+            {item.humanLabel}
+          </h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">
+            AWS: <span class="font-mono">{item.awsExpr}</span>
+          </p>
+          <div class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 pt-1">
+            Inspect &amp; Copy Snippets →
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
