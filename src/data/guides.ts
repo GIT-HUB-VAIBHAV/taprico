@@ -192,6 +192,159 @@ export const GUIDES: GuideArticle[] = [
       },
     ],
   },
+  {
+    slug: '1099-quarterly-estimated-taxes-us-freelancers',
+    title: 'US 1099 Quarterly Estimated Taxes: Safe Harbor Rules & 2026 Deadlines',
+    category: 'Freelance & Finance',
+    readingTime: '6 min read',
+    updatedAt: 'November 2026',
+    seoTitle: '1099 Quarterly Estimated Taxes 2026: Safe Harbor & Rates | Taprico',
+    seoDescription:
+      'Avoid IRS underpayment penalties as a US 1099 freelancer or LLC. Learn Form 1040-ES quarterly due dates, 15.3% FICA math, and the 100%/110% safe harbor rule.',
+    excerpt:
+      'Keep your freelance cashflow predictable with a simple tax-reserve percentage and IRS safe harbor calendar.',
+    relatedTools: ['freelance-rate-calculator', 'hourly-to-salary-converter', 'invoice-generator'],
+    sections: [
+      {
+        heading: 'Why W-2 Withholding Mindset Traps New 1099 Contractors',
+        body: [
+          'Unlike salaried employees whose employers split FICA taxes and remit federal withholding on every bi-weekly paycheck, US independent contractors must pay both halves of Social Security and Medicare (15.3% self-employment tax up to the Social Security wage base) plus federal and state income tax directly via IRS Form 1040-ES.',
+          'Whenever you expect to owe $1,000 or more in tax at filing time, the IRS requires four quarterly estimated payments rather than a single April lump sum.',
+        ],
+      },
+      {
+        heading: 'Using the IRS Safe Harbor Rule to Avoid Penalties',
+        body: [
+          'Calculating exact quarter-by-quarter net profit can be painful when client retainer revenue fluctuates. Most US CPAs recommend using the prior-year Safe Harbor benchmark:',
+        ],
+        bullets: [
+          'Pay at least 90% of your current year total tax liability, OR 100% of the total tax shown on your prior-year return (110% if your prior-year AGI exceeded $150,000).',
+          'Standard IRS quarterly due dates fall on April 15, June 15, September 15, and January 15 (shifted to the next business day on weekends or federal holidays).',
+          'Open a dedicated high-yield business savings account and automatically sweep 28%–32% of every paid client invoice before paying yourself.',
+        ],
+        callout: {
+          title: 'Bake Tax Overhead Directly Into Your Hourly Rate',
+          text: 'Model your target take-home salary alongside US self-employment taxes and non-billable weeks.',
+          ctaLabel: 'Run Freelance Rate Calculator →',
+          ctaHref: '/tools/freelance-rate-calculator/',
+        },
+      },
+    ],
+  },
+  {
+    slug: 'gross-margin-vs-markup-us-agencies-ecommerce',
+    title: 'Profit Margin vs. Markup: Pricing Benchmarks for US Agencies & E-Commerce',
+    category: 'Freelance & Finance',
+    readingTime: '5 min read',
+    updatedAt: 'November 2026',
+    seoTitle: 'Gross Margin vs Markup Formula & US Benchmarks | Taprico',
+    seoDescription:
+      'Confusing a 30% markup with a 30% gross margin costs US agencies and Shopify brands thousands per year. Master the exact conversion formulas and Stripe fee math.',
+    excerpt:
+      'A 50% markup only yields a 33.3% gross margin. Learn how to quote retainers and SKUs without accidentally eroding profit.',
+    relatedTools: ['profit-margin-markup-calculator', 'freelance-rate-calculator', 'invoice-generator'],
+    sections: [
+      {
+        heading: 'The $100 Cost Mistake That Shrinks Agency & Store Profits',
+        body: [
+          'Markup measures how much you add on top of cost (`(Price - Cost) / Cost`), whereas Gross Margin measures the share of total revenue you keep (`(Price - Cost) / Price`). Because margin uses the larger selling price as its denominator, margin percentage is always lower than markup percentage.',
+          'If a product or subcontractor deliverable costs $100 and you apply a 25% markup ($125 price), your actual gross margin is only 20%—leaving almost no room once payment processing fees (2.9% + $0.30 on Stripe/Shopify), ad spend, and refunds hit.',
+        ],
+      },
+      {
+        heading: 'Healthy Target Margins Across US Business Models',
+        body: ['Benchmark your unit economics against typical US operating bands before locking pricing:'],
+        bullets: [
+          'US Digital Agencies & Consultancies: Target 50%–65% gross delivery margin after contractor labor and software licenses.',
+          'DTC E-Commerce & Shopify Brands: Target 55%–70% landed gross margin to absorb Meta/Google acquisition costs and free shipping.',
+          'B2B SaaS Products: Mature cloud software typically runs at 75%–85% gross margin after hosting, AI inference, and support COGS.',
+        ],
+        callout: {
+          title: 'Test Margin, Markup & Payment Fees Instantly',
+          text: 'Calculate exact selling prices from target margin percentages—including Stripe/PayPal processing drag.',
+          ctaLabel: 'Open Margin & Markup Calculator →',
+          ctaHref: '/tools/profit-margin-markup-calculator/',
+        },
+      },
+    ],
+  },
+  {
+    slug: 'postgresql-uuid-v7-vs-uuid-v4-performance',
+    title: 'PostgreSQL UUID v7 vs. UUID v4: B-Tree Locality, Index Bloat & Migration Tips',
+    category: 'Engineering & DevOps',
+    readingTime: '5 min read',
+    updatedAt: 'November 2026',
+    seoTitle: 'UUID v7 vs UUID v4 in PostgreSQL: Performance & B-Tree Guide | Taprico',
+    seoDescription:
+      'Understand why random UUID v4 primary keys fragment PostgreSQL B-Tree indexes at scale and how time-ordered RFC 9562 UUID v7 fixes write amplification.',
+    excerpt:
+      'Keep globally unique distributed primary keys without destroying database buffer cache hit ratios.',
+    relatedTools: ['uuid-generator', 'sql-formatter', 'json-yaml-formatter'],
+    sections: [
+      {
+        heading: 'Why Random UUID v4 Hurts High-Write Relational Tables',
+        body: [
+          'Standard UUID v4 places 122 cryptographically random bits across the identifier. While random IDs prevent enumeration and eliminate coordination across microservices, inserting random keys into a clustered or B-Tree index scatters writes across random memory pages.',
+          'Once a high-churn Postgres table outgrows shared_buffers, random UUID v4 inserts trigger constant page splits, extra WAL write amplification, and degraded cache locality compared to monotonic IDs.',
+        ],
+      },
+      {
+        heading: 'How RFC 9562 UUID v7 Solves Index Fragmentation',
+        body: [
+          'RFC 9562 UUID v7 begins with a 48-bit big-endian Unix timestamp in milliseconds followed by sub-millisecond monotonic/random entropy:',
+        ],
+        bullets: [
+          'New inserts append sequentially to the rightmost B-Tree leaf pages—dramatically lowering IOPS and index bloat.',
+          'Retains the exact 128-bit UUID wire format (8-4-4-4-12 hex string), requiring zero schema type changes in PostgreSQL uuid columns.',
+          'Natural lexicographical sorting by creation time improves cursor pagination and multi-region ETL watermarks.',
+        ],
+        callout: {
+          title: 'Generate RFC 9562 UUID v7 & v4 Batches Locally',
+          text: 'Create, inspect timestamp bits, or export UUID v7/v4 test rows as SQL INSERTs, JSON, or CSV.',
+          ctaLabel: 'Open UUID v4 / v7 Generator →',
+          ctaHref: '/tools/uuid-generator/',
+        },
+      },
+    ],
+  },
+  {
+    slug: 'github-actions-aws-cron-scheduling-guide',
+    title: 'GitHub Actions & AWS EventBridge Cron Guide: Avoiding UTC & DST Drift',
+    category: 'Engineering & DevOps',
+    readingTime: '5 min read',
+    updatedAt: 'November 2026',
+    seoTitle: 'GitHub Actions & AWS Cron Guide: UTC, DST & Syntax | Taprico',
+    seoDescription:
+      'Master 5-field POSIX cron vs 6-field AWS EventBridge schedules, handle US Daylight Saving Time shifts cleanly, and prevent overlapping batch jobs.',
+    excerpt:
+      'Eliminate missed midnight jobs and unexpected 1-hour Daylight Saving Time shifts in cloud schedulers.',
+    relatedTools: ['cron-expression-generator', 'json-yaml-formatter', 'regex-tester'],
+    sections: [
+      {
+        heading: '5-Field POSIX Cron vs. 6-Field AWS EventBridge Syntax',
+        body: [
+          'Linux crontab, GitHub Actions, and Kubernetes CronJobs all parse the standard 5-field expression: Minute, Hour, Day-of-Month, Month, and Day-of-Week. By contrast, AWS EventBridge requires 6 fields (adding a Year field at the end) and strictly forbids putting * in both Day-of-Month and Day-of-Week simultaneously—one of them must be ?.',
+        ],
+      },
+      {
+        heading: 'Handling US Eastern & Pacific Daylight Saving Time Shifts',
+        body: [
+          'Because GitHub Actions workflows and default AWS EventBridge rules evaluate schedules in UTC, a report configured for 0 14 * * 1-5 runs at 9:00 AM EST during winter—but shifts to 10:00 AM EDT between March and November:',
+        ],
+        bullets: [
+          'On Kubernetes v1.27+, explicitly declare spec.timeZone: "America/New_York" on CronJob manifests when schedules track US business hours.',
+          'On AWS EventBridge Scheduler, set ScheduleExpressionTimezone to "America/New_York" rather than adjusting UTC offsets twice a year.',
+          'For critical billing or ETL scripts, combine concurrency guards or distributed locks so delayed cloud runners never execute duplicate runs concurrently.',
+        ],
+        callout: {
+          title: 'Preview Exact US Eastern, Pacific & UTC Next Runs',
+          text: 'Validate any 5-field cron expression visually and check its next 10 execution timestamps before deploying.',
+          ctaLabel: 'Open Interactive Cron Studio →',
+          ctaHref: '/tools/cron-expression-generator/',
+        },
+      },
+    ],
+  },
 ];
 
 export function getGuideBySlug(slug: string): GuideArticle | undefined {
