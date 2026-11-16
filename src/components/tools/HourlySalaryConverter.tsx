@@ -2,8 +2,12 @@ import { useMemo, useState } from 'react';
 import { Briefcase, DollarSign, Info, Sparkles } from 'lucide-react';
 import { formatUsd } from './studioUtils';
 
-export default function HourlySalaryConverter() {
-  const [hourlyRate, setHourlyRate] = useState(65);
+interface Props {
+  initialHourly?: number;
+}
+
+export default function HourlySalaryConverter({ initialHourly = 65 }: Props) {
+  const [hourlyRate, setHourlyRate] = useState(initialHourly);
   const [hoursPerWeek, setHoursPerWeek] = useState(40);
   const [weeksPerYear, setWeeksPerYear] = useState(52);
   const [paidTimeOff, setPaidTimeOff] = useState(true);
