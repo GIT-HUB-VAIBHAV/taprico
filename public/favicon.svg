@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="tapricoGrad" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="55%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#090E1A"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" stroke="url(#tapricoGrad)" stroke-opacity="0.45" stroke-width="2"/>
+  <path d="M18 20H46V27H35.5V47H28.5V27H18V20Z" fill="url(#tapricoGrad)"/>
+  <circle cx="44" cy="43" r="4.5" fill="#10B981"/>
+</svg>

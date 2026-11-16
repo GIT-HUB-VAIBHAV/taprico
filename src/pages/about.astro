@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config/site';
+---
+
+<BaseLayout
+  title="About Taprico — Local-First Developer & Freelance Workbench"
+  description="Learn about Taprico, our privacy-first browser engineering philosophy, and why US developers and freelancers trust our local-only tools."
+  canonicalPath="/about/"
+>
+  <section class="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8 space-y-8">
+    <div class="space-y-3">
+      <span class="font-mono text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+        About {SITE.name}
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+        Built for Speed, Privacy, and Practical Work
+      </h1>
+      <p class="text-base leading-relaxed text-slate-600 dark:text-slate-300">
+        Taprico (<span class="font-mono">{SITE.domain}</span>) is an independent suite of 12 browser-first utilities designed for US software engineers, DevOps practitioners, independent consultants, and small businesses.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-2.5">
+        <h2 class="text-base font-bold text-slate-900 dark:text-white">Zero-Server-Upload Standard</h2>
+        <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          Every formatter, JWT inspector, diff checker, and PDF invoice builder runs strictly inside your own browser memory using Web Crypto APIs and client-side JavaScript. Confidential client data, tokens, and configurations never leave your computer.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-2.5">
+        <h2 class="text-base font-bold text-slate-900 dark:text-white">US Freelance &amp; Engineering Standards</h2>
+        <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+          Our business utilities model real US workflows: US Letter PDFs, Net 15/30 invoicing terms, ACH instructions, 15.3% self-employment tax reserves, and bi-weekly vs. semi-monthly payroll schedules.
+        </p>
+      </div>
+    </div>
+
+    <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 sm:p-8 space-y-4">
+      <h2 class="text-xl font-bold text-slate-900 dark:text-white">How We Keep Taprico Free</h2>
+      <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+        Taprico operates with a lean static edge architecture and does not lock core utilities behind mandatory accounts, PDF watermarks, or monthly subscriptions. Operations are supported by non-intrusive, clearly labeled display advertising and optional sponsorships while preserving full client-side privacy for every payload you process.
+      </p>
+      <div class="pt-2">
+        <a href="/contact/" class="inline-flex items-center rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-500">
+          Get in Touch →
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

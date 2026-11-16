@@ -1,0 +1,39 @@
+---
+import { ADS_CONFIG, type AdSlotKey } from '../../config/ads';
+
+interface Props {
+  slotKey: AdSlotKey;
+  className?: string;
+}
+
+const { slotKey, className = '' } = Astro.props;
+const slot = ADS_CONFIG.slots[slotKey];
+---
+
+{ADS_CONFIG.enabled && (
+  <aside
+    class={`no-print mx-auto my-6 w-full max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}
+    aria-label="Advertisement"
+  >
+    <div
+      class={`flex flex-col items-center justify-center rounded-xl border border-slate-200/80 dark:border-slate-800/80 bg-slate-50/60 dark:bg-slate-900/40 p-2 ${slot.minHeightClass}`}
+    >
+      <span class="mb-1 text-[10px] font-medium uppercase tracking-widest text-slate-400 dark:text-slate-500">
+        Advertisement
+      </span>
+      <ins
+        class="adsbygoogle block w-full text-center"
+        style="display:block"
+        data-ad-client={ADS_CONFIG.publisherId}
+        data-ad-slot={slot.slotId}
+        data-ad-format={slot.format}
+        data-full-width-responsive="true"
+      />
+      <script is:inline>
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).push({});
+        } catch (e) {}
+      </script>
+    </div>
+  </aside>
+)}

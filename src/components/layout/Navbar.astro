@@ -1,0 +1,143 @@
+---
+import { NAV_LINKS, SITE } from '../../config/site';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+---
+
+<header class="no-print sticky top-0 z-40 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#070b14]/80 backdrop-blur-xl">
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+    <!-- Brand -->
+    <a href="/" class="flex items-center gap-2.5 group shrink-0">
+      <div class="relative flex h-9 w-9 items-center justify-center rounded-xl bg-slate-950 border border-indigo-500/40 shadow-sm shadow-indigo-500/20 group-hover:border-indigo-400 transition-colors">
+        <svg class="h-5 w-5" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="navBrandGrad" x1="12" y1="12" x2="52" y2="52" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#818CF8"/>
+              <stop offset="55%" stop-color="#38BDF8"/>
+              <stop offset="100%" stop-color="#10B981"/>
+            </linearGradient>
+          </defs>
+          <path d="M16 18H48V26H36V48H28V26H16V18Z" fill="url(#navBrandGrad)"/>
+          <circle cx="45" cy="43" r="5" fill="#10B981"/>
+        </svg>
+      </div>
+      <div class="flex flex-col">
+        <div class="flex items-center gap-1.5">
+          <span class="text-base font-bold tracking-tight text-slate-900 dark:text-white">{SITE.name}</span>
+          <span class="hidden sm:inline-flex items-center rounded-full bg-emerald-500/10 border border-emerald-500/25 px-2 py-0.5 font-mono text-[10px] font-semibold text-emerald-600 dark:text-emerald-400">
+            LOCAL-FIRST
+          </span>
+        </div>
+        <span class="hidden lg:block text-[11px] leading-none text-slate-500 dark:text-slate-400">Dev &amp; Freelance Workbench</span>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-1" aria-label="Main navigation">
+      {NAV_LINKS.map((link) => {
+        const baseHref = link.href.split('#')[0];
+        const isActive =
+          currentPath === baseHref || (baseHref !== '/' && currentPath.startsWith(baseHref));
+        return (
+          <a
+            href={link.href}
+            class={`rounded-lg px-3 py-1.5 text-sm font-medium transition-colors ${
+              isActive
+                ? 'bg-indigo-50 dark:bg-indigo-500/15 text-indigo-600 dark:text-indigo-300'
+                : 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/70 hover:text-slate-900 dark:hover:text-white'
+            }`}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-2">
+      <!-- Command Palette Button -->
+      <button
+        type="button"
+        id="taprico-cmd-trigger"
+        class="flex items-center gap-2 rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-50 dark:bg-slate-900/70 px-3 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 hover:border-indigo-400 dark:hover:border-indigo-500/60 hover:text-slate-900 dark:hover:text-white transition-all cursor-pointer"
+        aria-label="Open tool quick search"
+      >
+        <svg class="h-3.5 w-3.5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+        </svg>
+        <span class="hidden sm:inline">Search Tools...</span>
+        <kbd class="hidden sm:inline-flex items-center rounded border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-1.5 py-0.5 font-mono text-[10px] text-slate-500 dark:text-slate-400">
+          ⌘K
+        </kbd>
+      </button>
+
+      <!-- Theme Toggle -->
+      <button
+        type="button"
+        id="taprico-theme-toggle"
+        class="flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-50 dark:bg-slate-900/70 text-slate-600 dark:text-slate-300 hover:border-indigo-400 dark:hover:border-indigo-500/60 hover:text-slate-900 dark:hover:text-white transition-colors cursor-pointer"
+        aria-label="Toggle color theme"
+        title="Toggle Dark / Light theme"
+      >
+        <svg id="theme-icon-sun" class="hidden dark:block h-4 w-4 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>
+        </svg>
+        <svg id="theme-icon-moon" class="block dark:hidden h-4 w-4 text-indigo-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
+        </svg>
+      </button>
+
+      <!-- Mobile Menu Toggle -->
+      <button
+        type="button"
+        id="taprico-mobile-menu-btn"
+        class="flex md:hidden h-9 w-9 items-center justify-center rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-50 dark:bg-slate-900/70 text-slate-700 dark:text-slate-200"
+        aria-label="Open navigation menu"
+      >
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="4" x2="20" y1="7" y2="7"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="17" y2="17"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown -->
+  <div id="taprico-mobile-menu" class="hidden md:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0b101d] px-4 py-3 space-y-1">
+    {NAV_LINKS.map((link) => (
+      <a
+        href={link.href}
+        class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+      >
+        {link.label}
+      </a>
+    ))}
+  </div>
+</header>
+
+<script is:inline>
+  (function () {
+    const cmdBtn = document.getElementById('taprico-cmd-trigger');
+    cmdBtn && cmdBtn.addEventListener('click', function () {
+      window.dispatchEvent(new CustomEvent('taprico:open-palette'));
+    });
+
+    const themeBtn = document.getElementById('taprico-theme-toggle');
+    themeBtn && themeBtn.addEventListener('click', function () {
+      const root = document.documentElement;
+      const isDark = root.classList.toggle('dark');
+      try {
+        localStorage.setItem('taprico-theme', isDark ? 'dark' : 'light');
+      } catch (e) {}
+    });
+
+    const mobBtn = document.getElementById('taprico-mobile-menu-btn');
+    const mobMenu = document.getElementById('taprico-mobile-menu');
+    mobBtn && mobMenu && mobBtn.addEventListener('click', function () {
+      mobMenu.classList.toggle('hidden');
+    });
+  })();
+</script>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config/site';
+---
+
+<BaseLayout
+  title="Terms of Service | Taprico"
+  description="Terms of use and financial/tax calculation disclaimers for Taprico developer and US freelance tools."
+  canonicalPath="/terms/"
+>
+  <article class="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8 space-y-6 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+    <header class="space-y-2 border-b border-slate-200 dark:border-slate-800 pb-6">
+      <span class="font-mono text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+        Terms of Service
+      </span>
+      <h1 class="text-3xl font-black text-slate-900 dark:text-white">Terms of Service for {SITE.domain}</h1>
+      <p class="text-xs text-slate-500 dark:text-slate-400">Last Updated: November 17, 2026</p>
+    </header>
+
+    <section class="space-y-2">
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white">1. Acceptance of Terms</h2>
+      <p>
+        By accessing or using {SITE.name} ({SITE.url}), you agree to be bound by these Terms of Service. All utilities are provided free of charge on an "as-is" and "as-available" basis for lawful engineering, business, and educational workflows.
+      </p>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white">2. Financial, Invoice &amp; Tax Disclaimers</h2>
+      <p>
+        Calculations produced by the Hourly-to-Salary Converter, Freelance Rate Calculator, Profit Margin &amp; Markup Calculator, and Invoice Generator are provided strictly for planning and informational purposes. {SITE.name} does not provide legal, accounting, or certified tax advice. Always verify federal/state self-employment taxes, sales tax nexus rules, and contractual terms with a licensed CPA or attorney before filing taxes or issuing binding commercial agreements.
+      </p>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white">3. No Warranty &amp; Limitation of Liability</h2>
+      <p>
+        While we strive for strict standards compliance across RFC 8259 (JSON), RFC 7519 (JWT), RFC 9562 (UUID), SQL dialects, and vector PDF rendering, {SITE.name} makes no warranty regarding uninterrupted availability or suitability for mission-critical production systems. You are solely responsible for validating outputs prior to production deployment or client billing.
+      </p>
+    </section>
+
+    <section class="space-y-2">
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white">4. Contact</h2>
+      <p>
+        Questions regarding these Terms may be directed to{' '}
+        <a href={`mailto:${SITE.contactEmail}`} class="font-mono text-indigo-500 hover:underline">{SITE.contactEmail}</a>.
+      </p>
+    </section>
+  </article>
+</BaseLayout>

@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdSlot from '../../components/layout/AdSlot.astro';
+import ToolSeoSection from '../../components/seo/ToolSeoSection.astro';
+import { TOOLS, type ToolDefinition } from '../../config/tools';
+import { SITE } from '../../config/site';
+
+// Interactive Workbenches (per-page code split!)
+import JsonYamlFormatter from '../../components/tools/JsonYamlFormatter';
+import JwtDecoder from '../../components/tools/JwtDecoder';
+import CronGenerator from '../../components/tools/CronGenerator';
+import RegexTester from '../../components/tools/RegexTester';
+import Base64Tool from '../../components/tools/Base64Tool';
+import UuidGenerator from '../../components/tools/UuidGenerator';
+import SqlFormatter from '../../components/tools/SqlFormatter';
+import DiffChecker from '../../components/tools/DiffChecker';
+import InvoiceGenerator from '../../components/tools/InvoiceGenerator';
+import HourlySalaryConverter from '../../components/tools/HourlySalaryConverter';
+import FreelanceRateCalculator from '../../components/tools/FreelanceRateCalculator';
+import ProfitMarginCalculator from '../../components/tools/ProfitMarginCalculator';
+
+export function getStaticPaths() {
+  return TOOLS.map((tool) => ({
+    params: { slug: tool.slug },
+    props: { tool },
+  }));
+}
+
+interface Props {
+  tool: ToolDefinition;
+}
+
+const { tool } = Astro.props;
+const canonicalPath = `/tools/${tool.slug}/`;
+const fullUrl = new URL(canonicalPath, SITE.url).toString();
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: tool.name,
+  applicationCategory: tool.category === 'developer' ? 'DeveloperApplication' : 'BusinessApplication',
+  operatingSystem: 'Web Browser',
+  url: fullUrl,
+  description: tool.seoDescription,
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: SITE.url },
+    { '@type': 'ListItem', position: 2, name: 'Tools', item: `${SITE.url}/tools/` },
+    { '@type': 'ListItem', position: 3, name: tool.shortName, item: fullUrl },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: tool.faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: f.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title={tool.seoTitle}
+  description={tool.seoDescription}
+  canonicalPath={canonicalPath}
+  keywords={tool.keywords}
+  schemas={[softwareSchema, breadcrumbSchema, faqSchema]}
+>
+  <!-- Compact Studio Tool Header -->
+  <section class="no-print border-b border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-[#090e1b]">
+    <div class="mx-auto max-w-7xl px-4 py-7 sm:px-6 lg:px-8">
+      <!-- Breadcrumbs -->
+      <nav aria-label="Breadcrumb" class="mb-3 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+        <a href="/" class="hover:text-indigo-500">Home</a>
+        <span>/</span>
+        <a href="/tools/" class="hover:text-indigo-500">Tools</a>
+        <span>/</span>
+        <span class="font-medium text-slate-800 dark:text-slate-200">{tool.shortName}</span>
+      </nav>
+
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-4">
+        <div class="space-y-2 max-w-3xl">
+          <div class="flex flex-wrap items-center gap-2">
+            <span
+              class={`rounded-md border px-2 py-0.5 font-mono text-[11px] font-semibold ${
+                tool.category === 'freelance'
+                  ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-300'
+                  : 'border-indigo-500/30 bg-indigo-500/10 text-indigo-700 dark:text-indigo-300'
+              }`}
+            >
+              {tool.categoryLabel}
+            </span>
+            <span class="rounded-md border border-slate-200 dark:border-slate-700 px-2 py-0.5 font-mono text-[11px] text-slate-500 dark:text-slate-400">
+              {tool.badge}
+            </span>
+            <span class="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 text-[11px] font-medium text-emerald-600 dark:text-emerald-400">
+              <span class="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+              100% Client-Side
+            </span>
+          </div>
+
+          <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-slate-900 dark:text-white">
+            {tool.name}
+          </h1>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            {tool.tagline}
+          </p>
+        </div>
+
+        <button
+          type="button"
+          id="copy-tool-link-btn"
+          class="inline-flex items-center gap-1.5 self-start rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3.5 py-2 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:border-indigo-500 cursor-pointer shrink-0"
+        >
+          Share Tool Link
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Optional Top Leaderboard AdSlot (hidden automatically while ADS_CONFIG.enabled = false) -->
+  <AdSlot slotKey="toolTopLeaderboard" />
+
+  <!-- Interactive Tool Workbench -->
+  <section class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    {tool.slug === 'json-yaml-formatter' && <JsonYamlFormatter client:load />}
+    {tool.slug === 'jwt-decoder' && <JwtDecoder client:load />}
+    {tool.slug === 'cron-expression-generator' && <CronGenerator client:load />}
+    {tool.slug === 'regex-tester' && <RegexTester client:load />}
+    {tool.slug === 'base64-encoder-decoder' && <Base64Tool client:load />}
+    {tool.slug === 'uuid-generator' && <UuidGenerator client:load />}
+    {tool.slug === 'sql-formatter' && <SqlFormatter client:load />}
+    {tool.slug === 'diff-checker' && <DiffChecker client:load />}
+    {tool.slug === 'invoice-generator' && <InvoiceGenerator client:load />}
+    {tool.slug === 'hourly-to-salary-converter' && <HourlySalaryConverter client:load />}
+    {tool.slug === 'freelance-rate-calculator' && <FreelanceRateCalculator client:load />}
+    {tool.slug === 'profit-margin-markup-calculator' && <ProfitMarginCalculator client:load />}
+  </section>
+
+  <!-- In-Content AdSlot (well separated from interactive controls to avoid accidental clicks!) -->
+  <AdSlot slotKey="toolInContent" />
+
+  <!-- Rich Technical Docs, Guide, Use Cases & FAQ -->
+  <ToolSeoSection tool={tool} />
+
+  <script is:inline>
+    (function () {
+      var btn = document.getElementById('copy-tool-link-btn');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        navigator.clipboard && navigator.clipboard.writeText(window.location.href).then(function () {
+          var prev = btn.textContent;
+          btn.textContent = 'Copied URL!';
+          setTimeout(function () {
+            btn.textContent = prev;
+          }, 1600);
+        });
+      });
+    })();
+  </script>
+</BaseLayout>

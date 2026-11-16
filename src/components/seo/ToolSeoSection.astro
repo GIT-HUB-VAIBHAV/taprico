@@ -1,0 +1,117 @@
+---
+import { getToolBySlug, type ToolDefinition } from '../../config/tools';
+
+interface Props {
+  tool: ToolDefinition;
+}
+
+const { tool } = Astro.props;
+const relatedTools = tool.relatedSlugs
+  .map((s) => getToolBySlug(s))
+  .filter((t): t is ToolDefinition => Boolean(t));
+---
+
+<section class="no-print mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 space-y-12">
+  <!-- Highlights -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {tool.highlights.map((h) => (
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-5">
+        <h2 class="text-sm font-bold text-slate-900 dark:text-white">{h.title}</h2>
+        <p class="mt-1.5 text-xs leading-relaxed text-slate-600 dark:text-slate-400">{h.detail}</p>
+      </div>
+    ))}
+  </div>
+
+  <!-- Two-Column Authoritative Guide + Use Cases -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    <div class="lg:col-span-8 space-y-8">
+      <!-- How to Use -->
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white">How to Use {tool.shortName}</h2>
+        <ol class="space-y-3">
+          {tool.howToUse.map((step, i) => (
+            <li class="flex items-start gap-3 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+              <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-indigo-500/15 font-mono text-xs font-bold text-indigo-600 dark:text-indigo-300 mt-0.5">
+                {i + 1}
+              </span>
+              <span>{step}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <!-- Technical Deep Dive -->
+      {tool.technicalGuide.map((sec) => (
+        <article class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 sm:p-8 space-y-4">
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">{sec.heading}</h2>
+          {sec.paragraphs.map((p) => (
+            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300">{p}</p>
+          ))}
+          {sec.bullets && (
+            <ul class="space-y-2 pt-1">
+              {sec.bullets.map((b) => (
+                <li class="flex items-start gap-2.5 text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500"></span>
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </article>
+      ))}
+
+      <!-- Interactive FAQ Accordion -->
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 sm:p-8 space-y-4">
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
+        <div class="divide-y divide-slate-200 dark:divide-slate-800">
+          {tool.faqs.map((faq, idx) => (
+            <details class="group py-4" open={idx === 0}>
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-slate-900 dark:text-white">
+                <span>{faq.question}</span>
+                <span class="text-indigo-500 transition-transform group-open:rotate-45 text-lg leading-none">+</span>
+              </summary>
+              <p class="mt-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{faq.answer}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar: Common Use Cases & Related Tools -->
+    <aside class="lg:col-span-4 space-y-6">
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-4">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+          Common US Workflows
+        </h3>
+        <ul class="space-y-2.5">
+          {tool.useCases.map((u) => (
+            <li class="flex items-start gap-2.5 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+              <span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-indigo-500"></span>
+              <span>{u}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-4">
+        <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+          Related Taprico Tools
+        </h3>
+        <div class="space-y-2.5">
+          {relatedTools.map((rel) => (
+            <a
+              href={`/tools/${rel.slug}/`}
+              class="block rounded-xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/70 dark:bg-[#090e1b] p-3.5 hover:border-indigo-500/60 transition-colors"
+            >
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-bold text-slate-900 dark:text-white">{rel.shortName}</span>
+                <span class="font-mono text-[10px] text-indigo-500">{rel.badge}</span>
+              </div>
+              <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 line-clamp-2">{rel.tagline}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>

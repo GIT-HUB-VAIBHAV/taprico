@@ -1,0 +1,164 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroWorkbench from '../components/home/HeroWorkbench';
+import ToolDirectory from '../components/home/ToolDirectory';
+import { GUIDES } from '../data/guides';
+import { SITE } from '../config/site';
+---
+
+<BaseLayout
+  title="Taprico — Free Developer & US Freelance Tools (Local-First)"
+  description={SITE.description}
+  canonicalPath="/"
+>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden studio-grid border-b border-slate-200/80 dark:border-slate-800/80">
+    <!-- Subtle radial accent glows -->
+    <div class="pointer-events-none absolute -top-24 left-1/4 h-96 w-96 rounded-full bg-indigo-500/15 blur-3xl"></div>
+    <div class="pointer-events-none absolute bottom-0 right-1/4 h-80 w-80 rounded-full bg-emerald-500/10 blur-3xl"></div>
+
+    <div class="relative mx-auto max-w-7xl px-4 py-14 sm:py-20 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        <!-- Left Hero Copy -->
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-flex items-center gap-2 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-300">
+            <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            12 Pro Browser Utilities · Zero Server Uploads
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+            The Precision Workbench for{' '}
+            <span class="bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 bg-clip-text text-transparent">
+              Developers &amp; Freelancers
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-lg leading-relaxed text-slate-600 dark:text-slate-300 max-w-xl">
+            Format JSON &amp; YAML, verify JWT signatures, build cron schedules, generate US Letter PDF invoices, and price 1099 freelance rates—100% locally inside your browser with instant speed.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-3 pt-1">
+            <a
+              href="#workbench-directory"
+              class="inline-flex items-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-indigo-600/25 hover:bg-indigo-500 transition-colors"
+            >
+              Explore All 12 Tools
+            </a>
+            <a
+              href="/tools/invoice-generator/"
+              class="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-5 py-3 text-sm font-semibold text-slate-800 dark:text-slate-200 hover:border-emerald-500/60 transition-colors"
+            >
+              Create Free PDF Invoice →
+            </a>
+          </div>
+
+          <!-- Trust Metrics Strip -->
+          <div class="grid grid-cols-3 gap-4 border-t border-slate-200/80 dark:border-slate-800/80 pt-6 max-w-lg">
+            <div>
+              <div class="font-mono text-xl sm:text-2xl font-black text-slate-900 dark:text-white">0 ms</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400">Server Roundtrips</div>
+            </div>
+            <div>
+              <div class="font-mono text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">100%</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400">Client-Side Private</div>
+            </div>
+            <div>
+              <div class="font-mono text-xl sm:text-2xl font-black text-indigo-600 dark:text-indigo-400">USD / US</div>
+              <div class="text-xs text-slate-500 dark:text-slate-400">Tailored Standards</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Interactive Mini Workbench -->
+        <div class="lg:col-span-6">
+          <HeroWorkbench client:load />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Filterable Bento Tool Directory -->
+  <section id="workbench-directory" class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 space-y-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <div>
+        <span class="font-mono text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+          Taprico Tool Suite
+        </span>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Developer Studio &amp; Freelance Finance
+        </h2>
+      </div>
+      <p class="text-xs text-slate-500 dark:text-slate-400">
+        Tip: Press <kbd class="rounded border border-slate-300 dark:border-slate-700 px-1.5 py-0.5 font-mono">⌘K</kbd> or <kbd class="rounded border border-slate-300 dark:border-slate-700 px-1.5 py-0.5 font-mono">Ctrl+K</kbd> anywhere to jump tools.
+      </p>
+    </div>
+
+    <ToolDirectory client:load />
+  </section>
+
+  <!-- Privacy & Engineering Architecture Section -->
+  <section class="border-y border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-[#0b101e]">
+    <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-2.5">
+          <div class="font-mono text-xs font-bold text-emerald-500">01 · NDA &amp; TOKEN SAFE</div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white">Zero Payload Uploads</h3>
+          <p class="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+            Production JWTs, Kubernetes secrets, .env configs, and client invoices never touch an external backend. All parsing, Web Crypto verification, and PDF rendering stay inside your browser tab.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-2.5">
+          <div class="font-mono text-xs font-bold text-indigo-500">02 · BUILT FOR US WORKFLOWS</div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white">Real Business Math</h3>
+          <p class="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+            Unlike generic global calculators, our finance suite models 15.3% US self-employment FICA taxes, W-2 vs. 1099 parity, bi-weekly vs. semi-monthly paychecks, and US Letter Net 30 invoices.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-2.5">
+          <div class="font-mono text-xs font-bold text-cyan-500">03 · NO LOGIN FRICTION</div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white">Instant Edge Delivery</h3>
+          <p class="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+            No paywalls, no email gates, and no watermarked PDFs. Save your LLC invoice defaults cleanly in localStorage and export sharp vector PDFs anytime.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Playbooks & Guides -->
+  <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 space-y-6">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <span class="font-mono text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+          Field Guides
+        </span>
+        <h2 class="mt-1 text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+          Engineering &amp; Freelance Playbooks
+        </h2>
+      </div>
+      <a href="/guides/" class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline shrink-0">
+        All Playbooks →
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      {GUIDES.map((g) => (
+        <a
+          href={`/guides/${g.slug}/`}
+          class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 hover:border-indigo-500/60 transition-all space-y-2.5"
+        >
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="font-mono font-semibold text-indigo-600 dark:text-indigo-400">{g.category}</span>
+            <span class="text-slate-500 dark:text-slate-400">{g.readingTime}</span>
+          </div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-500 transition-colors">
+            {g.title}
+          </h3>
+          <p class="text-xs leading-relaxed text-slate-600 dark:text-slate-400">{g.excerpt}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

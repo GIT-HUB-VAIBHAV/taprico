@@ -1,0 +1,125 @@
+---
+import '../styles/global.css';
+import { SITE } from '../config/site';
+import { ADS_CONFIG } from '../config/ads';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import CommandPalette from '../components/layout/CommandPalette';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  keywords?: string[];
+  ogType?: 'website' | 'article';
+  schemas?: Record<string, unknown>[];
+  noindex?: boolean;
+}
+
+const {
+  title = `${SITE.name} — ${SITE.tagline}`,
+  description = SITE.description,
+  canonicalPath = Astro.url.pathname,
+  keywords = [
+    'developer tools',
+    'json yaml formatter',
+    'jwt decoder',
+    'freelance rate calculator',
+    'free invoice generator',
+    'us hourly to salary converter',
+  ],
+  ogType = 'website',
+  schemas = [],
+  noindex = false,
+} = Astro.props;
+
+const canonicalUrl = new URL(canonicalPath, SITE.url).toString();
+const shouldLoadAdsense =
+  ADS_CONFIG.enabled &&
+  ADS_CONFIG.publisherId.startsWith('ca-pub-') &&
+  ADS_CONFIG.publisherId !== 'ca-pub-0000000000000000';
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE.name,
+  url: SITE.url,
+  description: SITE.description,
+  inLanguage: 'en-US',
+};
+
+const allSchemas = [websiteSchema, ...schemas];
+---
+
+<!doctype html>
+<html lang="en-US" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords.join(', ')} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Typography (non-blocking system fallback first) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Zero-flash Theme Initialization -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('taprico-theme');
+          if (saved === 'light') {
+            document.documentElement.classList.remove('dark');
+          } else {
+            document.documentElement.classList.add('dark');
+          }
+        } catch (e) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
+    <!-- Structured Data -->
+    {allSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
+
+    {shouldLoadAdsense && (
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADS_CONFIG.publisherId}`}
+        crossorigin="anonymous"
+      />
+    )}
+  </head>
+
+  <body class="min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-[#070b14] dark:text-slate-100 selection:bg-indigo-500/30 selection:text-indigo-900 dark:selection:text-indigo-200">
+    <Navbar currentPath={canonicalPath} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+    <CommandPalette client:idle />
+  </body>
+</html>

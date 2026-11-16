@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../config/site';
+---
+
+<BaseLayout
+  title="Contact & Support | Taprico"
+  description="Contact Taprico for bug reports, tool requests, security disclosures, or advertising inquiries."
+  canonicalPath="/contact/"
+>
+  <section class="mx-auto max-w-4xl px-4 py-14 sm:px-6 lg:px-8 space-y-8">
+    <div class="space-y-3">
+      <span class="font-mono text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
+        Contact {SITE.name}
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+        Questions, Tool Requests &amp; Feedback
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        Spotted a parsing edge case or want us to add a new developer or US freelance workflow? Reach us directly by email below.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+      <div class="md:col-span-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-4">
+        <h2 class="text-base font-bold text-slate-900 dark:text-white">Direct Channels</h2>
+        <div class="space-y-3 text-sm">
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-wider text-slate-400">General &amp; Support</div>
+            <a href={`mailto:${SITE.contactEmail}`} class="font-mono text-indigo-600 dark:text-indigo-400 hover:underline">
+              {SITE.contactEmail}
+            </a>
+          </div>
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-wider text-slate-400">Typical Response</div>
+            <p class="text-slate-600 dark:text-slate-300">Within 1–2 business days (US Eastern hours)</p>
+          </div>
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-wider text-slate-400">Security Note</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+              Please never email live production secrets, JWTs, or private tax documents. Use synthetic sample payloads when reporting parsing issues.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-7 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-4">
+        <h2 class="text-base font-bold text-slate-900 dark:text-white">Compose Inquiry</h2>
+        <form id="taprico-contact-form" class="space-y-3 text-xs">
+          <div>
+            <label for="contact-topic" class="block font-semibold text-slate-600 dark:text-slate-300 mb-1">Topic</label>
+            <select
+              id="contact-topic"
+              class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#090e1b] px-3 py-2.5 text-slate-900 dark:text-white"
+            >
+              <option value="Tool Feature Request">Tool Feature Request</option>
+              <option value="Bug Report">Bug Report</option>
+              <option value="Partnership / Advertising">Partnership / Advertising</option>
+              <option value="Privacy / Legal">Privacy / Legal Inquiry</option>
+            </select>
+          </div>
+          <div>
+            <label for="contact-msg" class="block font-semibold text-slate-600 dark:text-slate-300 mb-1">Message</label>
+            <textarea
+              id="contact-msg"
+              rows={5}
+              required
+              placeholder="Tell us which tool you were using and how we can help..."
+              class="w-full rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#090e1b] p-3 text-slate-900 dark:text-white"
+            ></textarea>
+          </div>
+          <button
+            type="submit"
+            class="inline-flex items-center rounded-xl bg-indigo-600 px-5 py-2.5 text-xs font-bold text-white hover:bg-indigo-500 transition-colors cursor-pointer"
+          >
+            Open Email Draft →
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ email: SITE.contactEmail }}>
+    (function () {
+      var form = document.getElementById('taprico-contact-form');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var topic = document.getElementById('contact-topic').value;
+        var msg = document.getElementById('contact-msg').value;
+        window.location.href =
+          'mailto:' +
+          email +
+          '?subject=' +
+          encodeURIComponent('[Taprico] ' + topic) +
+          '&body=' +
+          encodeURIComponent(msg);
+      });
+    })();
+  </script>
+</BaseLayout>

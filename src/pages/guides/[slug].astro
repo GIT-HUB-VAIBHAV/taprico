@@ -1,0 +1,141 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import AdSlot from '../../components/layout/AdSlot.astro';
+import { GUIDES, type GuideArticle } from '../../data/guides';
+import { getToolBySlug, type ToolDefinition } from '../../config/tools';
+import { SITE } from '../../config/site';
+
+export function getStaticPaths() {
+  return GUIDES.map((guide) => ({
+    params: { slug: guide.slug },
+    props: { guide },
+  }));
+}
+
+interface Props {
+  guide: GuideArticle;
+}
+
+const { guide } = Astro.props;
+const canonicalPath = `/guides/${guide.slug}/`;
+const fullUrl = new URL(canonicalPath, SITE.url).toString();
+
+const linkedTools = guide.relatedTools
+  .map((s) => getToolBySlug(s))
+  .filter((t): t is ToolDefinition => Boolean(t));
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guide.title,
+  description: guide.seoDescription,
+  url: fullUrl,
+  inLanguage: 'en-US',
+  author: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: SITE.url,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.name,
+    url: SITE.url,
+  },
+};
+---
+
+<BaseLayout
+  title={guide.seoTitle}
+  description={guide.seoDescription}
+  canonicalPath={canonicalPath}
+  ogType="article"
+  schemas={[articleSchema]}
+>
+  <article class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+      <div class="lg:col-span-8 space-y-8">
+        <header class="space-y-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+          <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+            <a href="/" class="hover:text-indigo-500">Home</a>
+            <span>/</span>
+            <a href="/guides/" class="hover:text-indigo-500">Playbooks</a>
+            <span>/</span>
+            <span class="truncate text-slate-700 dark:text-slate-200">{guide.category}</span>
+          </nav>
+
+          <div class="flex flex-wrap items-center gap-3 text-xs">
+            <span class="rounded-md bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-0.5 font-mono font-semibold text-indigo-600 dark:text-indigo-300">
+              {guide.category}
+            </span>
+            <span class="text-slate-500 dark:text-slate-400">{guide.readingTime}</span>
+            <span class="text-slate-400">· Updated {guide.updatedAt}</span>
+          </div>
+
+          <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+            {guide.title}
+          </h1>
+          <p class="text-base text-slate-600 dark:text-slate-300 leading-relaxed">{guide.excerpt}</p>
+        </header>
+
+        <div class="space-y-8">
+          {guide.sections.map((sec) => (
+            <section class="space-y-4">
+              <h2 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">{sec.heading}</h2>
+              {sec.body.map((p) => (
+                <p class="text-sm sm:text-base leading-relaxed text-slate-700 dark:text-slate-300">{p}</p>
+              ))}
+              {sec.bullets && (
+                <ul class="space-y-2.5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-5">
+                  {sec.bullets.map((b) => (
+                    <li class="flex items-start gap-2.5 text-sm leading-relaxed text-slate-700 dark:text-slate-300">
+                      <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500"></span>
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {sec.callout && (
+                <div class="rounded-2xl border border-indigo-500/30 bg-indigo-500/10 p-5 sm:p-6 space-y-2">
+                  <h3 class="text-base font-bold text-slate-900 dark:text-white">{sec.callout.title}</h3>
+                  <p class="text-sm text-slate-600 dark:text-slate-300">{sec.callout.text}</p>
+                  <div class="pt-1">
+                    <a
+                      href={sec.callout.ctaHref}
+                      class="inline-flex items-center rounded-xl bg-indigo-600 px-4 py-2 text-xs font-bold text-white hover:bg-indigo-500 transition-colors"
+                    >
+                      {sec.callout.ctaLabel}
+                    </a>
+                  </div>
+                </div>
+              )}
+            </section>
+          ))}
+        </div>
+      </div>
+
+      <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-24">
+        <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-4">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
+            Recommended Tools
+          </h3>
+          <div class="space-y-2.5">
+            {linkedTools.map((tool) => (
+              <a
+                href={`/tools/${tool.slug}/`}
+                class="block rounded-xl border border-slate-200/80 dark:border-slate-800 bg-slate-50/70 dark:bg-[#090e1b] p-3.5 hover:border-indigo-500/60 transition-colors"
+              >
+                <div class="flex items-center justify-between">
+                  <span class="text-sm font-bold text-slate-900 dark:text-white">{tool.shortName}</span>
+                  <span class="font-mono text-[10px] text-indigo-500">{tool.badge}</span>
+                </div>
+                <p class="mt-1 text-xs text-slate-500 dark:text-slate-400 line-clamp-2">{tool.tagline}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <AdSlot slotKey="guideSidebar" className="!px-0 !my-0" />
+      </aside>
+    </div>
+  </article>
+</BaseLayout>
