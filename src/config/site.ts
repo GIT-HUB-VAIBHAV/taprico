@@ -12,6 +12,7 @@ export const SITE = {
   social: {
     github: 'https://github.com/GIT-HUB-VAIBHAV/taprico',
     twitter: '@tapricotools',
+    linkedin: 'https://www.linkedin.com/company/taprico/',
   },
 } as const;
 
