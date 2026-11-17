@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { MARGIN_PAGES } from '../../data/marginPages';
+---
+
+<BaseLayout
+  title="Profit Margin vs Markup Reference Table (20% to 75% Margin) | Taprico"
+  description="Convert target gross profit margins (20% to 75%) into exact cost markup percentages, calculate break-even ROAS, and model US Stripe 2.9% payment fee drag."
+  canonicalPath="/margin/"
+>
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8 space-y-8">
+    <div class="space-y-3 max-w-3xl">
+      <span class="font-mono text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
+        US Pricing &amp; Unit Economics
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
+        Profit Margin vs. Markup Conversion Calculators
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+        Click any target gross margin percentage below to open a pre-solved pricing calculator with exact markup multipliers, break-even ROAS, and Stripe card-fee net impact.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {MARGIN_PAGES.map((m) => (
+        <a
+          href={`/margin/${m.slug}/`}
+          class="group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-5 hover:border-emerald-500/60 transition-all space-y-2"
+        >
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-2xl font-black text-emerald-600 dark:text-emerald-400">{m.marginPct}%</span>
+            <span class="rounded-md bg-slate-100 dark:bg-slate-800 px-2 py-0.5 font-mono text-xs font-semibold text-slate-700 dark:text-slate-200">
+              {m.markupPct}% markup
+            </span>
+          </div>
+          <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">{m.industryFit}</p>
+          <div class="text-xs font-semibold text-indigo-600 dark:text-indigo-400 pt-1 group-hover:underline">
+            Solve {m.marginPct}% Margin →
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
