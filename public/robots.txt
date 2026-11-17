@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://taprico.com/sitemap-index.xml
+Sitemap: https://taprico.com/image-sitemap.xml
