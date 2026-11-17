@@ -48,7 +48,7 @@ export const TOOLS: ToolDefinition[] = [
       'Format, validate, minify, inspect JSON trees, and convert cleanly between JSON and YAML inside your browser.',
     seoTitle: 'JSON & YAML Formatter, Validator & Converter | Taprico',
     seoDescription:
-      'Free client-side JSON and YAML formatter, validator, minifier, and tree viewer. Convert JSON to YAML or YAML to JSON locally with exact line-level error reporting.',
+      'Free client-side JSON and YAML formatter, validator, minifier, and tree viewer. Convert JSON and YAML locally with line-level error reporting.',
     keywords: [
       'json formatter',
       'yaml formatter',
@@ -138,7 +138,7 @@ export const TOOLS: ToolDefinition[] = [
     iconName: 'ShieldCheck',
     tagline:
       'Decode JSON Web Tokens, audit RFC 7519 claims, track live expiration timers, and verify HMAC signatures via Web Crypto.',
-    seoTitle: 'JWT Decoder & Signature Verifier (100% Client-Side) | Taprico',
+    seoTitle: 'JWT Decoder & Signature Verifier (Client-Side) | Taprico',
     seoDescription:
       'Decode JWT headers and payloads, inspect exp/iat/nbf timestamps, spot security issues like alg:none, and verify HS256/HS384/HS512 signatures locally.',
     keywords: [
@@ -469,7 +469,7 @@ export const TOOLS: ToolDefinition[] = [
       'Generate cryptographically random UUID v4, database-friendly sortable UUID v7 (RFC 9562), and ULIDs in bulk—or inspect embedded timestamps.',
     seoTitle: 'UUID Generator (v4 & v7), ULID & Batch Exporter | Taprico',
     seoDescription:
-      'Generate bulk UUID v4, time-ordered RFC 9562 UUID v7, and ULID identifiers with format options (uppercase, no-hyphens, JSON, SQL) plus a built-in UUID timestamp decoder.',
+      'Generate bulk UUID v4, sortable RFC 9562 UUID v7, and ULID IDs with JSON or SQL export options plus a built-in UUID timestamp decoder.',
     keywords: [
       'uuid generator',
       'uuid v7 generator',
@@ -541,9 +541,9 @@ export const TOOLS: ToolDefinition[] = [
     iconName: 'Database',
     tagline:
       'Format complex CTEs, joins, and window queries across PostgreSQL, MySQL, BigQuery, Snowflake, SQLite, and T-SQL.',
-    seoTitle: 'SQL Formatter & Beautifier (Postgres, MySQL, BigQuery) | Taprico',
+    seoTitle: 'SQL Formatter & Beautifier (Postgres, MySQL) | Taprico',
     seoDescription:
-      'Free client-side SQL formatter and minifier supporting PostgreSQL, MySQL, SQLite, BigQuery, Snowflake, and SQL Server with customizable indentation and keyword casing.',
+      'Free client-side SQL formatter and minifier for PostgreSQL, MySQL, SQLite, BigQuery, Snowflake, and SQL Server with custom casing and indent rules.',
     keywords: [
       'sql formatter',
       'postgresql formatter',
@@ -619,7 +619,7 @@ export const TOOLS: ToolDefinition[] = [
     iconName: 'GitCompare',
     tagline:
       'Compare two versions of code, JSON, .env files, or prose side by side with inline word-level change highlights and similarity metrics.',
-    seoTitle: 'Online Diff Checker — Side-by-Side Code & Text Compare | Taprico',
+    seoTitle: 'Online Diff Checker — Code & Text Compare | Taprico',
     seoDescription:
       'Compare code, configs, and text side by side or as a unified patch using Myers diff algorithm. Highlights added, removed, and inline word edits locally.',
     keywords: [
@@ -699,7 +699,7 @@ export const TOOLS: ToolDefinition[] = [
       'Create crisp, print-ready US Letter or A4 client invoices with logo upload, sales tax, Net 30 payment terms, ACH details, and instant vector PDF download.',
     seoTitle: 'Free US Invoice Generator — Instant Vector PDF | Taprico',
     seoDescription:
-      'Create professional US freelance and small business invoices in seconds. Supports USD ($), US Letter paper, Net 30 terms, sales tax, ACH instructions, and instant PDF export.',
+      'Create US freelance and small business invoices in seconds. Supports USD ($), US Letter paper, Net 30 terms, sales tax, ACH details, and vector PDF export.',
     keywords: [
       'free invoice generator',
       'us freelance invoice pdf',
@@ -782,9 +782,9 @@ export const TOOLS: ToolDefinition[] = [
     iconName: 'DollarSign',
     tagline:
       'Convert hourly wages to annual, bi-weekly, semi-monthly, and monthly US salaries—plus see the true 1099 contractor rate equivalent.',
-    seoTitle: 'Hourly to Salary Converter (US Pay Periods + 1099 Guide) | Taprico',
+    seoTitle: 'Hourly to Salary Converter (US Pay & 1099 Guide) | Taprico',
     seoDescription:
-      'Convert US hourly wages to annual, monthly, semi-monthly, and bi-weekly pay. Adjust PTO and holidays and compare W-2 salary vs. equivalent 1099 contractor hourly rate.',
+      'Convert US hourly wages to annual, monthly, semi-monthly, and bi-weekly pay. Adjust PTO and holidays and compare W-2 vs. 1099 contractor rates.',
     keywords: [
       'hourly to salary calculator',
       'salary to hourly converter',
@@ -861,9 +861,9 @@ export const TOOLS: ToolDefinition[] = [
     iconName: 'Calculator',
     tagline:
       'Calculate your profitable US freelance hourly, day, weekly, and retainer rates after accounting for non-billable hours, overhead, health insurance, and 15.3% SE tax.',
-    seoTitle: 'US Freelance Hourly Rate Calculator (With Taxes & Overhead) | Taprico',
+    seoTitle: 'US Freelance Hourly Rate Calculator & Tax Guide | Taprico',
     seoDescription:
-      'Price your US freelance services profitably. Factors in desired take-home income, billable utilization %, PTO, business expenses, health insurance, and 15.3% self-employment tax.',
+      'Price US freelance services profitably. Models desired take-home pay, billable utilization %, PTO, business overhead, health insurance, and 15.3% SE tax.',
     keywords: [
       'freelance rate calculator',
       'how much should i charge as a freelancer',
@@ -940,9 +940,9 @@ export const TOOLS: ToolDefinition[] = [
     iconName: 'TrendingUp',
     tagline:
       'Solve Gross Profit Margin %, Markup %, Selling Price, and Break-Even ROAS interactively—with a live pricing ladder for agencies and eCommerce sellers.',
-    seoTitle: 'Profit Margin & Markup Calculator (With Break-Even ROAS) | Taprico',
+    seoTitle: 'Profit Margin & Markup Calculator (+ ROAS) | Taprico',
     seoDescription:
-      'Calculate gross margin %, markup %, gross profit $, selling price, and break-even ROAS for SaaS, agencies, and US eCommerce brands. Includes interactive margin-to-markup ladder.',
+      'Calculate gross margin %, markup %, gross profit $, selling price, and break-even ROAS for SaaS, agencies, and US eCommerce with a live pricing ladder.',
     keywords: [
       'profit margin calculator',
       'markup vs margin calculator',
