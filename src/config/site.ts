@@ -4,7 +4,7 @@ export const SITE = {
   url: 'https://taprico.com',
   tagline: 'Fast, Local-First Workbench for Developers & Freelancers',
   description:
-    'Free browser-based developer tools and US freelance finance calculators. Format JSON/YAML, decode JWTs, build cron schedules, test regex, generate PDF invoices, and price freelance rates with zero server uploads.',
+    'Free browser-based developer tools & US freelance calculators: JSON/YAML, JWT verify, Cron tester, PDF invoices & 1099 rates—zero server uploads.',
   contactEmail: 'hello@taprico.com',
   locale: 'en-US',
   copyrightYear: 2026,
