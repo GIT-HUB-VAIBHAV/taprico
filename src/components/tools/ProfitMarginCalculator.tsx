@@ -6,11 +6,21 @@ type SolveMode = 'cost-price' | 'cost-margin' | 'cost-markup';
 
 const LADDER_MARGINS = [20, 25, 30, 40, 50, 60, 70, 75];
 
-export default function ProfitMarginCalculator() {
-  const [mode, setMode] = useState<SolveMode>('cost-price');
-  const [cost, setCost] = useState(42);
+interface ProfitMarginProps {
+  initialMode?: SolveMode;
+  initialCost?: number;
+  initialMargin?: number;
+}
+
+export default function ProfitMarginCalculator({
+  initialMode = 'cost-price',
+  initialCost = 42,
+  initialMargin = 65,
+}: ProfitMarginProps) {
+  const [mode, setMode] = useState<SolveMode>(initialMode);
+  const [cost, setCost] = useState(initialCost);
   const [sellingPrice, setSellingPrice] = useState(120);
-  const [targetMargin, setTargetMargin] = useState(65);
+  const [targetMargin, setTargetMargin] = useState(initialMargin);
   const [targetMarkup, setTargetMarkup] = useState(185.7);
 
   const solved = useMemo(() => {
