@@ -4,7 +4,7 @@ import { MARGIN_PAGES } from '../../data/marginPages';
 ---
 
 <BaseLayout
-  title="Profit Margin vs Markup Reference Table (20% to 75% Margin) | Taprico"
+  title="Profit Margin vs Markup Table (20% to 75% Margin) | Taprico"
   description="Convert target gross profit margins (20% to 75%) into exact cost markup percentages, calculate break-even ROAS, and model US Stripe 2.9% payment fee drag."
   canonicalPath="/margin/"
 >
@@ -21,6 +21,7 @@ import { MARGIN_PAGES } from '../../data/marginPages';
       </p>
     </div>
 
+    <h2 class="sr-only">Target Margin Tiers (20% to 75%)</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {MARGIN_PAGES.map((m) => (
         <a
