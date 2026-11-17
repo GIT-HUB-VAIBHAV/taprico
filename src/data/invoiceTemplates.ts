@@ -16,7 +16,7 @@ export const INVOICE_TEMPLATES: InvoiceTemplateItem[] = [
     slug: 'web-developer',
     role: 'Freelance Web Developer',
     title: 'Free Freelance Web Developer Invoice Template (US Letter PDF)',
-    seoTitle: 'Freelance Web Developer Invoice Template (Free PDF) | Taprico',
+    seoTitle: 'Freelance Web Developer Invoice Template (PDF) | Taprico',
     seoDescription:
       'Create and download a watermark-free US Letter PDF invoice for freelance web developers—pre-filled with sprint, API integration, and Net 15/30 billing fields.',
     typicalTerms: 'Net 15 or 50% Upfront / 50% Launch',
