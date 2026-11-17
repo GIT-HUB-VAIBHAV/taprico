@@ -69,12 +69,12 @@ export default function HourlySalaryConverter({ initialHourly = 65 }: Props) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Left Controls */}
         <div className="lg:col-span-5 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-5 sm:p-6 shadow-xl space-y-5">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <h2 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <DollarSign className="h-4 w-4 text-emerald-500" />
               US Compensation Inputs
             </h2>
-            <div className="flex gap-1">
+            <div className="flex flex-wrap gap-1">
               {[35, 50, 75, 100].map((preset) => (
                 <button
                   key={preset}
