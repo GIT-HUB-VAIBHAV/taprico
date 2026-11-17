@@ -60,6 +60,7 @@ const organizationSchema = {
   logo: `${SITE.url}/images/taprico-brand-logo.png`,
   email: SITE.contactEmail,
   sameAs: [
+    'https://x.com/tapricotools',
     'https://github.com/GIT-HUB-VAIBHAV/taprico',
     'https://dev.to/vaibhav_taprico',
     'https://taprico.hashnode.dev',
@@ -97,6 +98,7 @@ const allSchemas = [websiteSchema, organizationSchema, ...schemas];
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content={SITE.social.twitter} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageUrl} />
