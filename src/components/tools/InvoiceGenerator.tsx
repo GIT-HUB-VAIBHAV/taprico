@@ -73,54 +73,75 @@ function hexToRgb(hex: string): [number, number, number] {
   return [(num >> 16) & 255, (num >> 8) & 255, num & 255];
 }
 
-function createInitialState(today = '2026-11-17'): InvoiceState {
+export interface InvoiceTemplatePreset {
+  fromName?: string;
+  toName?: string;
+  poNumber?: string;
+  accentColor?: string;
+  terms?: 'receipt' | 'net15' | 'net30' | 'net45';
+  notes?: string;
+  items?: { description: string; quantity: number; rate: number }[];
+}
+
+interface InvoiceGeneratorProps {
+  initialPreset?: InvoiceTemplatePreset;
+}
+
+function createInitialState(today = '2026-11-17', preset?: InvoiceTemplatePreset): InvoiceState {
+  const terms = preset?.terms ?? 'net30';
+  const days = terms === 'receipt' ? 0 : terms === 'net15' ? 15 : terms === 'net45' ? 45 : 30;
   return {
     docTitle: 'INVOICE',
     invoiceNumber: 'INV-2026-014',
     currency: 'USD',
     paperSize: 'letter',
-    accentColor: '#4f46e5',
+    accentColor: preset?.accentColor ?? '#4f46e5',
     issueDate: today,
-    terms: 'net30',
-    dueDate: addDaysIso(today, 30),
-    fromName: 'Northstar Studio LLC',
+    terms,
+    dueDate: addDaysIso(today, days),
+    fromName: preset?.fromName ?? 'Northstar Studio LLC',
     fromEmail: 'billing@northstarstudio.co',
     fromAddress: '548 Market St, Suite 41200\nSan Francisco, CA 94104',
     fromTaxId: 'EIN 88-4120934 · Form W-9 on file',
-    toName: 'Acme SaaS Inc.',
+    toName: preset?.toName ?? 'Acme SaaS Inc.',
     toEmail: 'ap@acmesaas.com',
     toAddress: '2200 Clarendon Blvd\nArlington, VA 22201',
-    poNumber: 'PO-4402',
-    items: [
-      { id: '1', description: 'Senior Full-Stack Engineering Sprint (Next.js & Postgres API)', quantity: 35, rate: 145 },
-      { id: '2', description: 'Stripe Webhook & Billing Ledger Integration', quantity: 10, rate: 145 },
-      { id: '3', description: 'Cloudflare Edge Caching & Performance Audit', quantity: 1, rate: 850 },
-    ],
+    poNumber: preset?.poNumber ?? 'PO-4402',
+    items: preset?.items
+      ? preset.items.map((item, idx) => ({ id: String(idx + 1), ...item }))
+      : [
+          { id: '1', description: 'Senior Full-Stack Engineering Sprint (Next.js & Postgres API)', quantity: 35, rate: 145 },
+          { id: '2', description: 'Stripe Webhook & Billing Ledger Integration', quantity: 10, rate: 145 },
+          { id: '3', description: 'Cloudflare Edge Caching & Performance Audit', quantity: 1, rate: 850 },
+        ],
     discountType: 'percent',
     discountValue: 0,
     taxRate: 0,
     amountPaid: 0,
-    notes: 'Thank you for your partnership! Please reference the invoice number on ACH or wire transfers.',
+    notes:
+      preset?.notes ??
+      'Thank you for your partnership! Please reference the invoice number on ACH or wire transfers.',
     paymentInstructions:
       'ACH / Direct Deposit (US):\nBank: Mercury / Choice Financial\nRouting #: 091311229 · Account #: 4029184420\nZelle / Wire: billing@northstarstudio.co',
     logoDataUrl: null,
   };
 }
 
-export default function InvoiceGenerator() {
-  const [inv, setInv] = useState<InvoiceState>(() => createInitialState('2026-11-17'));
+export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProps) {
+  const [inv, setInv] = useState<InvoiceState>(() => createInitialState('2026-11-17', initialPreset));
   const [savedNotice, setSavedNotice] = useState(false);
 
   // Load saved business defaults + today's local date on client mount
   useEffect(() => {
     const today = getTodayIso();
+    const termDays = (t: InvoiceState['terms']) => (t === 'receipt' ? 0 : t === 'net15' ? 15 : t === 'net45' ? 45 : 30);
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) {
         setInv((prev) => ({
           ...prev,
           issueDate: today,
-          dueDate: addDaysIso(today, 30),
+          dueDate: addDaysIso(today, termDays(prev.terms)),
         }));
         return;
       }
@@ -128,7 +149,7 @@ export default function InvoiceGenerator() {
       setInv((prev) => ({
         ...prev,
         issueDate: today,
-        dueDate: addDaysIso(today, 30),
+        dueDate: addDaysIso(today, termDays(prev.terms)),
         fromName: saved.fromName ?? prev.fromName,
         fromEmail: saved.fromEmail ?? prev.fromEmail,
         fromAddress: saved.fromAddress ?? prev.fromAddress,
