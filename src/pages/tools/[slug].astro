@@ -33,6 +33,12 @@ interface Props {
 const { tool } = Astro.props;
 const canonicalPath = `/tools/${tool.slug}/`;
 const fullUrl = new URL(canonicalPath, SITE.url).toString();
+const toolOgMap: Record<string, string> = {
+  'invoice-generator': '/images/taprico-invoice-generator-pdf.png',
+  'cron-expression-generator': '/images/taprico-cron-expression-tester.png',
+  'jwt-decoder': '/images/taprico-jwt-decoder-verifier.png',
+};
+const ogImage = toolOgMap[tool.slug] ?? '/images/taprico-developer-workbench.png';
 
 const softwareSchema = {
   '@context': 'https://schema.org',
@@ -77,6 +83,7 @@ const faqSchema = {
   title={tool.seoTitle}
   description={tool.seoDescription}
   canonicalPath={canonicalPath}
+  ogImage={ogImage}
   keywords={tool.keywords}
   schemas={[softwareSchema, breadcrumbSchema, faqSchema]}
 >
