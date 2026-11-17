@@ -239,10 +239,10 @@ export default function CronGenerator({ initialExpr = '*/15 9-17 * * 1-5' }: Pro
       <div className="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-slate-200 dark:divide-slate-800">
         <div className="lg:col-span-7 p-5">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-200">
+            <h2 className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-200">
               <Calendar className="h-4 w-4 text-cyan-500" />
               Next 10 Scheduled Executions
-            </h3>
+            </h2>
             <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400">{timezone}</span>
           </div>
           {analysis.ok ? (
@@ -265,9 +265,9 @@ export default function CronGenerator({ initialExpr = '*/15 9-17 * * 1-5' }: Pro
         </div>
 
         <div className="lg:col-span-5 p-5 bg-slate-50/40 dark:bg-[#090e1b]/50 space-y-3">
-          <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-200">
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-200">
             Cron Operator Reference
-          </h3>
+          </h2>
           <div className="space-y-2 text-xs">
             {[
               { op: '*', desc: 'Any / every value in this field' },
