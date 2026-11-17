@@ -75,12 +75,13 @@ export default function HeroWorkbench() {
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <div className="mb-1 font-mono text-[10px] uppercase tracking-wider text-slate-400">Live JSON Input</div>
+                <div className="mb-1 font-mono text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400">Live JSON Input</div>
                 <textarea
                   value={jsonInput}
                   onChange={(e) => setJsonInput(e.target.value)}
                   rows={6}
                   spellCheck={false}
+                  aria-label="Live JSON input"
                   className="w-full rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-[#080d1a] p-2.5 font-mono text-xs text-slate-800 dark:text-slate-200 focus:border-indigo-500 focus:outline-none"
                 />
               </div>
