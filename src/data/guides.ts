@@ -30,9 +30,9 @@ export const GUIDES: GuideArticle[] = [
     category: 'Freelance & Finance',
     readingTime: '6 min read',
     updatedAt: 'November 2026',
-    seoTitle: 'US Freelance Rate Guide 2026: Pricing, Taxes & Utilization | Taprico',
+    seoTitle: 'US Freelance Rate Guide 2026: Pricing & Taxes | Taprico',
     seoDescription:
-      'Step-by-step formula for US freelancers and 1099 contractors to calculate profitable hourly, day, and retainer rates after self-employment taxes, PTO, and overhead.',
+      'Step-by-step formula for US 1099 contractors to calculate profitable hourly, day, and retainer rates after self-employment taxes, PTO, and overhead.',
     excerpt:
       'Stop dividing your desired salary by 2,080 hours. Learn the exact utilization, overhead, and US FICA math used by six-figure consultants.',
     relatedTools: ['freelance-rate-calculator', 'hourly-to-salary-converter', 'invoice-generator'],
@@ -82,7 +82,7 @@ export const GUIDES: GuideArticle[] = [
     category: 'Engineering & DevOps',
     readingTime: '5 min read',
     updatedAt: 'November 2026',
-    seoTitle: 'JSON vs YAML: When to Use Each in APIs & Kubernetes | Taprico',
+    seoTitle: 'JSON vs YAML: When to Use Each in APIs & K8s | Taprico',
     seoDescription:
       'Practical architectural comparison of JSON vs. YAML covering parsing performance, YAML implicit type pitfalls, Kubernetes specs, and API contracts.',
     excerpt:
@@ -121,7 +121,7 @@ export const GUIDES: GuideArticle[] = [
     category: 'Engineering & DevOps',
     readingTime: '5 min read',
     updatedAt: 'November 2026',
-    seoTitle: 'JWT Authentication Security Checklist for Backend Devs | Taprico',
+    seoTitle: 'JWT Authentication Security Checklist for Devs | Taprico',
     seoDescription:
       'Production checklist for verifying JSON Web Tokens safely in Node.js, Go, and Python—preventing algorithm confusion, stale tokens, and PII exposure.',
     excerpt:
@@ -161,7 +161,7 @@ export const GUIDES: GuideArticle[] = [
     category: 'Freelance & Finance',
     readingTime: '4 min read',
     updatedAt: 'November 2026',
-    seoTitle: 'US Freelance Invoice Checklist: Net 30, W-9 & ACH Guide | Taprico',
+    seoTitle: 'US Freelance Invoice Checklist: Net 30 & W-9 | Taprico',
     seoDescription:
       'Everything US clients and accounts payable teams need on an invoice—sequential numbering, W-9 tips, Net 15 vs Net 30 terms, ACH details, and PDF best practices.',
     excerpt:
@@ -198,7 +198,7 @@ export const GUIDES: GuideArticle[] = [
     category: 'Freelance & Finance',
     readingTime: '6 min read',
     updatedAt: 'November 2026',
-    seoTitle: '1099 Quarterly Estimated Taxes 2026: Safe Harbor & Rates | Taprico',
+    seoTitle: '1099 Quarterly Estimated Taxes 2026 Guide | Taprico',
     seoDescription:
       'Avoid IRS underpayment penalties as a US 1099 freelancer or LLC. Learn Form 1040-ES quarterly due dates, 15.3% FICA math, and the 100%/110% safe harbor rule.',
     excerpt:
@@ -239,7 +239,7 @@ export const GUIDES: GuideArticle[] = [
     updatedAt: 'November 2026',
     seoTitle: 'Gross Margin vs Markup Formula & US Benchmarks | Taprico',
     seoDescription:
-      'Confusing a 30% markup with a 30% gross margin costs US agencies and Shopify brands thousands per year. Master the exact conversion formulas and Stripe fee math.',
+      'Confusing a 30% markup with a 30% gross margin costs US agencies thousands per year. Master exact conversion formulas and Stripe fee math.',
     excerpt:
       'A 50% markup only yields a 33.3% gross margin. Learn how to quote retainers and SKUs without accidentally eroding profit.',
     relatedTools: ['profit-margin-markup-calculator', 'freelance-rate-calculator', 'invoice-generator'],
@@ -274,7 +274,7 @@ export const GUIDES: GuideArticle[] = [
     category: 'Engineering & DevOps',
     readingTime: '5 min read',
     updatedAt: 'November 2026',
-    seoTitle: 'UUID v7 vs UUID v4 in PostgreSQL: Performance & B-Tree Guide | Taprico',
+    seoTitle: 'UUID v7 vs UUID v4 in PostgreSQL: B-Tree Guide | Taprico',
     seoDescription:
       'Understand why random UUID v4 primary keys fragment PostgreSQL B-Tree indexes at scale and how time-ordered RFC 9562 UUID v7 fixes write amplification.',
     excerpt:
