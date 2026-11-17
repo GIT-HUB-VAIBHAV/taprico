@@ -89,7 +89,7 @@ export const SALARY_TIERS: SalaryTier[] = RAW_TIERS.map((t) => {
     rate: t.rate,
     slug: `${t.rate}-an-hour`,
     title: `$${t.rate} an Hour Is How Much a Year? ($${annual}/yr Breakdown)`,
-    seoTitle: `$${t.rate} an Hour Is How Much a Year? (2026 US Breakdown) | Taprico`,
+    seoTitle: `$${t.rate}/hr Is How Much a Year? (2026 US Salary) | Taprico`,
     seoDescription: `Making $${t.rate} an hour equals $${annual} per year (2,080 hours). See monthly, bi-weekly, semi-monthly, unpaid PTO adjustments, and 1099 contractor rate parity.`,
     tierContext: t.tierContext,
     typicalRoles: t.typicalRoles,
