@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { AlertTriangle, Check, Copy, Replace, SearchCheck, Sparkles } from 'lucide-react';
 
 interface Preset {
@@ -73,6 +73,11 @@ export default function RegexTester() {
   const [replacePattern, setReplacePattern] = useState(PRESETS[0].replacement);
   const [tab, setTab] = useState<'matches' | 'replace'>('matches');
   const [copied, setCopied] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleFlag = (flag: string) => {
     setFlags((prev) => (prev.includes(flag) ? prev.replace(flag, '') : prev + flag));
@@ -277,7 +282,7 @@ export default function RegexTester() {
             <div className="flex items-center justify-between mb-1.5 text-xs">
               <span className="font-semibold text-slate-700 dark:text-slate-200">Test String</span>
               <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400">
-                {result.ok ? `${result.matches.length} matches · ${result.elapsedMs.toFixed(2)} ms` : 'Pattern error'}
+                {result.ok ? `${result.matches.length} matches${mounted ? ` · ${result.elapsedMs.toFixed(2)} ms` : ''}` : 'Pattern error'}
               </span>
             </div>
             <textarea
@@ -285,6 +290,7 @@ export default function RegexTester() {
               onChange={(e) => setTestText(e.target.value)}
               rows={6}
               spellCheck={false}
+              aria-label="Test string"
               className="w-full rounded-xl border border-slate-200 dark:border-slate-700/80 bg-slate-50 dark:bg-[#090e1b] p-3 font-mono text-xs leading-relaxed text-slate-800 dark:text-slate-100 focus:border-indigo-500 focus:outline-none"
             />
           </div>
