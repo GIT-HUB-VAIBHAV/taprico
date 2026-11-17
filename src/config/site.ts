@@ -10,7 +10,7 @@ export const SITE = {
   copyrightYear: 2026,
   defaultTheme: 'dark' as 'dark' | 'light',
   social: {
-    github: 'https://github.com/taprico',
+    github: 'https://github.com/GIT-HUB-VAIBHAV/taprico',
     twitter: '@tapricotools',
   },
 } as const;
