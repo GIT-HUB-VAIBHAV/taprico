@@ -17,7 +17,7 @@ export const CRON_PAGES: CronPageItem[] = [
     awsExpr: 'cron(* * * * ? *)',
     title: 'Cron Expression for Every Minute (* * * * *)',
     humanLabel: 'Every 1 minute (60 times/hour)',
-    seoTitle: 'Cron Every Minute (* * * * *) — Crontab, GitHub & K8s | Taprico',
+    seoTitle: 'Cron Every Minute (* * * * *) — Crontab Guide | Taprico',
     seoDescription:
       'Use * * * * * to run a cron job every minute. Copy POSIX crontab, Kubernetes CronJob, and AWS EventBridge syntax plus overlap prevention tips.',
     useCases: [
@@ -34,7 +34,7 @@ export const CRON_PAGES: CronPageItem[] = [
     awsExpr: 'cron(0/5 * * * ? *)',
     title: 'Cron Expression for Every 5 Minutes (*/5 * * * *)',
     humanLabel: 'Every 5 minutes (at :00, :05, :10...)',
-    seoTitle: 'Cron Every 5 Minutes (*/5 * * * *) — Examples & Tester | Taprico',
+    seoTitle: 'Cron Every 5 Minutes (*/5 * * * *) — Examples | Taprico',
     seoDescription:
       'Copy */5 * * * * to schedule tasks every 5 minutes across Linux crontab, GitHub Actions, Kubernetes, and AWS EventBridge with next-run timezone previews.',
     useCases: [
@@ -51,7 +51,7 @@ export const CRON_PAGES: CronPageItem[] = [
     awsExpr: 'cron(0/15 * * * ? *)',
     title: 'Cron Expression for Every 15 Minutes (*/15 * * * *)',
     humanLabel: 'Every 15 minutes (:00, :15, :30, :45)',
-    seoTitle: 'Cron Every 15 Minutes (*/15 * * * *) — Crontab & K8s | Taprico',
+    seoTitle: 'Cron Every 15 Minutes (*/15 * * * *) Guide | Taprico',
     seoDescription:
       'Schedule cron jobs every 15 minutes with */15 * * * *. Includes next execution times in US timezones, AWS EventBridge syntax, and Kubernetes YAML.',
     useCases: [
@@ -85,7 +85,7 @@ export const CRON_PAGES: CronPageItem[] = [
     awsExpr: 'cron(0 * * * ? *)',
     title: 'Cron Expression for Every Hour (0 * * * *)',
     humanLabel: 'Once every hour at minute 0',
-    seoTitle: 'Cron Every Hour (0 * * * *) — Hourly Schedule Guide | Taprico',
+    seoTitle: 'Cron Every Hour (0 * * * *) — Hourly Guide | Taprico',
     seoDescription:
       'Use 0 * * * * (or @hourly) to execute scripts once every hour. Includes jitter tips, GitHub Actions YAML, Kubernetes CronJob, and AWS syntax.',
     useCases: [
@@ -119,7 +119,7 @@ export const CRON_PAGES: CronPageItem[] = [
     awsExpr: 'cron(0 0 * * ? *)',
     title: 'Cron Expression for Every Day at Midnight (0 0 * * *)',
     humanLabel: 'Daily at 12:00 AM (00:00)',
-    seoTitle: 'Cron Daily at Midnight (0 0 * * *) — Crontab & UTC Guide | Taprico',
+    seoTitle: 'Cron Daily at Midnight (0 0 * * *) — UTC Guide | Taprico',
     seoDescription:
       'Schedule a daily midnight job with 0 0 * * * (or @daily). Preview UTC vs US Eastern midnight shifts and copy GitHub Actions or K8s YAML.',
     useCases: [
@@ -136,7 +136,7 @@ export const CRON_PAGES: CronPageItem[] = [
     awsExpr: 'cron(0 9 * * ? *)',
     title: 'Cron Expression for Every Day at 9:00 AM (0 9 * * *)',
     humanLabel: 'Daily at 9:00 AM (09:00)',
-    seoTitle: 'Cron Daily at 9 AM (0 9 * * *) — US Business Schedule | Taprico',
+    seoTitle: 'Cron Daily at 9 AM (0 9 * * *) — Schedule Guide | Taprico',
     seoDescription:
       'Run daily reports and notifications at 9:00 AM using 0 9 * * *. Convert 9 AM US Eastern to UTC for GitHub Actions and Kubernetes CronJobs.',
     useCases: [
@@ -153,7 +153,7 @@ export const CRON_PAGES: CronPageItem[] = [
     awsExpr: 'cron(0 9 ? * MON *)',
     title: 'Cron Expression for Every Monday at 9:00 AM (0 9 * * 1)',
     humanLabel: 'Weekly on Monday at 9:00 AM',
-    seoTitle: 'Cron Every Monday (0 9 * * 1) — Weekly Job Examples | Taprico',
+    seoTitle: 'Cron Every Monday (0 9 * * 1) — Weekly Guide | Taprico',
     seoDescription:
       'Schedule weekly Monday tasks with 0 9 * * 1. Copy crontab, GitHub Actions, Kubernetes, and AWS EventBridge syntax with weekday numbering tips.',
     useCases: [
@@ -170,7 +170,7 @@ export const CRON_PAGES: CronPageItem[] = [
     awsExpr: 'cron(0 0 1 * ? *)',
     title: 'Cron Expression for the 1st Day of Every Month (0 0 1 * *)',
     humanLabel: 'Monthly on day 1 at 00:00 (Midnight)',
-    seoTitle: 'Cron 1st of Every Month (0 0 1 * *) — Billing & Audit | Taprico',
+    seoTitle: 'Cron 1st of Month (0 0 1 * *) — Billing Guide | Taprico',
     seoDescription:
       'Trigger monthly billing, invoice generation, or archive tasks on the 1st of every month with 0 0 1 * *. Tested across UTC and US timezones.',
     useCases: [
