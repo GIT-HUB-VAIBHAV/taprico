@@ -533,7 +533,7 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
           <button
             type="button"
             onClick={generateVectorPdf}
-            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-600 px-4 py-2 text-xs font-bold text-white shadow-lg shadow-emerald-600/20 hover:bg-emerald-500 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-700 px-4 py-2 text-xs font-bold text-white shadow-lg shadow-emerald-700/20 hover:bg-emerald-600 transition-colors cursor-pointer"
           >
             <Download className="h-4 w-4" /> Download Vector PDF
           </button>
@@ -555,6 +555,7 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
               type="text"
               value={inv.docTitle}
               onChange={(e) => updateField('docTitle', e.target.value)}
+              aria-label="Document title"
               placeholder="INVOICE"
               className="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#090e1b] px-3 py-2 text-xs font-bold uppercase text-slate-900 dark:text-white"
             />
@@ -562,6 +563,7 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
               type="text"
               value={inv.invoiceNumber}
               onChange={(e) => updateField('invoiceNumber', e.target.value)}
+              aria-label="Invoice number"
               placeholder="INV-2026-001"
               className="rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#090e1b] px-3 py-2 font-mono text-xs font-semibold text-slate-900 dark:text-white"
             />
@@ -570,8 +572,9 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
           {/* Dates & Terms */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
             <div>
-              <label className="block text-[11px] font-medium text-slate-500 mb-1">Issue Date</label>
+              <label htmlFor="inv-issue-date" className="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">Issue Date</label>
               <input
+                id="inv-issue-date"
                 type="date"
                 value={inv.issueDate}
                 onChange={(e) => updateField('issueDate', e.target.value)}
@@ -579,8 +582,9 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
               />
             </div>
             <div>
-              <label className="block text-[11px] font-medium text-slate-500 mb-1">Terms</label>
+              <label htmlFor="inv-terms" className="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">Terms</label>
               <select
+                id="inv-terms"
                 value={inv.terms}
                 onChange={(e) => updateField('terms', e.target.value as InvoiceState['terms'])}
                 className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#090e1b] px-2.5 py-1.5 text-xs text-slate-900 dark:text-white"
@@ -592,8 +596,9 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
               </select>
             </div>
             <div>
-              <label className="block text-[11px] font-medium text-slate-500 mb-1">Due Date</label>
+              <label htmlFor="inv-due-date" className="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">Due Date</label>
               <input
+                id="inv-due-date"
                 type="date"
                 value={inv.dueDate}
                 onChange={(e) => updateField('dueDate', e.target.value)}
@@ -601,8 +606,9 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
               />
             </div>
             <div>
-              <label className="block text-[11px] font-medium text-slate-500 mb-1">PO # (Optional)</label>
+              <label htmlFor="inv-po-number" className="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">PO # (Optional)</label>
               <input
+                id="inv-po-number"
                 type="text"
                 value={inv.poNumber}
                 onChange={(e) => updateField('poNumber', e.target.value)}
@@ -614,11 +620,12 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
           {/* From & Bill To */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-[#090e1b] p-3">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-indigo-500">From (Your Business)</div>
+              <div className="text-[11px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">From (Your Business)</div>
               <input
                 type="text"
                 value={inv.fromName}
                 onChange={(e) => updateField('fromName', e.target.value)}
+                aria-label="From business name"
                 placeholder="Your Name / LLC"
                 className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2.5 py-1.5 text-xs font-semibold"
               />
@@ -626,6 +633,7 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
                 type="email"
                 value={inv.fromEmail}
                 onChange={(e) => updateField('fromEmail', e.target.value)}
+                aria-label="From email"
                 placeholder="billing@yourcompany.com"
                 className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2.5 py-1.5 text-xs"
               />
@@ -633,6 +641,7 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
                 rows={2}
                 value={inv.fromAddress}
                 onChange={(e) => updateField('fromAddress', e.target.value)}
+                aria-label="From address"
                 placeholder="Street, City, State ZIP"
                 className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2.5 py-1.5 text-xs"
               />
@@ -640,17 +649,19 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
                 type="text"
                 value={inv.fromTaxId}
                 onChange={(e) => updateField('fromTaxId', e.target.value)}
+                aria-label="From EIN or W-9 note"
                 placeholder="EIN / W-9 Note"
                 className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2.5 py-1.5 text-xs"
               />
             </div>
 
             <div className="space-y-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-[#090e1b] p-3">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-emerald-500">Bill To (Client)</div>
+              <div className="text-[11px] font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Bill To (Client)</div>
               <input
                 type="text"
                 value={inv.toName}
                 onChange={(e) => updateField('toName', e.target.value)}
+                aria-label="Client company name"
                 placeholder="Client Company Name"
                 className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2.5 py-1.5 text-xs font-semibold"
               />
@@ -658,6 +669,7 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
                 type="email"
                 value={inv.toEmail}
                 onChange={(e) => updateField('toEmail', e.target.value)}
+                aria-label="Client email"
                 placeholder="ap@client.com"
                 className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2.5 py-1.5 text-xs"
               />
@@ -665,6 +677,7 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
                 rows={3}
                 value={inv.toAddress}
                 onChange={(e) => updateField('toAddress', e.target.value)}
+                aria-label="Client billing address"
                 placeholder="Client Billing Address"
                 className="w-full rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2.5 py-1.5 text-xs"
               />
@@ -690,6 +703,7 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
                     type="text"
                     value={item.description}
                     onChange={(e) => updateItem(item.id, 'description', e.target.value)}
+                    aria-label="Line item description"
                     placeholder="Deliverable or service..."
                     className="col-span-6 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-2.5 py-1.5 text-xs"
                   />
@@ -727,9 +741,10 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
           {/* Discount / Tax / Deposit */}
           <div className="grid grid-cols-3 gap-3 text-xs">
             <div>
-              <label className="block text-[11px] font-medium text-slate-500 mb-1">Discount</label>
+              <label htmlFor="inv-discount" className="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">Discount</label>
               <div className="flex rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-[#090e1b] overflow-hidden">
                 <input
+                  id="inv-discount"
                   type="number"
                   min={0}
                   value={inv.discountValue}
@@ -739,15 +754,16 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
                 <button
                   type="button"
                   onClick={() => updateField('discountType', inv.discountType === 'percent' ? 'flat' : 'percent')}
-                  className="border-l border-slate-200 dark:border-slate-700 px-2 font-mono font-bold text-indigo-500 cursor-pointer"
+                  className="border-l border-slate-200 dark:border-slate-700 px-2 font-mono font-bold text-indigo-600 dark:text-indigo-400 cursor-pointer"
                 >
                   {inv.discountType === 'percent' ? '%' : '$'}
                 </button>
               </div>
             </div>
             <div>
-              <label className="block text-[11px] font-medium text-slate-500 mb-1">Sales Tax (%)</label>
+              <label htmlFor="inv-tax" className="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">Sales Tax (%)</label>
               <input
+                id="inv-tax"
                 type="number"
                 min={0}
                 step="0.1"
@@ -757,8 +773,9 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
               />
             </div>
             <div>
-              <label className="block text-[11px] font-medium text-slate-500 mb-1">Deposit Paid</label>
+              <label htmlFor="inv-deposit" className="block text-[11px] font-medium text-slate-600 dark:text-slate-400 mb-1">Deposit Paid</label>
               <input
+                id="inv-deposit"
                 type="number"
                 min={0}
                 value={inv.amountPaid}
@@ -771,10 +788,11 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
           {/* Payment Instructions & Notes */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-300 mb-1">
+              <label htmlFor="inv-payment" className="block text-[11px] font-semibold text-slate-600 dark:text-slate-300 mb-1">
                 ACH / Wire / Payment Instructions
               </label>
               <textarea
+                id="inv-payment"
                 rows={4}
                 value={inv.paymentInstructions}
                 onChange={(e) => updateField('paymentInstructions', e.target.value)}
@@ -782,10 +800,11 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
               />
             </div>
             <div>
-              <label className="block text-[11px] font-semibold text-slate-600 dark:text-slate-300 mb-1">
+              <label htmlFor="inv-notes" className="block text-[11px] font-semibold text-slate-600 dark:text-slate-300 mb-1">
                 Notes / Terms
               </label>
               <textarea
+                id="inv-notes"
                 rows={4}
                 value={inv.notes}
                 onChange={(e) => updateField('notes', e.target.value)}
@@ -810,7 +829,7 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
                     <div className="text-lg font-extrabold text-slate-900">{inv.fromName}</div>
                     <div className="text-slate-500">{inv.fromEmail}</div>
                     <div className="whitespace-pre-line text-slate-500">{inv.fromAddress}</div>
-                    {inv.fromTaxId && <div className="text-[11px] font-medium text-slate-400 pt-0.5">{inv.fromTaxId}</div>}
+                    {inv.fromTaxId && <div className="text-[11px] font-medium text-slate-600 pt-0.5">{inv.fromTaxId}</div>}
                   </div>
                 </div>
 
@@ -830,14 +849,14 @@ export default function InvoiceGenerator({ initialPreset }: InvoiceGeneratorProp
               {/* Bill To & Balance Box */}
               <div className="flex flex-wrap justify-between gap-4 items-start">
                 <div className="space-y-0.5">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Bill To</div>
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-600">Bill To</div>
                   <div className="text-sm font-bold text-slate-900">{inv.toName}</div>
                   <div className="text-slate-500">{inv.toEmail}</div>
                   <div className="whitespace-pre-line text-slate-500">{inv.toAddress}</div>
                 </div>
 
                 <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-right min-w-[175px]">
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Balance Due</div>
+                  <div className="text-[10px] font-bold uppercase tracking-wider text-slate-600">Balance Due</div>
                   <div className="mt-0.5 text-xl font-black tabular-nums" style={{ color: inv.accentColor }}>
                     {formatCurrency(totals.balanceDue, inv.currency)}
                   </div>
