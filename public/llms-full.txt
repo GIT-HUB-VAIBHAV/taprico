@@ -1,0 +1,138 @@
+# Taprico — Complete LLM & Agent Reference
+
+> Taprico (`https://taprico.com`) is a fast, static, local-first workbench of 12 free developer utilities and US freelance finance calculators that execute 100% client-side inside the user's browser—with zero logins, zero backend payload uploads, and watermark-free US Letter vector PDF exports.
+
+## Core Architecture & Privacy Guarantees
+
+- **100% Client-Side Execution:** Built with Astro static site generation (`astro build`) and isolated React islands. All tool computations happen strictly in browser memory.
+- **Zero Data Transmission:** JSON/YAML payloads, JWT tokens, HMAC signing secrets, SQL queries, regex inputs, diff texts, and client invoice details never leave the user's device.
+- **Cryptography:** JWT HS256/HS384/HS512 verification uses the native browser Web Crypto API (`crypto.subtle`).
+- **PDF Generation:** Vector US Letter (`8.5" × 11"`) PDFs are synthesized locally using `jspdf` without watermarks or server-side rendering; optional company branding persists strictly in browser `localStorage`.
+- **Keyboard Navigation:** Global `Cmd+K` / `Ctrl+K` command palette searches across all 12 tools, templates, and guides.
+- **Contact & Repository:** `hello@taprico.com` · `https://github.com/GIT-HUB-VAIBHAV/taprico` (MIT License)
+
+---
+
+## 1. Developer Studio Tools (8)
+
+- **JSON & YAML Formatter, Validator & Converter** — `https://taprico.com/tools/json-yaml-formatter/`
+  - Modes: Format JSON, Minify JSON, JSON → YAML, YAML → JSON, interactive Tree Inspector (dot/bracket path copy), alphabetical key sorting, 2/4-space or tab indent, line/column error diagnostics.
+- **JWT Decoder, Claims Inspector & Signature Verifier** — `https://taprico.com/tools/jwt-decoder/`
+  - Decodes Base64URL Header & Payload, translates `exp`/`iat`/`nbf` into US Eastern, Pacific, and UTC dates with live countdown, warns on `alg:none` or missing `exp`, and verifies HS256/HS384/HS512 locally via Web Crypto.
+- **Cron Expression Generator, Explainer & Schedule Tester** — `https://taprico.com/tools/cron-expression-generator/`
+  - Two-way 5-field cron builder (`minute hour day-of-month month day-of-week`), plain-English descriptions, and next-10 execution preview across `America/New_York`, `America/Chicago`, `America/Denver`, `America/Los_Angeles`, and `UTC`.
+- **Regex Tester, Match Highlighter & Replace Debugger** — `https://taprico.com/tools/regex-tester/`
+  - Live ECMAScript regex matching with `g`, `i`, `m`, `s`, `u` flags, color-coded match/capture group table, and find-and-replace output preview.
+- **Base64 Encoder, Decoder & File Data-URI Studio** — `https://taprico.com/tools/base64-encoder-decoder/`
+  - UTF-8 safe Base64 and Base64URL encoding/decoding plus local file-to-Data-URI conversion.
+- **UUID Generator (v4, v7), ULID & Timestamp Inspector** — `https://taprico.com/tools/uuid-generator/`
+  - Generates RFC 9562 time-ordered UUID v7, random UUID v4, and ULID batches; inspects embedded millisecond timestamps from UUID v7; exports SQL `INSERT` batches.
+- **SQL Formatter, Beautifier & Multi-Dialect Minifier** — `https://taprico.com/tools/sql-formatter/`
+  - Formats or minifies PostgreSQL, MySQL, SQLite, T-SQL, BigQuery, and standard ANSI SQL queries offline.
+- **Code & Text Diff Checker** — `https://taprico.com/tools/diff-checker/`
+  - Side-by-side and unified diff comparison with line- and character-level change highlights.
+
+---
+
+## 2. US Freelance & Business Calculators (4)
+
+- **US Freelance & Small Business PDF Invoice Generator** — `https://taprico.com/tools/invoice-generator/`
+  - Exports crisp US Letter vector PDFs with zero watermarks, custom logo PNG/JPEG upload, Net 7/15/30/60 terms, percentage/flat discounts, state sales tax, and saved `localStorage` company profile.
+- **Hourly to Salary Converter** — `https://taprico.com/tools/hourly-to-salary-converter/`
+  - Standard 2,080-hour baseline adjusted for unpaid PTO weeks and unpaid US holidays, comparing W-2 pay vs. 1099 contractor equivalent (factoring in 15.3% FICA self-employment tax and benefits overhead).
+- **US Freelance Rate & 1099 Pricing Calculator** — `https://taprico.com/tools/freelance-rate-calculator/`
+  - Works backward from target take-home income, billable utilization rate (accounting for admin/sales hours), 15.3% self-employment tax, health insurance, retirement, and business overhead to output required hourly, daily, and weekly rates.
+- **Profit Margin, Markup & Break-Even ROAS Calculator** — `https://taprico.com/tools/profit-margin-markup-calculator/`
+  - Uses exact accounting formulas: `Gross Margin (%) = ((Price - Cost) / Price) × 100`, `Markup (%) = ((Price - Cost) / Cost) × 100`, and `Break-Even ROAS = 1 / Gross Margin Ratio`.
+
+---
+
+## 3. Cron Schedule Reference Pages (`/cron/`)
+
+- Hub: `https://taprico.com/cron/`
+- Every Minute (`* * * * *`): `https://taprico.com/cron/every-minute/`
+- Every 5 Minutes (`*/5 * * * *`): `https://taprico.com/cron/every-5-minutes/`
+- Every 15 Minutes (`*/15 * * * *`): `https://taprico.com/cron/every-15-minutes/`
+- Every 30 Minutes (`*/30 * * * *`): `https://taprico.com/cron/every-30-minutes/`
+- Every Hour (`0 * * * *`): `https://taprico.com/cron/every-hour/`
+- Every 6 Hours (`0 */6 * * *`): `https://taprico.com/cron/every-6-hours/`
+- Every Day at Midnight (`0 0 * * *`): `https://taprico.com/cron/every-day-at-midnight/`
+- Every Day at 9:00 AM (`0 9 * * *`): `https://taprico.com/cron/every-day-at-9am/`
+- Every Monday (`0 9 * * 1`): `https://taprico.com/cron/every-monday/`
+- First Day of Every Month (`0 0 1 * *`): `https://taprico.com/cron/first-day-of-every-month/`
+
+---
+
+## 4. US Hourly to Salary Reference Pages (`/salary/`)
+
+- Hub: `https://taprico.com/salary/`
+- $25/hour: `https://taprico.com/salary/25-an-hour/`
+- $30/hour: `https://taprico.com/salary/30-an-hour/`
+- $35/hour: `https://taprico.com/salary/35-an-hour/`
+- $40/hour: `https://taprico.com/salary/40-an-hour/`
+- $45/hour: `https://taprico.com/salary/45-an-hour/`
+- $50/hour: `https://taprico.com/salary/50-an-hour/`
+- $60/hour: `https://taprico.com/salary/60-an-hour/`
+- $75/hour: `https://taprico.com/salary/75-an-hour/`
+- $80/hour: `https://taprico.com/salary/80-an-hour/`
+- $100/hour: `https://taprico.com/salary/100-an-hour/`
+- $125/hour: `https://taprico.com/salary/125-an-hour/`
+- $150/hour: `https://taprico.com/salary/150-an-hour/`
+
+---
+
+## 5. Free Profession Invoice Templates (`/invoice-template/`)
+
+- Hub: `https://taprico.com/invoice-template/`
+- Web Developer: `https://taprico.com/invoice-template/web-developer/`
+- Software Engineer: `https://taprico.com/invoice-template/software-engineer/`
+- Marketing Consultant: `https://taprico.com/invoice-template/marketing-consultant/`
+- Graphic Designer: `https://taprico.com/invoice-template/graphic-designer/`
+- Video Editor: `https://taprico.com/invoice-template/video-editor/`
+- SEO Consultant: `https://taprico.com/invoice-template/seo-consultant/`
+- Copywriter: `https://taprico.com/invoice-template/copywriter/`
+- Virtual Assistant: `https://taprico.com/invoice-template/virtual-assistant/`
+- Bookkeeper: `https://taprico.com/invoice-template/bookkeeper/`
+- Fractional CFO: `https://taprico.com/invoice-template/fractional-cfo/`
+
+---
+
+## 6. Profit Margin & Markup Reference Pages (`/margin/`)
+
+- Hub: `https://taprico.com/margin/`
+- 20% Gross Margin: `https://taprico.com/margin/20-percent-margin/`
+- 25% Gross Margin: `https://taprico.com/margin/25-percent-margin/`
+- 30% Gross Margin: `https://taprico.com/margin/30-percent-margin/`
+- 40% Gross Margin: `https://taprico.com/margin/40-percent-margin/`
+- 50% Gross Margin: `https://taprico.com/margin/50-percent-margin/`
+- 60% Gross Margin: `https://taprico.com/margin/60-percent-margin/`
+- 70% Gross Margin: `https://taprico.com/margin/70-percent-margin/`
+- 75% Gross Margin: `https://taprico.com/margin/75-percent-margin/`
+
+---
+
+## 7. Engineering & Freelance Playbooks (`/guides/`)
+
+- Hub: `https://taprico.com/guides/`
+- US Freelance Hourly Rate Guide (2026): `https://taprico.com/guides/us-freelance-hourly-rate-guide/`
+- JSON vs. YAML for Kubernetes & APIs: `https://taprico.com/guides/json-vs-yaml-kubernetes-apis/`
+- JWT Authentication Security Checklist: `https://taprico.com/guides/jwt-authentication-security-checklist/`
+- US Freelance Invoice Checklist (Net 30, W-9, Sales Tax): `https://taprico.com/guides/us-freelance-invoice-checklist/`
+- US 1099 Quarterly Estimated Taxes & 2026 Deadlines: `https://taprico.com/guides/1099-quarterly-estimated-taxes-us-freelancers/`
+- Profit Margin vs. Markup for US Agencies & E-Commerce: `https://taprico.com/guides/gross-margin-vs-markup-us-agencies-ecommerce/`
+- PostgreSQL UUID v7 vs. UUID v4 Index Performance: `https://taprico.com/guides/postgresql-uuid-v7-vs-uuid-v4-performance/`
+- GitHub Actions & AWS EventBridge Cron Scheduling Guide: `https://taprico.com/guides/github-actions-aws-cron-scheduling-guide/`
+
+---
+
+## 8. Site Directory, Legal & Feeds
+
+- Homepage: `https://taprico.com/`
+- All Tools: `https://taprico.com/tools/`
+- About: `https://taprico.com/about/`
+- Contact: `https://taprico.com/contact/`
+- Privacy Policy: `https://taprico.com/privacy-policy/`
+- Terms of Use: `https://taprico.com/terms/`
+- Sitemap Index: `https://taprico.com/sitemap-index.xml`
+- Image Sitemap: `https://taprico.com/image-sitemap.xml`
+- Concise LLM Index: `https://taprico.com/llms.txt`

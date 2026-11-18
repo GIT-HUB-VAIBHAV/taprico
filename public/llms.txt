@@ -1,0 +1,54 @@
+# Taprico
+
+> Taprico (https://taprico.com) is a fast, local-first workbench of 12 free developer utilities and US freelance finance calculators that run 100% inside the browser with zero logins, zero server payload uploads, and zero PDF watermarks.
+
+Taprico is built as a static Astro site with isolated React islands (`https://taprico.com`). Sensitive inputs—including JWTs, HMAC secrets, JSON/YAML configs, SQL queries, client invoice details, and tax/margin figures—stay strictly in local browser memory or `localStorage` and are never transmitted to a backend API.
+
+For complete page-by-page links covering all 71 URLs, presets, and calculation details, see [Taprico Full Reference](https://taprico.com/llms-full.txt).
+
+## Developer Studio
+
+- [JSON & YAML Formatter, Validator & Converter](https://taprico.com/tools/json-yaml-formatter/): Format, validate, minify, explore JSON paths, sort keys, and convert cleanly between JSON and YAML 1.2 locally.
+- [JWT Decoder & Signature Verifier](https://taprico.com/tools/jwt-decoder/): Decode JWT headers and claims, inspect live `exp`/`iat`/`nbf` timestamps across US/UTC timezones, flag `alg:none` risks, and verify HS256/HS384/HS512 signatures natively with the browser Web Crypto API.
+- [Cron Expression Generator & Schedule Tester](https://taprico.com/tools/cron-expression-generator/): Build and explain 5-field cron schedules in plain English and preview the next 10 run timestamps across US Eastern, Central, Mountain, Pacific, and UTC.
+- [Regex Tester & Match Inspector](https://taprico.com/tools/regex-tester/): Test regular expressions with live match highlighting, capture group breakdown, flags (`g`, `i`, `m`, `s`, `u`), and replacement preview.
+- [Base64 Encoder, Decoder & Data-URI Studio](https://taprico.com/tools/base64-encoder-decoder/): Encode and decode UTF-8 text, URL-safe Base64URL strings, and client-side file Data URIs.
+- [UUID Generator (v4, v7) & ULID Studio](https://taprico.com/tools/uuid-generator/): Generate RFC 9562 time-ordered UUID v7, random UUID v4, and ULID batches, extract embedded v7 timestamps, and export ready-to-run SQL `INSERT` statements.
+- [SQL Formatter & Multi-Dialect Beautifier](https://taprico.com/tools/sql-formatter/): Format, indent, or minify PostgreSQL, MySQL, SQLite, T-SQL, and BigQuery queries locally.
+- [Code & Text Diff Checker](https://taprico.com/tools/diff-checker/): Compare two text, JSON, or code blocks side-by-side or inline with word- and line-level change highlighting.
+
+## Freelance & Business Calculators
+
+- [US Freelance & Small Business PDF Invoice Generator](https://taprico.com/tools/invoice-generator/): Create watermark-free US Letter PDF invoices locally via jsPDF with company logo upload, Net payment terms, tax/discount math, and `localStorage` defaults.
+- [Hourly to Salary Converter](https://taprico.com/tools/hourly-to-salary-converter/): Convert US hourly wages to annual, monthly, bi-weekly, and weekly pay factoring in unpaid PTO, holidays, and W-2 vs. 1099 contractor parity.
+- [US Freelance Rate & 1099 Pricing Calculator](https://taprico.com/tools/freelance-rate-calculator/): Calculate target hourly and day rates accounting for the 15.3% US self-employment tax, billable utilization, health insurance, overhead, and PTO.
+- [Profit Margin, Markup & Break-Even ROAS Calculator](https://taprico.com/tools/profit-margin-markup-calculator/): Compute gross profit margin, markup percentage, unit profit, and break-even return on ad spend (ROAS) without mixing up margin and markup.
+
+## Programmatic Tools & Template Hubs
+
+- [All Tools Directory](https://taprico.com/tools/): Searchable hub of all 12 browser-based developer and freelance tools.
+- [Common Cron Schedule Presets](https://taprico.com/cron/): Interactive breakdowns for popular schedules including every minute, 5/15/30 minutes, 6 hours, daily at midnight or 9am, weekly, and monthly.
+- [Hourly Wage to Salary Tables](https://taprico.com/salary/): Detailed annual take-home and 1099 contractor breakdowns from $25/hr to $150/hr.
+- [Free Profession Invoice Templates](https://taprico.com/invoice-template/): Pre-configured US Letter PDF invoice templates for 10 freelance professions (web developer, software engineer, marketing consultant, graphic designer, video editor, SEO consultant, copywriter, VA, bookkeeper, fractional CFO).
+- [Target Profit Margin & Markup Tables](https://taprico.com/margin/): Pricing, markup multipliers, and break-even ROAS breakdowns from 20% to 75% gross margin.
+
+## Technical Playbooks & Guides
+
+- [How to Price Your US Freelance Rate in 2026](https://taprico.com/guides/us-freelance-hourly-rate-guide/): Step-by-step hourly pricing formula covering 15.3% FICA self-employment tax, overhead, and non-billable hours.
+- [JSON vs. YAML: Production Engineering Guide](https://taprico.com/guides/json-vs-yaml-kubernetes-apis/): Practical rules for REST APIs, Kubernetes manifests, GitHub Actions, and YAML type-coercion pitfalls.
+- [JWT Security Checklist](https://taprico.com/guides/jwt-authentication-security-checklist/): Preventing `alg:none`, algorithm confusion, weak HMAC secrets, and missing `exp`/`aud`/`iss` validation.
+- [US Freelance Invoice Requirements Checklist](https://taprico.com/guides/us-freelance-invoice-checklist/): Net 30 terms, W-9 onboarding, sales tax handling, and faster B2B payment practices.
+- [US 1099 Quarterly Estimated Taxes Guide](https://taprico.com/guides/1099-quarterly-estimated-taxes-us-freelancers/): Safe harbor rules and IRS Form 1040-ES quarterly deadlines.
+- [Profit Margin vs. Markup Benchmarks](https://taprico.com/guides/gross-margin-vs-markup-us-agencies-ecommerce/): Margin formulas and healthy pricing benchmarks for US agencies and e-commerce brands.
+- [PostgreSQL UUID v7 vs. UUID v4 Performance](https://taprico.com/guides/postgresql-uuid-v7-vs-uuid-v4-performance/): B-Tree index locality, page split reduction, write amplification, and migration strategy.
+- [GitHub Actions & AWS EventBridge Cron Guide](https://taprico.com/guides/github-actions-aws-cron-scheduling-guide/): Avoiding UTC vs. US Eastern/Pacific daylight saving drift in CI/CD and cloud jobs.
+
+## Optional
+
+- [Taprico Full Reference (`llms-full.txt`)](https://taprico.com/llms-full.txt): Complete directory including all 71 indexed URLs and technical specifications.
+- [About Taprico](https://taprico.com/about/): Architecture overview, local-first security model, and screenshot showcase.
+- [Contact](https://taprico.com/contact/): Feedback, bug reports, and support contact (`hello@taprico.com`).
+- [Privacy Policy](https://taprico.com/privacy-policy/): Zero-payload client-side execution policy and cookie/storage disclosure.
+- [Terms of Use](https://taprico.com/terms/): Standard terms for using Taprico browser tools and calculators.
+- [XML Sitemap Index](https://taprico.com/sitemap-index.xml): Canonical search engine sitemap covering all 71 pages.
+- [GitHub Repository](https://github.com/GIT-HUB-VAIBHAV/taprico): Public source code repository (MIT License).
