@@ -19,6 +19,14 @@ interface Props {
 const { tpl } = Astro.props;
 const canonicalPath = `/invoice-template/${tpl.slug}/`;
 const fullUrl = new URL(canonicalPath, SITE.url).toString();
+const sampleItems = tpl.preset.items ?? [];
+const sampleSubtotal = sampleItems.reduce((total, item) => total + item.quantity * item.rate, 0);
+const formatUsd = (value: number) =>
+  new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  }).format(value);
 
 const faqs = [
   {
@@ -77,9 +85,11 @@ const breadcrumbSchema = {
         <span>/</span>
         <span class="font-medium text-slate-800 dark:text-slate-200">{tpl.role}</span>
       </nav>
+
       <h1 class="text-2xl sm:text-4xl font-black tracking-tight text-slate-900 dark:text-white">
         {tpl.title}
       </h1>
+
       <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-3xl leading-relaxed">
         Pre-configured for <strong>{tpl.role}</strong> engagements ({tpl.typicalTerms}). Edit any field below and download an instant watermark-free US Letter PDF.
       </p>
@@ -101,6 +111,7 @@ const breadcrumbSchema = {
           <h2 class="text-xl font-bold text-slate-900 dark:text-white">
             Billing Best Practices for {tpl.role}s
           </h2>
+
           <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-300 list-disc pl-5">
             {tpl.billingTips.map((tip) => (
               <li>{tip}</li>
@@ -108,8 +119,65 @@ const breadcrumbSchema = {
           </ul>
         </div>
 
+        <section class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-4">
+          <div class="space-y-2">
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+              Example {tpl.role} Invoice Line Items
+            </h2>
+
+            <p class="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              Use these editable sample line items as a starting point for a {tpl.role.toLowerCase()} engagement. Update the scope, quantity, rate, dates, and payment terms to match the client agreement before exporting your PDF.
+            </p>
+          </div>
+
+          <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+            <table class="w-full min-w-[560px] text-left text-sm">
+              <thead class="bg-slate-50 dark:bg-[#090e1b] text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                <tr>
+                  <th scope="col" class="px-4 py-3 font-semibold">Service / Deliverable</th>
+                  <th scope="col" class="px-4 py-3 text-right font-semibold">Qty.</th>
+                  <th scope="col" class="px-4 py-3 text-right font-semibold">Rate</th>
+                  <th scope="col" class="px-4 py-3 text-right font-semibold">Amount</th>
+                </tr>
+              </thead>
+
+              <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-slate-700 dark:text-slate-300">
+                {sampleItems.map((item) => (
+                  <tr>
+                    <td class="px-4 py-3 leading-relaxed">{item.description}</td>
+                    <td class="px-4 py-3 text-right tabular-nums">{item.quantity}</td>
+                    <td class="px-4 py-3 text-right tabular-nums">{formatUsd(item.rate)}</td>
+                    <td class="px-4 py-3 text-right tabular-nums font-medium">
+                      {formatUsd(item.quantity * item.rate)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+
+              <tfoot class="bg-slate-50 dark:bg-[#090e1b] text-slate-900 dark:text-white">
+                <tr>
+                  <td colspan="3" class="px-4 py-3 text-right text-sm font-bold">
+                    Sample subtotal
+                  </td>
+
+                  <td class="px-4 py-3 text-right text-sm font-black tabular-nums">
+                    {formatUsd(sampleSubtotal)}
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+          <p class="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+            Sample figures are illustrative only. Your invoice should reflect your agreed scope, applicable sales tax, and payment instructions.
+          </p>
+        </section>
+
         <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0d1322] p-6 space-y-3">
-          <h2 class="text-xl font-bold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
+          <h2 class="text-xl font-bold text-slate-900 dark:text-white">
+            Frequently Asked Questions
+          </h2>
+
           <div class="divide-y divide-slate-200 dark:divide-slate-800">
             {faqs.map((faq, idx) => (
               <details class="group py-3.5" open={idx === 0}>
@@ -117,7 +185,10 @@ const breadcrumbSchema = {
                   <span>{faq.question}</span>
                   <span class="text-indigo-500 text-lg leading-none">+</span>
                 </summary>
-                <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{faq.answer}</p>
+
+                <p class="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+                  {faq.answer}
+                </p>
               </details>
             ))}
           </div>
@@ -129,6 +200,7 @@ const breadcrumbSchema = {
           <h3 class="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">
             All Profession Templates
           </h3>
+
           <div class="flex flex-col gap-2">
             {INVOICE_TEMPLATES.map((other) => (
               <a
